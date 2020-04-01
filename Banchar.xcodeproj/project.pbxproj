@@ -9,12 +9,24 @@
 /* Begin PBXBuildFile section */
 		63900972242D1AFD00AAAEC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900971242D1AFD00AAAEC8 /* AppDelegate.swift */; };
 		63900974242D1AFD00AAAEC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900973242D1AFD00AAAEC8 /* SceneDelegate.swift */; };
-		63900976242D1AFD00AAAEC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900975242D1AFD00AAAEC8 /* ViewController.swift */; };
+		63900976242D1AFD00AAAEC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900975242D1AFD00AAAEC8 /* LoginViewController.swift */; };
 		63900979242D1AFD00AAAEC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63900977242D1AFD00AAAEC8 /* Main.storyboard */; };
 		6390097B242D1B0200AAAEC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6390097A242D1B0200AAAEC8 /* Assets.xcassets */; };
 		6390097E242D1B0200AAAEC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6390097C242D1B0200AAAEC8 /* LaunchScreen.storyboard */; };
 		63900989242D1B0200AAAEC8 /* BancharTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900988242D1B0200AAAEC8 /* BancharTests.swift */; };
 		63900994242D1B0200AAAEC8 /* BancharUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900993242D1B0200AAAEC8 /* BancharUITests.swift */; };
+		639009A22434AA1200AAAEC8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009A12434AA1200AAAEC8 /* UserProfileViewController.swift */; };
+		639009A42434B00400AAAEC8 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009A32434B00400AAAEC8 /* RegisterUserViewController.swift */; };
+		639009A62434B21300AAAEC8 /* RequestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009A52434B21300AAAEC8 /* RequestHistoryViewController.swift */; };
+		639009A82434CDAA00AAAEC8 /* NewRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009A72434CDAA00AAAEC8 /* NewRequestViewController.swift */; };
+		639009AA2434D04500AAAEC8 /* ServiceVehicleTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009A92434D04500AAAEC8 /* ServiceVehicleTrackerViewController.swift */; };
+		639009AC2434D07F00AAAEC8 /* RequestConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009AB2434D07F00AAAEC8 /* RequestConfirmationViewController.swift */; };
+		639009AE2434EFA900AAAEC8 /* RegisterPageOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009AD2434EFA900AAAEC8 /* RegisterPageOne.swift */; };
+		639009B02434EFB500AAAEC8 /* RegisterPageOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639009AF2434EFB500AAAEC8 /* RegisterPageOne.xib */; };
+		639009B32434F2B700AAAEC8 /* RegisterPageTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639009B22434F2B700AAAEC8 /* RegisterPageTwo.xib */; };
+		639009B52434F2C900AAAEC8 /* RegisterPageTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009B42434F2C900AAAEC8 /* RegisterPageTwo.swift */; };
+		639009B82434F37F00AAAEC8 /* RegisterPageThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639009B72434F37F00AAAEC8 /* RegisterPageThree.xib */; };
+		639009BA2434F39900AAAEC8 /* RegisterPageThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009B92434F39900AAAEC8 /* RegisterPageThree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +50,7 @@
 		6390096E242D1AFD00AAAEC8 /* Banchar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banchar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63900971242D1AFD00AAAEC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63900973242D1AFD00AAAEC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		63900975242D1AFD00AAAEC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		63900975242D1AFD00AAAEC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		63900978242D1AFD00AAAEC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6390097A242D1B0200AAAEC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6390097D242D1B0200AAAEC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +61,18 @@
 		6390098F242D1B0200AAAEC8 /* BancharUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BancharUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63900993242D1B0200AAAEC8 /* BancharUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BancharUITests.swift; sourceTree = "<group>"; };
 		63900995242D1B0200AAAEC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		639009A12434AA1200AAAEC8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		639009A32434B00400AAAEC8 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
+		639009A52434B21300AAAEC8 /* RequestHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHistoryViewController.swift; sourceTree = "<group>"; };
+		639009A72434CDAA00AAAEC8 /* NewRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestViewController.swift; sourceTree = "<group>"; };
+		639009A92434D04500AAAEC8 /* ServiceVehicleTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceVehicleTrackerViewController.swift; sourceTree = "<group>"; };
+		639009AB2434D07F00AAAEC8 /* RequestConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationViewController.swift; sourceTree = "<group>"; };
+		639009AD2434EFA900AAAEC8 /* RegisterPageOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageOne.swift; sourceTree = "<group>"; };
+		639009AF2434EFB500AAAEC8 /* RegisterPageOne.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterPageOne.xib; sourceTree = "<group>"; };
+		639009B22434F2B700AAAEC8 /* RegisterPageTwo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterPageTwo.xib; sourceTree = "<group>"; };
+		639009B42434F2C900AAAEC8 /* RegisterPageTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageTwo.swift; sourceTree = "<group>"; };
+		639009B72434F37F00AAAEC8 /* RegisterPageThree.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterPageThree.xib; sourceTree = "<group>"; };
+		639009B92434F39900AAAEC8 /* RegisterPageThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageThree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +123,22 @@
 		63900970242D1AFD00AAAEC8 /* Banchar */ = {
 			isa = PBXGroup;
 			children = (
+				6390097F242D1B0200AAAEC8 /* Info.plist */,
 				63900971242D1AFD00AAAEC8 /* AppDelegate.swift */,
+				63900975242D1AFD00AAAEC8 /* LoginViewController.swift */,
+				639009A72434CDAA00AAAEC8 /* NewRequestViewController.swift */,
+				639009A32434B00400AAAEC8 /* RegisterUserViewController.swift */,
+				639009AB2434D07F00AAAEC8 /* RequestConfirmationViewController.swift */,
+				639009A52434B21300AAAEC8 /* RequestHistoryViewController.swift */,
 				63900973242D1AFD00AAAEC8 /* SceneDelegate.swift */,
-				63900975242D1AFD00AAAEC8 /* ViewController.swift */,
-				63900977242D1AFD00AAAEC8 /* Main.storyboard */,
+				639009A92434D04500AAAEC8 /* ServiceVehicleTrackerViewController.swift */,
+				639009A12434AA1200AAAEC8 /* UserProfileViewController.swift */,
 				6390097A242D1B0200AAAEC8 /* Assets.xcassets */,
 				6390097C242D1B0200AAAEC8 /* LaunchScreen.storyboard */,
-				6390097F242D1B0200AAAEC8 /* Info.plist */,
+				63900977242D1AFD00AAAEC8 /* Main.storyboard */,
+				639009B12434EFC300AAAEC8 /* RegisterPageOne */,
+				639009BB2434F3A000AAAEC8 /* RegisterPageThree */,
+				639009B62434F2CF00AAAEC8 /* RegisterPageTwo */,
 			);
 			path = Banchar;
 			sourceTree = "<group>";
@@ -126,6 +159,33 @@
 				63900995242D1B0200AAAEC8 /* Info.plist */,
 			);
 			path = BancharUITests;
+			sourceTree = "<group>";
+		};
+		639009B12434EFC300AAAEC8 /* RegisterPageOne */ = {
+			isa = PBXGroup;
+			children = (
+				639009AD2434EFA900AAAEC8 /* RegisterPageOne.swift */,
+				639009AF2434EFB500AAAEC8 /* RegisterPageOne.xib */,
+			);
+			path = RegisterPageOne;
+			sourceTree = "<group>";
+		};
+		639009B62434F2CF00AAAEC8 /* RegisterPageTwo */ = {
+			isa = PBXGroup;
+			children = (
+				639009B22434F2B700AAAEC8 /* RegisterPageTwo.xib */,
+				639009B42434F2C900AAAEC8 /* RegisterPageTwo.swift */,
+			);
+			path = RegisterPageTwo;
+			sourceTree = "<group>";
+		};
+		639009BB2434F3A000AAAEC8 /* RegisterPageThree */ = {
+			isa = PBXGroup;
+			children = (
+				639009B72434F37F00AAAEC8 /* RegisterPageThree.xib */,
+				639009B92434F39900AAAEC8 /* RegisterPageThree.swift */,
+			);
+			path = RegisterPageThree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,8 +292,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				639009B02434EFB500AAAEC8 /* RegisterPageOne.xib in Resources */,
 				6390097E242D1B0200AAAEC8 /* LaunchScreen.storyboard in Resources */,
+				639009B82434F37F00AAAEC8 /* RegisterPageThree.xib in Resources */,
 				6390097B242D1B0200AAAEC8 /* Assets.xcassets in Resources */,
+				639009B32434F2B700AAAEC8 /* RegisterPageTwo.xib in Resources */,
 				63900979242D1AFD00AAAEC8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,9 +322,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63900976242D1AFD00AAAEC8 /* ViewController.swift in Sources */,
+				639009BA2434F39900AAAEC8 /* RegisterPageThree.swift in Sources */,
+				639009AA2434D04500AAAEC8 /* ServiceVehicleTrackerViewController.swift in Sources */,
+				639009A42434B00400AAAEC8 /* RegisterUserViewController.swift in Sources */,
+				63900976242D1AFD00AAAEC8 /* LoginViewController.swift in Sources */,
+				639009A22434AA1200AAAEC8 /* UserProfileViewController.swift in Sources */,
+				639009A62434B21300AAAEC8 /* RequestHistoryViewController.swift in Sources */,
 				63900972242D1AFD00AAAEC8 /* AppDelegate.swift in Sources */,
+				639009AE2434EFA900AAAEC8 /* RegisterPageOne.swift in Sources */,
 				63900974242D1AFD00AAAEC8 /* SceneDelegate.swift in Sources */,
+				639009A82434CDAA00AAAEC8 /* NewRequestViewController.swift in Sources */,
+				639009B52434F2C900AAAEC8 /* RegisterPageTwo.swift in Sources */,
+				639009AC2434D07F00AAAEC8 /* RequestConfirmationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
