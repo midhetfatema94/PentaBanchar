@@ -9,7 +9,9 @@
 import UIKit
 
 class NewRequestViewController: UIViewController {
-
+    
+    let requestVM = RequestViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

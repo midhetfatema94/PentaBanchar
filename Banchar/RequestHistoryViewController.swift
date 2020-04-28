@@ -9,22 +9,33 @@
 import UIKit
 
 class RequestHistoryViewController: UIViewController {
-
+    
+    @IBOutlet weak var requestTable: UITableView!
+    
+    var requests: [RequestViewModel] = []
+    
+    @IBAction func newRequest(_ sender: UIBarButtonItem) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+    }
+}
+
+extension RequestHistoryViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let orderCell = tableView.dequeueReusableCell(withIdentifier: "requestCell") as? RequestHistoryTableViewCell {
+            orderCell.configure(data: requests[indexPath.row])
+            return orderCell
+        }
+        return UITableViewCell()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return requests.count
     }
-    */
-
 }
