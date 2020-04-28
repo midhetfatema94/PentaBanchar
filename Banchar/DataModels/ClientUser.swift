@@ -36,7 +36,7 @@ struct RequestOrder {
     var problem: String = ""
     var description: String = ""
     var cost: Float = 0.0
-    var status: ServiceStatus = .processing
+    var status: ServiceStatus = .unknown
     
     init(details: [String: Any]) {
         let geoLocation = details["location"] as? GeoPoint
@@ -55,4 +55,5 @@ enum ServiceStatus: String {
     case success = "Success"
     case cancelled = "Cancelled"
     case failed = "Failed"
+    case unknown = "Unknown"
 }
