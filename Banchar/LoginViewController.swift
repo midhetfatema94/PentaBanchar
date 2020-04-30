@@ -49,13 +49,7 @@ class LoginViewController: UIViewController {
             
             DispatchQueue.main.async {
                 if let _ = response as? [String: Any] {
-                    if let newRequestVC = self?.storyboard?.instantiateViewController(identifier: "RequestHistoryViewController") as? RequestHistoryViewController {
-                        self?.loginVM.getAllRequests(completion: {response in
-                            if let result = response {
-                                newRequestVC.requests = result
-                                newRequestVC.requestTable.reloadData()
-                            }
-                        })
+                    if let newRequestVC = self?.storyboard?.instantiateViewController(identifier: "RegisterUserViewController") as? RegisterUserViewController {
                         self?.navigationController?.pushViewController(newRequestVC, animated: true)
                     }
                 } else if let errorMsg = response as? String {

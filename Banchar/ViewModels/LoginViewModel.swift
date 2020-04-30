@@ -80,8 +80,9 @@ class LoginViewModel {
                 completionHandler(err.localizedDescription)
             } else {
                 if let doc = document, doc.exists {
-                  let dataDescription = doc.data()
-                  print("Cached document data: \(dataDescription)")
+                    let dataDescription = doc.data()
+                    print("Cached document data: \(dataDescription ?? [:])")
+                    completionHandler(dataDescription ?? [:])
                 } else {
                   print("Document does not exist in cache")
                 }

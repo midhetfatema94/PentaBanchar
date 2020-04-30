@@ -635,7 +635,7 @@
         <!--Register User View Controller-->
         <scene sceneID="Cjw-eo-2KY">
             <objects>
-                <viewController id="ltn-KW-M9C" customClass="RegisterUserViewController" customModule="Banchar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterUserViewController" id="ltn-KW-M9C" customClass="RegisterUserViewController" customModule="Banchar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sLh-f8-VBW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -647,41 +647,56 @@
                                     <constraint firstAttribute="height" constant="150" id="fR9-sA-FNa"/>
                                 </constraints>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-nB-5Vc">
-                                <rect key="frame" x="2" y="314" width="410" height="400"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h8f-jL-aoh">
-                                        <rect key="frame" x="0.0" y="0.0" width="410" height="400"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="400" id="lC6-S2-JyD"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="h8f-jL-aoh" firstAttribute="top" secondItem="eDQ-nB-5Vc" secondAttribute="top" id="TfA-1E-Mf5"/>
-                                    <constraint firstItem="h8f-jL-aoh" firstAttribute="centerX" secondItem="eDQ-nB-5Vc" secondAttribute="centerX" id="jgh-vs-MLd"/>
-                                </constraints>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-nB-5Vc">
+                                <rect key="frame" x="12" y="314" width="390" height="400"/>
                                 <connections>
                                     <outlet property="delegate" destination="ltn-KW-M9C" id="RBS-7h-HiC"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1fH-la-SLz">
-                                <rect key="frame" x="187.5" y="759" width="39" height="37"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1fH-la-SLz">
+                                <rect key="frame" x="182" y="759" width="50" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="4X4-YD-nQL"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="pageClicked:" destination="ltn-KW-M9C" eventType="valueChanged" id="edU-gv-8CY"/>
+                                </connections>
                             </pageControl>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvr-Me-C6B">
+                                <rect key="frame" x="252" y="224" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="96L-e1-Twp"/>
+                                    <constraint firstAttribute="height" constant="50" id="SzX-1H-M8M"/>
+                                </constraints>
+                                <state key="normal" image="photo-camera"/>
+                                <connections>
+                                    <action selector="uploadImage:" destination="ltn-KW-M9C" eventType="touchUpInside" id="TJp-fA-vjn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="J6O-MY-yhu" firstAttribute="trailing" secondItem="eDQ-nB-5Vc" secondAttribute="trailingMargin" constant="10" id="2XJ-5k-UJD"/>
+                            <constraint firstItem="J6O-MY-yhu" firstAttribute="trailing" secondItem="eDQ-nB-5Vc" secondAttribute="trailing" constant="12" id="2XJ-5k-UJD"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="centerX" secondItem="1fH-la-SLz" secondAttribute="centerX" id="CR4-mn-Bne"/>
+                            <constraint firstItem="Yvr-Me-C6B" firstAttribute="bottom" secondItem="TbV-fc-FLa" secondAttribute="bottom" constant="20" id="EMG-AW-Aof"/>
                             <constraint firstItem="1fH-la-SLz" firstAttribute="top" secondItem="eDQ-nB-5Vc" secondAttribute="bottom" constant="45" id="Joy-ZM-bZS"/>
                             <constraint firstItem="eDQ-nB-5Vc" firstAttribute="top" secondItem="TbV-fc-FLa" secondAttribute="bottom" constant="60" id="NoF-4D-pv4"/>
-                            <constraint firstItem="eDQ-nB-5Vc" firstAttribute="leadingMargin" secondItem="J6O-MY-yhu" secondAttribute="leading" constant="10" id="hdI-72-SKn"/>
+                            <constraint firstItem="eDQ-nB-5Vc" firstAttribute="leading" secondItem="J6O-MY-yhu" secondAttribute="leading" constant="12" id="hdI-72-SKn"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="top" secondItem="J6O-MY-yhu" secondAttribute="top" constant="60" id="itz-ln-X5E"/>
+                            <constraint firstItem="Yvr-Me-C6B" firstAttribute="trailing" secondItem="TbV-fc-FLa" secondAttribute="trailing" constant="20" id="lFt-BR-KiI"/>
+                            <constraint firstItem="J6O-MY-yhu" firstAttribute="bottom" secondItem="1fH-la-SLz" secondAttribute="bottom" constant="66" id="ruS-mJ-WjZ"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="centerX" secondItem="sLh-f8-VBW" secondAttribute="centerX" id="tYN-p7-c1w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J6O-MY-yhu"/>
                     </view>
+                    <connections>
+                        <outlet property="detailsPage" destination="1fH-la-SLz" id="00P-AQ-0bh"/>
+                        <outlet property="placeholderImageView" destination="TbV-fc-FLa" id="yo7-J2-2jr"/>
+                        <outlet property="uploadButton" destination="Yvr-Me-C6B" id="7NR-6e-fwQ"/>
+                        <outlet property="viewScroll" destination="eDQ-nB-5Vc" id="ylb-lP-gTT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Nx-mN-92j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -855,6 +870,7 @@
     </scenes>
     <resources>
         <image name="logo" width="258" height="195"/>
+        <image name="photo-camera" width="512" height="512"/>
         <image name="placeholder" width="224" height="224"/>
     </resources>
 </document>

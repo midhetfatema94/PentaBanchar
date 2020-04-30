@@ -10,12 +10,24 @@ import UIKit
 
 class RegisterPageTwo: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var passwordTF: UITextField!
+    @IBOutlet weak var repeatPasswordTF: UITextField!
+    
+    override init(frame:CGRect) {
+        super.init(frame: frame)
+        loadViewFromNib()
     }
-    */
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func loadViewFromNib() {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: "RegisterPageTwo", bundle: bundle)
+        if let view = nib.instantiate(withOwner: self, options: nil).first as? UIView {
+            view.frame = bounds
+            self.addSubview(view)
+        }
+    }
 }
