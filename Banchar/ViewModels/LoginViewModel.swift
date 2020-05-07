@@ -13,12 +13,21 @@ class LoginViewModel {
     
     let db = Firestore.firestore()
     
-    var userCredentials: [String: Any] = [:]
+    var userId: String?
+    var email: String?
+    var username: String?
+    var password: String?
+    var repeatPassword: String?
+    var sessionToken: String?
+    var userType: String?
+    var carPlate: String?
+    var carModel: String?
+    var agreeTnc: Bool?
     
     func login(credentials: [String: String], completion: @escaping ((Any?) -> Void)) {
         WebService.shared.loginUser(details: credentials) {[weak self] (response) in
             if let userDetails = response as? [String: Any] {
-                self?.userCredentials = userDetails
+                self?.setupViewModel(details: userDetails) 
                 completion(userDetails)
             } else {
                 completion(response as? String ?? "Failed to login user")
@@ -31,7 +40,7 @@ class LoginViewModel {
             if let documentId = response as? String {
                 self?.getUserDetails(userId: documentId, completionHandler: {(response) in
                     if let userDetails = response as? [String: Any] {
-                        self?.userCredentials = userDetails
+                        self?.setupViewModel(details: userDetails)
                         completion(userDetails)
                     } else {
                         completion(response as? String ?? "Failed to get user details")
@@ -48,7 +57,7 @@ class LoginViewModel {
     }
     
     func getAllRequests(completion: @escaping (([RequestViewModel]?) -> Void)) {
-        let userDoc = db.collection("users").document(userCredentials["userId"] as? String ?? "")
+        let userDoc = db.collection("users").document(userId ?? "")
         userDoc.collection("orders").getDocuments(completion: {(querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -88,5 +97,40 @@ class LoginViewModel {
                 }
             }
         })
+    }
+    
+    func setupViewModel(details: [String: Any]) {
+        userId = details["userId"] as? String
+        email = details["email"] as? String
+        password = details["password"] as? String
+        repeatPassword = details["repeat"] as? String
+//        var userType = ""
+//        var carPlate = ""
+//        var carModel = ""
+//        var agreeTnc = false
+    }
+    
+    func validateUsername() -> Bool {
+        return false
+    }
+    
+    func validateEmail() -> Bool {
+        return false
+    }
+    
+    func validatePassword() -> Bool {
+        return false
+    }
+    
+    func validateCarModel() -> Bool {
+        return false
+    }
+    
+    func validateLicensePlate() -> Bool {
+        return false
+    }
+    
+    func validateTnC() -> Bool {
+        return false
     }
 }

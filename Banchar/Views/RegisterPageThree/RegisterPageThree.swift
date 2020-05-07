@@ -14,24 +14,43 @@ class RegisterPageThree: UIView {
     @IBOutlet weak var licenseTF: UITextField!
     @IBOutlet weak var checkboxButton: UIButton!
     
+    weak var parentDelegate: PagesCommunicationDelegate?
+    
     @IBAction func agreeTnC(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        parentDelegate?.updateVM(for: "agreeTnc", value: sender.isSelected)
     }
     
-    override init(frame:CGRect) {
+    init(frame: CGRect, delegate: PagesCommunicationDelegate?) {
         super.init(frame: frame)
         
         loadViewFromNib()
+        
+        parentDelegate = delegate
+        configureUI()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func configureUI() {
         
         let checkboxEmpty = UIImage(named: "checkbox-empty")
         let checkboxFill = UIImage(named: "checkbox-fill")
         
         checkboxButton.setImage(checkboxEmpty, for: .normal)
         checkboxButton.setImage(checkboxFill, for: .selected)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        
+        carTypeTF.tag = 0
+        carTypeTF.delegate = self
+        carTypeTF.text = parentDelegate?.getValue(for: "carModel") as? String
+        
+        licenseTF.tag = 1
+        licenseTF.delegate = self
+        licenseTF.text = parentDelegate?.getValue(for: "carPlate") as? String
+        
+        checkboxButton.isSelected = parentDelegate?.getValue(for: "agreeTnC") as? Bool ?? false
     }
     
     func loadViewFromNib() {
@@ -41,5 +60,19 @@ class RegisterPageThree: UIView {
             view.frame = bounds
             self.addSubview(view)
         }
+    }
+}
+
+extension RegisterPageThree: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        switch textField.tag {
+        case 0:
+            parentDelegate?.updateVM(for: "carModel", value: string)
+        case 1:
+            parentDelegate?.updateVM(for: "carPlate", value: string)
+        default:
+            break
+        }
+        return true
     }
 }

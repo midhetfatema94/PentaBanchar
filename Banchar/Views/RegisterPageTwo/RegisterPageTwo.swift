@@ -13,13 +13,28 @@ class RegisterPageTwo: UIView {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var repeatPasswordTF: UITextField!
     
-    override init(frame:CGRect) {
+    weak var parentDelegate: PagesCommunicationDelegate?
+    
+    init(frame: CGRect, delegate: PagesCommunicationDelegate?) {
         super.init(frame: frame)
         loadViewFromNib()
+        
+        parentDelegate = delegate
+        configureUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func configureUI() {
+        passwordTF.text = parentDelegate?.getValue(for: "password") as? String
+        passwordTF.tag = 0
+        passwordTF.delegate = self
+        
+        repeatPasswordTF.text = parentDelegate?.getValue(for: "repeat") as? String
+        repeatPasswordTF.tag = 1
+        repeatPasswordTF.delegate = self
     }
     
     func loadViewFromNib() {
@@ -29,5 +44,19 @@ class RegisterPageTwo: UIView {
             view.frame = bounds
             self.addSubview(view)
         }
+    }
+}
+
+extension RegisterPageTwo: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        switch textField.tag {
+        case 0:
+            parentDelegate?.updateVM(for: "password", value: string)
+        case 1:
+            parentDelegate?.updateVM(for: "repeat", value: string)
+        default:
+            break
+        }
+        return true
     }
 }

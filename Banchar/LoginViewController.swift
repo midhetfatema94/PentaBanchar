@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
         let params = ["email": emailTF.text ?? "", "password": passwordTF.text ?? ""]
         loginVM.login(credentials: params, completion: {[weak self] response in
             
-            guard let strongSelf = self else { return }
+            guard self != nil else { return }
             
             DispatchQueue.main.async {
                 if let _ = response as? [String: Any] {
@@ -43,20 +43,11 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUp(_ sender: UIButton) {
         let params = ["email": emailTF.text ?? "", "password": passwordTF.text ?? ""]
-        loginVM.signUp(credentials: params, completion: {[weak self] response in
-            
-            guard let strongSelf = self else { return }
-            
-            DispatchQueue.main.async {
-                if let _ = response as? [String: Any] {
-                    if let newRequestVC = self?.storyboard?.instantiateViewController(identifier: "RegisterUserViewController") as? RegisterUserViewController {
-                        self?.navigationController?.pushViewController(newRequestVC, animated: true)
-                    }
-                } else if let errorMsg = response as? String {
-                    self?.showAlert(title: "Login Error!", message: errorMsg, completion: nil)
-                }
-            }
-        })
+        loginVM.setupViewModel(details: params)
+        if let newRequestVC = self.storyboard?.instantiateViewController(identifier: "RegisterUserViewController") as? RegisterUserViewController {
+            newRequestVC.loginVM = loginVM
+            self.navigationController?.pushViewController(newRequestVC, animated: true)
+        }
     }
     
     @IBAction func forgotPassword(_ sender: UIButton) {
