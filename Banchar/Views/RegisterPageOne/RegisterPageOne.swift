@@ -78,11 +78,12 @@ class RegisterPageOne: UIView {
 
 extension RegisterPageOne: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let completeText = "\(textField.text ?? "")\(string)"
         switch textField.tag {
         case 0:
-            parentDelegate?.updateVM(for: "email", value: string)
+            parentDelegate?.updateVM(for: "email", value: completeText)
         case 1:
-            parentDelegate?.updateVM(for: "username", value: string)
+            parentDelegate?.updateVM(for: "username", value: completeText)
         default:
             break
         }

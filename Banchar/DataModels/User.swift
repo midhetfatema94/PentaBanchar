@@ -8,10 +8,16 @@
 
 import Foundation
 
+enum UserType: String {
+    case client = "client"
+    case service = "service"
+}
+
 class User {
     var id: String = ""
     var username: String = ""
     var email: String = ""
+    var userType: UserType?
     
     init(userDetails: [String: Any]) {
         

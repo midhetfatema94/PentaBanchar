@@ -49,11 +49,12 @@ class RegisterPageTwo: UIView {
 
 extension RegisterPageTwo: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let completeText = "\(textField.text ?? "")\(string)"
         switch textField.tag {
         case 0:
-            parentDelegate?.updateVM(for: "password", value: string)
+            parentDelegate?.updateVM(for: "password", value: completeText)
         case 1:
-            parentDelegate?.updateVM(for: "repeat", value: string)
+            parentDelegate?.updateVM(for: "repeat", value: completeText)
         default:
             break
         }

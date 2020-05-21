@@ -65,11 +65,12 @@ class RegisterPageThree: UIView {
 
 extension RegisterPageThree: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let completeText = "\(textField.text ?? "")\(string)"
         switch textField.tag {
         case 0:
-            parentDelegate?.updateVM(for: "carModel", value: string)
+            parentDelegate?.updateVM(for: "carModel", value: completeText)
         case 1:
-            parentDelegate?.updateVM(for: "carPlate", value: string)
+            parentDelegate?.updateVM(for: "carPlate", value: completeText)
         default:
             break
         }

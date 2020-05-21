@@ -19,9 +19,9 @@ class LoginViewModel {
     var password: String?
     var repeatPassword: String?
     var sessionToken: String?
-    var userType: String?
-    var carPlate: String?
-    var carModel: String?
+    var userType: UserType?
+    var primaryCarPlate: String?
+    var primaryCarModel: String?
     var agreeTnc: Bool?
     
     func login(credentials: [String: String], completion: @escaping ((Any?) -> Void)) {
@@ -36,8 +36,8 @@ class LoginViewModel {
     }
     
     func signUp(credentials: [String: String], completion: @escaping ((Any?) -> Void)) {
-        WebService.shared.signUp(details: credentials, completionHandler: {[weak self] (response) in
-            if let documentId = response as? String {
+        WebService.shared.signUp(details: credentials, completionHandler: {[weak self] (response, success) in
+            if let documentId = response, success {
                 self?.getUserDetails(userId: documentId, completionHandler: {(response) in
                     if let userDetails = response as? [String: Any] {
                         self?.setupViewModel(details: userDetails)
@@ -46,8 +46,8 @@ class LoginViewModel {
                         completion(response as? String ?? "Failed to get user details")
                     }
                 })
-            } else if let error = response as? Error {
-                completion(error.localizedDescription)
+            } else if let error = response {
+                completion(error)
             }
         })
     }
@@ -99,38 +99,65 @@ class LoginViewModel {
         })
     }
     
+    func getCarDetails(userId: String, completionHandler: @escaping ((Any?) -> Void)) {
+        let userDocRef = db.collection("users").document(userId)
+        let carDocRef = userDocRef.collection("cars")
+        carDocRef.getDocuments(completion: {(querySnapshot, err) in
+            if let snapshot = querySnapshot, let primaryCarDetails = snapshot.documents.first {
+                print("Card details: \(primaryCarDetails.data())")
+                completionHandler(primaryCarDetails.data())
+            } else if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(err.localizedDescription)
+            }
+        })
+    }
+    
     func setupViewModel(details: [String: Any]) {
         userId = details["userId"] as? String
         email = details["email"] as? String
         password = details["password"] as? String
         repeatPassword = details["repeat"] as? String
-//        var userType = ""
-//        var carPlate = ""
-//        var carModel = ""
-//        var agreeTnc = false
+        userType = UserType(rawValue: details["repeat"] as? String ?? "")
+        if let id = self.userId {
+            getCarDetails(userId: id, completionHandler: {(response) in
+                if let result = response as? [String: Any] {
+                    self.primaryCarPlate = result["licensePlate"] as? String
+                    self.primaryCarModel = "\(result["manufacturer"] as? String ?? "") \(result["model"] as? String ?? "")"
+                }
+            })
+        }
+        agreeTnc = true
     }
     
     func validateUsername() -> Bool {
-        return false
+        return !(username?.isEmpty ?? true)
     }
     
     func validateEmail() -> Bool {
-        return false
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
     }
     
     func validatePassword() -> Bool {
+        let passwordRegEx = "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$"
+        let passwordPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
+        if passwordPred.evaluate(with: password) {
+            return password == repeatPassword
+        }
         return false
     }
     
     func validateCarModel() -> Bool {
-        return false
+        return !(primaryCarModel?.isEmpty ?? true)
     }
     
     func validateLicensePlate() -> Bool {
-        return false
+        return !(primaryCarPlate?.isEmpty ?? true)
     }
     
     func validateTnC() -> Bool {
-        return false
+        return agreeTnc ?? false
     }
 }
