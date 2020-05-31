@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 protocol PagesCommunicationDelegate: class {
     func updateVM(for key: String, value: Any?)
@@ -19,6 +20,8 @@ class RegisterUserViewController: UIViewController {
     @IBOutlet weak var placeholderImageView: UIImageView!
     @IBOutlet weak var detailsPage: UIPageControl!
     @IBOutlet weak var uploadButton: UIButton!
+    
+    let imagePicker = UIImagePickerController()
     
     var loginVM: LoginViewModel!
     
@@ -36,6 +39,8 @@ class RegisterUserViewController: UIViewController {
     }
     
     @IBAction func uploadImage(_ sender: UIButton) {
+        imagePicker.delegate = self
+        self.makeImagePickerActionSheet(imagePicker: imagePicker, isFront: false)
     }
     
     override func viewDidLoad() {
@@ -109,6 +114,10 @@ extension RegisterUserViewController: PagesCommunicationDelegate {
             loginVM.agreeTnc = value as? Bool
         case "usertype":
             loginVM.userType = UserType(rawValue: value as? String ?? "")
+        case "password":
+            loginVM.password = value as? String
+        case "repeat":
+            loginVM.repeatPassword = value as? String
         default:
             break
         }
@@ -132,6 +141,25 @@ extension RegisterUserViewController: PagesCommunicationDelegate {
             return loginVM.userType
         default:
             return nil
+        }
+    }
+}
+
+extension RegisterUserViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let cameraNotAccessTitle = "Camera Disabled"
+        let cameraNotAccessSubTitle = "Please provide access to Camera to use this feature. Go to Settings and enable Camera access"
+        
+        if let pickedImage = info[.editedImage] as? UIImage, checkCameraAuthorise() {
+            placeholderImageView.image = pickedImage
+            imagePicker.dismiss(animated: true, completion: nil)
+        } else {
+            self.imagePicker.dismiss(animated: true) {
+                DispatchQueue.main.async {
+                    self.showAlert(title: cameraNotAccessTitle, message: cameraNotAccessSubTitle, completion: nil)
+                }
+            }
         }
     }
 }

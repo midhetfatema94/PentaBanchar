@@ -141,7 +141,7 @@ class LoginViewModel {
     }
     
     func validatePassword() -> Bool {
-        let passwordRegEx = "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$"
+        let passwordRegEx = "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"
         let passwordPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         if passwordPred.evaluate(with: password) {
             return password == repeatPassword

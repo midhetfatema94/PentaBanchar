@@ -17,7 +17,7 @@ class RegisterPageThree: UIView {
     weak var parentDelegate: PagesCommunicationDelegate?
     
     @IBAction func agreeTnC(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        sender.isSelected.toggle()
         parentDelegate?.updateVM(for: "agreeTnc", value: sender.isSelected)
     }
     
