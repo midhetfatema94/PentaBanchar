@@ -15,7 +15,9 @@ class RequestHistoryViewController: UIViewController {
     var requests: [RequestViewModel] = []
     
     @IBAction func newRequest(_ sender: UIBarButtonItem) {
-        
+        if let newRequestVC = self.storyboard?.instantiateViewController(identifier: "NewRequestViewController") as? NewRequestViewController {
+            self.navigationController?.pushViewController(newRequestVC, animated: true)
+        }
     }
     
     override func viewDidLoad() {

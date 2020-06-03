@@ -172,13 +172,13 @@
 		63900970242D1AFD00AAAEC8 /* Banchar */ = {
 			isa = PBXGroup;
 			children = (
-				635177FE2483D3A2007241D4 /* .gitignore */,
 				639009D324583E4F00AAAEC8 /* Views */,
 				639009D224583E3500AAAEC8 /* Storyboards */,
 				639009D124583E1E00AAAEC8 /* Assets */,
 				639009D024583DE200AAAEC8 /* Helpers */,
 				639009CF24583DBE00AAAEC8 /* ViewModels */,
 				639009C2243635A900AAAEC8 /* DataModels */,
+				635177FE2483D3A2007241D4 /* .gitignore */,
 				63900971242D1AFD00AAAEC8 /* AppDelegate.swift */,
 				63900975242D1AFD00AAAEC8 /* LoginViewController.swift */,
 				639009A72434CDAA00AAAEC8 /* NewRequestViewController.swift */,

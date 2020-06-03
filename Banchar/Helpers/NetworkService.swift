@@ -85,4 +85,16 @@ class WebService {
     func forgotPassword() {
         
     }
+    
+    func newWinchRequest(userId: String, orderData: [String: Any], completionHandler: @escaping ((Any?) -> Void)) {
+        let userDocRef = db.collection("users").document(userId)
+        userDocRef.collection("orders").addDocument(data: orderData, completion: {(err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(err)
+            } else {
+                completionHandler(nil)
+            }
+        })
+    }
 }

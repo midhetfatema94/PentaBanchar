@@ -9,18 +9,21 @@
 import Foundation
 import UIKit
 import MapKit
+import Firebase
 
 class RequestViewModel {
     
-    var userId: String!
-    var location: (Double, Double)!
-    var address: String!
-    var problem: String!
-    var price: String!
-    var description: String!
-    var statusImage: UIImage!
-    var statusString: String!
-    var locationImage: UIImage!
+    var userId: String?
+    var location: (Double, Double)?
+    var address: String?
+    var addressStr: String?
+    var problem: String?
+    var price: String?
+    var cost: Float?
+    var description: String?
+    var statusImage: UIImage?
+    var statusString: String?
+    var locationImage: UIImage?
     
     weak var interfaceDelegate: RequestVMInteractionProtocol?
     
@@ -29,8 +32,10 @@ class RequestViewModel {
         
         userId = data.id
         location = (data.lat, data.long)
-        address = "Address: " + data.address
+        address = data.address
+        addressStr = "Address: " + data.address
         problem = data.problem
+        cost = data.cost
         price = "Cost: \(data.cost) KD"
         description = data.description
         statusString = "Status: " + data.status.rawValue
@@ -48,6 +53,23 @@ class RequestViewModel {
             statusImage = UIImage(named: "")
         }
         setLocationImage(lat: data.lat, long: data.long)
+    }
+    
+    func newRequest(completion: @escaping ((Any?) -> Void)) {
+        
+        let geoLocation = GeoPoint(latitude: location?.0 ?? 0, longitude: location?.1 ?? 0)
+        let orderDetail: [String: Any] = ["address": address ?? "", "cost": cost ?? 0, "description": description ?? "", "problem": problem ?? "", "location": geoLocation, "status": "confirmed"]
+        
+        WebService.shared.newWinchRequest(userId: "hRv1xrq940vADTH7tfr4", orderData: orderDetail, completionHandler: {[weak self] error in
+            
+            guard self != nil else { return }
+            
+            if let err = error as? Error {
+                completion(err.localizedDescription)
+            } else {
+                completion(orderDetail)
+            }
+        })
     }
     
     func setLocationImage(lat: Double, long: Double) {
@@ -74,6 +96,18 @@ class RequestViewModel {
             self?.locationImage = snapshot?.image ?? UIImage()
             self?.interfaceDelegate?.setLocationImage(image: self?.locationImage)
         })
+    }
+    
+    func validateAllFields() -> Bool {
+        return validateAddress() && validateProblem()
+    }
+    
+    func validateAddress() -> Bool {
+        return address?.isEmpty ?? false
+    }
+    
+    func validateProblem() -> Bool {
+        return problem?.isEmpty ?? false
     }
 }
 
