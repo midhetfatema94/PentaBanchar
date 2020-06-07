@@ -82,6 +82,20 @@ class WebService {
         })
     }
     
+    func getCarDetails(userId: String, completionHandler: @escaping ((Any?) -> Void)) {
+        let userDocRef = db.collection("users").document(userId)
+        let carDocRef = userDocRef.collection("cars")
+        carDocRef.getDocuments(completion: {(querySnapshot, err) in
+            if let snapshot = querySnapshot, let primaryCarDetails = snapshot.documents.first {
+                print("Car details: \(primaryCarDetails.data())")
+                completionHandler(primaryCarDetails.data())
+            } else if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(err.localizedDescription)
+            }
+        })
+    }
+    
     func forgotPassword() {
         
     }

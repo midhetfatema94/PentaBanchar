@@ -10,21 +10,36 @@ import UIKit
 
 class RequestConfirmationViewController: UIViewController {
 
+    @IBOutlet weak var requestId: UILabel!
+    @IBOutlet weak var clientAddress: UILabel!
+    @IBOutlet weak var clientCarModel: UILabel!
+    @IBOutlet weak var carPlate: UILabel!
+    @IBOutlet weak var clientProblem: UILabel!
+    @IBOutlet weak var problemDescription: UITextView!
+    @IBOutlet weak var carImage: UIImageView!
+    @IBOutlet weak var locationImage: UIImageView!
+    
+    @IBAction func acceptRequest(_ sender: UIButton) {
+    }
+    
+    @IBAction func declineRequest(_ sender: UIButton) {
+    }
+    
+    var requestVM: RequestViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        configureUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configureUI() {
+        requestId.text = "Ticket Id: \(requestVM.orderId ?? "")"
+        clientAddress.text = requestVM.addressStr ?? ""
+        clientCarModel.text = "Car: \(requestVM.getCarModel())"
+        carPlate.text = "License Plate: \(requestVM.getCarPlate())"
+        clientProblem.text = "Problem: \(requestVM.problem ?? "")"
+        problemDescription.text = requestVM.description
+        locationImage.image = requestVM.locationImage
     }
-    */
-
 }

@@ -58,7 +58,7 @@ class LoginViewModel {
     
     func getAllRequests(completion: @escaping (([RequestViewModel]?) -> Void)) {
         let userDoc = db.collection("users").document(userId ?? "")
-        userDoc.collection("orders").getDocuments(completion: {(querySnapshot, err) in
+        userDoc.collection("orders").getDocuments(completion: {[weak self] (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 completion(nil)
@@ -69,6 +69,7 @@ class LoginViewModel {
                         print("\(document.documentID) => \(document.data())")
                         var data = document.data()
                         data["orderId"] = document.documentID
+                        data["userId"] = self?.userId ?? ""
                         let orderData = RequestOrder(details: data)
                         let orderModel = RequestViewModel(data: orderData)
                         allOrders.append(orderModel)
@@ -99,28 +100,14 @@ class LoginViewModel {
         })
     }
     
-    func getCarDetails(userId: String, completionHandler: @escaping ((Any?) -> Void)) {
-        let userDocRef = db.collection("users").document(userId)
-        let carDocRef = userDocRef.collection("cars")
-        carDocRef.getDocuments(completion: {(querySnapshot, err) in
-            if let snapshot = querySnapshot, let primaryCarDetails = snapshot.documents.first {
-                print("Card details: \(primaryCarDetails.data())")
-                completionHandler(primaryCarDetails.data())
-            } else if let err = err {
-                print("Error getting documents: \(err)")
-                completionHandler(err.localizedDescription)
-            }
-        })
-    }
-    
     func setupViewModel(details: [String: Any]) {
         userId = details["userId"] as? String
         email = details["email"] as? String
         password = details["password"] as? String
         repeatPassword = details["repeat"] as? String
-        userType = UserType(rawValue: details["repeat"] as? String ?? "")
+        userType = UserType(rawValue: details["type"] as? String ?? "")
         if let id = self.userId {
-            getCarDetails(userId: id, completionHandler: {(response) in
+            WebService.shared.getCarDetails(userId: id, completionHandler: {(response) in
                 if let result = response as? [String: Any] {
                     self.primaryCarPlate = result["licensePlate"] as? String
                     self.primaryCarModel = "\(result["manufacturer"] as? String ?? "") \(result["model"] as? String ?? "")"

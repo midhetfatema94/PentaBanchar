@@ -13,6 +13,7 @@ import Firebase
 
 class RequestViewModel {
     
+    var orderId: String?
     var userId: String?
     var location: (Double, Double)?
     var address: String?
@@ -24,13 +25,15 @@ class RequestViewModel {
     var statusImage: UIImage?
     var statusString: String?
     var locationImage: UIImage?
+    var carDetails: CarDetails?
     
     weak var interfaceDelegate: RequestVMInteractionProtocol?
     
     convenience init(data: RequestOrder) {
         self.init()
         
-        userId = data.id
+        userId = data.userId
+        orderId = data.id
         location = (data.lat, data.long)
         address = data.address
         addressStr = "Address: " + data.address
@@ -53,6 +56,7 @@ class RequestViewModel {
             statusImage = UIImage(named: "")
         }
         setLocationImage(lat: data.lat, long: data.long)
+        setupCarDetails()
     }
     
     func newRequest(completion: @escaping ((Any?) -> Void)) {
@@ -68,6 +72,14 @@ class RequestViewModel {
                 completion(err.localizedDescription)
             } else {
                 completion(orderDetail)
+            }
+        })
+    }
+    
+    func setupCarDetails() {
+        WebService.shared.getCarDetails(userId: userId ?? "", completionHandler: {(response) in
+            if let result = response as? [String: Any] {
+                self.carDetails = CarDetails(data: result)
             }
         })
     }
@@ -108,6 +120,29 @@ class RequestViewModel {
     
     func validateProblem() -> Bool {
         return problem?.isEmpty ?? false
+    }
+    
+    func getCarModel() -> String {
+        return carDetails?.modelName ?? ""
+    }
+    
+    func getCarPlate() -> String {
+        return carDetails?.plate ?? ""
+    }
+    
+    func getCarImageUrl() -> String {
+        return carDetails?.imageUrlStr ?? ""
+    }
+    
+    struct CarDetails {
+        var modelName = ""
+        var plate = ""
+        var imageUrlStr = ""
+        
+        init(data: [String: Any]) {
+            modelName = "\(data["manufacturer"] as? String ?? "") \(data["model"] as? String ?? "")"
+            plate = data["licensePlate"] as? String ?? ""
+        }
     }
 }
 

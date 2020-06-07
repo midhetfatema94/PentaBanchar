@@ -26,8 +26,9 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 if let _ = response as? [String: Any] {
                     if let newRequestVC = self?.storyboard?.instantiateViewController(identifier: "RequestHistoryViewController") as? RequestHistoryViewController {
-                        self?.loginVM.getAllRequests(completion: {response in
+                        self?.loginVM.getAllRequests(completion: {[weak self] response in
                             if let result = response {
+                                newRequestVC.isClient = self?.loginVM.userType == .client
                                 newRequestVC.requests = result
                                 newRequestVC.requestTable.reloadData()
                             }

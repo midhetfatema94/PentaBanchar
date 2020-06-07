@@ -29,6 +29,7 @@ struct CarDetails {
 }
 
 struct RequestOrder {
+    var userId: String = ""
     var id: String = ""
     var lat: Double = 0.0
     var long: Double = 0.0
@@ -39,6 +40,8 @@ struct RequestOrder {
     var status: ServiceStatus = .unknown
     
     init(details: [String: Any]) {
+        userId = details["userId"] as? String ?? ""
+        id = details["orderId"] as? String ?? ""
         let geoLocation = details["location"] as? GeoPoint
         lat = geoLocation?.latitude ?? 0.0
         long = geoLocation?.longitude ?? 0.0
