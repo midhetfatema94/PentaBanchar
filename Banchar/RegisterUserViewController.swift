@@ -20,10 +20,26 @@ class RegisterUserViewController: UIViewController {
     @IBOutlet weak var placeholderImageView: UIImageView!
     @IBOutlet weak var detailsPage: UIPageControl!
     @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
     
     let imagePicker = UIImagePickerController()
     
     var loginVM: LoginViewModel!
+    
+    @IBAction func signupUser(_ sender: UIButton) {
+        loginVM.signUp(completion: {[weak self] response in
+            
+            guard self != nil else { return }
+            
+            DispatchQueue.main.async {
+                if let _ = response as? [String: Any] {
+                    self?.loginVM.userLoggedInSuccess(vc: self)
+                } else if let errorMsg = response as? String {
+                    self?.showAlert(title: "Error Signing up!", message: errorMsg, completion: nil)
+                }
+            }
+        })
+    }
     
     @IBAction func pageClicked(_ sender: UIPageControl) {
         var originPoint = CGPoint.zero

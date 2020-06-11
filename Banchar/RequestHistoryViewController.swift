@@ -22,10 +22,7 @@ class RequestHistoryViewController: UIViewController {
                 self.navigationController?.pushViewController(newRequestVC, animated: true)
             }
         } else {
-            if let showRequestVC = self.storyboard?.instantiateViewController(identifier: "RequestConfirmationViewController") as? RequestConfirmationViewController {
-                showRequestVC.requestVM = requests.first
-                self.navigationController?.pushViewController(showRequestVC, animated: true)
-            }
+            requests.first?.showRequest(vc: self)
         }
     }
     
@@ -42,6 +39,11 @@ class RequestHistoryViewController: UIViewController {
             barButton.title = "Show Requests"
         }
     }
+    
+    func updateTable() {
+        requestTable.reloadData()
+        barButton.isEnabled = requests.filter{ $0.status == .active }.count > 0 || isClient
+    }
 }
 
 extension RequestHistoryViewController: UITableViewDataSource {
@@ -56,5 +58,11 @@ extension RequestHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return requests.count
+    }
+}
+
+extension RequestHistoryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        requests[indexPath.row].showRequest(vc: self)
     }
 }

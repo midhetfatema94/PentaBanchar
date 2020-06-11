@@ -9,7 +9,6 @@
 import Foundation
 
 class Service: User {
-    var requests: [RequestOrder] = []
     var rating: Double = 0.0
     
     override init(userDetails: [String: Any]) {

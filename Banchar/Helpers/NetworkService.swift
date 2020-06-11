@@ -21,34 +21,35 @@ class WebService {
                 completionHandler(err.localizedDescription)
             } else {
                 if let snapshot = querySnapshot {
-                    for document in snapshot.documents {
-                        print("\(document.documentID) => \(document.data())")
-                        var userData = document.data()
-                        if userData["email"] as? String == details["email"] as? String {
-                            userData["userId"] = document.documentID
-                            completionHandler(userData)
-                        } else {
-                            completionHandler("Could not find user")
-                        }
+                    let loginUserSnapshot = snapshot.documents.filter {
+                        let userData = $0.data()
+                        return userData["email"] as? String == details["email"] as? String
+                    }.first
+                    if var loginUserDetails = loginUserSnapshot?.data() {
+                        loginUserDetails["userId"] = loginUserSnapshot?.documentID ?? ""
+                        completionHandler(loginUserDetails)
+                    } else {
+                        completionHandler("Could not find user")
                     }
                 }
             }
         })
     }
     
-    func signUp(details: [String: Any], completionHandler: @escaping ((String?, Bool) -> Void)) {
-        getUserDetails(fieldName: "email", fieldValue: details["email"] as? String ?? "", completionHandler: {(result) in
+    func signUp(userDetails: [String: Any], carDetails: [String: Any], completionHandler: @escaping ((String?, Bool) -> Void)) {
+        getUserDetails(fieldName: "email", fieldValue: userDetails["email"] as? String ?? "", shouldSendCompletionOnFailure: true, completionHandler: {(result) in
             if (result as? RequestViewModel) == nil {
-                self.getUserDetails(fieldName: "username", fieldValue: details["username"] as? String ?? "", completionHandler: {(result) in
+                self.getUserDetails(fieldName: "username", fieldValue: userDetails["username"] as? String ?? "", shouldSendCompletionOnFailure: true, completionHandler: {(result) in
                     if (result as? RequestViewModel) == nil {
                         var ref: DocumentReference? = nil
-                        ref = self.db.collection("users").addDocument(data: details) {(error) in
+                        ref = self.db.collection("users").addDocument(data: userDetails) {(error) in
                             if let err = error {
                                 print("Error adding document: \(err)")
                                 completionHandler(err.localizedDescription, false)
                             } else {
                                 print("Document added with ID: \(ref?.documentID ?? "")")
                                 completionHandler(ref?.documentID ?? "", true)
+                                self.setPrimaryCarDetails(userId: ref?.documentID ?? "", details: carDetails)
                             }
                         }
                     } else {
@@ -61,7 +62,19 @@ class WebService {
         })
     }
     
-    func getUserDetails(fieldName: String, fieldValue: String, completionHandler: @escaping ((Any?) -> Void)) {
+    func setPrimaryCarDetails(userId: String, details: [String: Any]) {
+        let userDocRef = db.collection("users").document(userId)
+        var carDocRef: DocumentReference? = nil
+        carDocRef = userDocRef.collection("cars").addDocument(data: details, completion: {(err) in
+            if let error = err {
+                print("Error adding document: \(error.localizedDescription)")
+            } else {
+                print("Document added with ID: \(carDocRef?.documentID ?? "")")
+            }
+        })
+    }
+    
+    func getUserDetails(fieldName: String, fieldValue: String, shouldSendCompletionOnFailure: Bool, completionHandler: @escaping ((Any?) -> Void)) {
         let userDocRef = db.collection("users").whereField(fieldName, isEqualTo: fieldValue)
         userDocRef.getDocuments(completion: {(querySnapshot, err) in
             if let err = err {
@@ -77,6 +90,7 @@ class WebService {
                     completionHandler(orderModel)
                 } else {
                     print("Document does not exist in cache")
+                    if shouldSendCompletionOnFailure { completionHandler(nil) }
                 }
             }
         })

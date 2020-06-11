@@ -35,8 +35,8 @@ class LoginViewModel {
         }
     }
     
-    func signUp(credentials: [String: String], completion: @escaping ((Any?) -> Void)) {
-        WebService.shared.signUp(details: credentials, completionHandler: {[weak self] (response, success) in
+    func signUp(completion: @escaping ((Any?) -> Void)) {
+        WebService.shared.signUp(userDetails: getPrimaryUserDetails(), carDetails: getPrimaryCarDetails(), completionHandler: {[weak self] (response, success) in
             if let documentId = response, success {
                 self?.getUserDetails(userId: documentId, completionHandler: {(response) in
                     if let userDetails = response as? [String: Any] {
@@ -52,13 +52,27 @@ class LoginViewModel {
         })
     }
     
+    func userLoggedInSuccess(vc: UIViewController?) {
+        if let newRequestVC = vc?.storyboard?.instantiateViewController(identifier: "RequestHistoryViewController") as? RequestHistoryViewController {
+            newRequestVC.isClient = userType == .client
+            let field = userType == .client ? "clientUserId" : "serviceUserId"
+            getAllRequests(userIdField: field, completion: {response in
+                if let result = response {
+                    newRequestVC.requests = result
+                    newRequestVC.updateTable()
+                }
+            })
+            vc?.navigationController?.pushViewController(newRequestVC, animated: true)
+        }
+    }
+    
     func forgotPassword() {
         
     }
     
-    func getAllRequests(completion: @escaping (([RequestViewModel]?) -> Void)) {
-        let userDoc = db.collection("users").document(userId ?? "")
-        userDoc.collection("orders").getDocuments(completion: {[weak self] (querySnapshot, err) in
+    func getAllRequests(userIdField: String, completion: @escaping (([RequestViewModel]?) -> Void)) {
+        let orderQuery = db.collection("orders").whereField(userIdField, isEqualTo: userId ?? "")
+        orderQuery.getDocuments(completion: {(querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 completion(nil)
@@ -69,7 +83,6 @@ class LoginViewModel {
                         print("\(document.documentID) => \(document.data())")
                         var data = document.data()
                         data["orderId"] = document.documentID
-                        data["userId"] = self?.userId ?? ""
                         let orderData = RequestOrder(details: data)
                         let orderModel = RequestViewModel(data: orderData)
                         allOrders.append(orderModel)
@@ -115,6 +128,25 @@ class LoginViewModel {
             })
         }
         agreeTnc = true
+    }
+    
+    func getPrimaryUserDetails() -> [String: Any] {
+        var details: [String: Any] = [:]
+        details["userId"] = userId
+        details["email"] = email
+        details["password"] = password
+        details["username"] = username
+        details["type"] = userType?.rawValue
+        return details
+    }
+    
+    func getPrimaryCarDetails() -> [String: Any] {
+        var details: [String: Any] = [:]
+        details["licensePlate"] = primaryCarPlate
+        let modelDetails = primaryCarModel?.components(separatedBy: " ")
+        details["manufacturer"] = modelDetails?.first ?? ""
+        details["model"] = modelDetails?.last ?? ""
+        return details
     }
     
     func validateUsername() -> Bool {

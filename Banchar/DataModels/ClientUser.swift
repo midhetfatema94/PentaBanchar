@@ -11,7 +11,6 @@ import Firebase
 
 class Client: User {
     var carDetails: CarDetails = CarDetails(details: [:])
-    var orders: [RequestOrder] = []
     
     override init(userDetails: [String: Any]) {
         super.init(userDetails: userDetails)
@@ -29,7 +28,8 @@ struct CarDetails {
 }
 
 struct RequestOrder {
-    var userId: String = ""
+    var clientUserId: String = ""
+    var serviceUserId: String?
     var id: String = ""
     var lat: Double = 0.0
     var long: Double = 0.0
@@ -37,10 +37,13 @@ struct RequestOrder {
     var problem: String = ""
     var description: String = ""
     var cost: Float = 0.0
-    var status: ServiceStatus = .unknown
+    var status: RequestStatus = .unknown
+    var displayStatus: DisplayStatus = .unknown
+    var type: RequestType = .service
     
     init(details: [String: Any]) {
-        userId = details["userId"] as? String ?? ""
+        clientUserId = details["clientUserId"] as? String ?? ""
+        serviceUserId = details["serviceUserId"] as? String
         id = details["orderId"] as? String ?? ""
         let geoLocation = details["location"] as? GeoPoint
         lat = geoLocation?.latitude ?? 0.0
@@ -48,15 +51,29 @@ struct RequestOrder {
         address = details["address"] as? String ?? ""
         description = details["description"] as? String ?? ""
         problem = details["problem"] as? String ?? ""
-        cost = Float(details["cost"] as? Int ?? 0)
-        status = ServiceStatus(rawValue: (details["status"] as? String ?? "").capitalized) ?? .processing
+        cost = details["cost"] as? Float ?? 0
+        status = RequestStatus(rawValue: (details["status"] as? String ?? "").lowercased()) ?? .processing
+        displayStatus = DisplayStatus(rawValue: (details["displayStatus"] as? String ?? "").capitalized) ?? .processing
+        type = RequestType(rawValue: (details["status"] as? String ?? "").lowercased()) ?? .service
     }
 }
 
-enum ServiceStatus: String {
-    case processing = "Processing"
+enum RequestStatus: String {
+    case processing = "processing"
+    case completed = "completed"
+    case active = "active"
+    case unknown = "unknown"
+}
+
+enum DisplayStatus: String {
+    case accepted = "Accepted"
     case success = "Success"
     case cancelled = "Cancelled"
-    case failed = "Failed"
-    case unknown = "Unknown"
+    case processing = "Processing"
+    case unknown = ""
+}
+
+enum RequestType: String {
+    case service = "service"
+    case pickup = "pickup"
 }

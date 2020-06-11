@@ -25,16 +25,7 @@ class LoginViewController: UIViewController {
             
             DispatchQueue.main.async {
                 if let _ = response as? [String: Any] {
-                    if let newRequestVC = self?.storyboard?.instantiateViewController(identifier: "RequestHistoryViewController") as? RequestHistoryViewController {
-                        self?.loginVM.getAllRequests(completion: {[weak self] response in
-                            if let result = response {
-                                newRequestVC.isClient = self?.loginVM.userType == .client
-                                newRequestVC.requests = result
-                                newRequestVC.requestTable.reloadData()
-                            }
-                        })
-                        self?.navigationController?.pushViewController(newRequestVC, animated: true)
-                    }
+                    self?.loginVM.userLoggedInSuccess(vc: self)
                 } else if let errorMsg = response as? String {
                     self?.showAlert(title: "Login Error!", message: errorMsg, completion: nil)
                 }

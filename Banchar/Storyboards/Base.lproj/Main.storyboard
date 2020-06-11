@@ -689,13 +689,13 @@
                                 </constraints>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-nB-5Vc">
-                                <rect key="frame" x="12" y="314" width="390" height="400"/>
+                                <rect key="frame" x="12" y="294" width="390" height="421"/>
                                 <connections>
                                     <outlet property="delegate" destination="ltn-KW-M9C" id="RBS-7h-HiC"/>
                                 </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1fH-la-SLz">
-                                <rect key="frame" x="182" y="759" width="50" height="37"/>
+                                <rect key="frame" x="182" y="745" width="50" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="4X4-YD-nQL"/>
                                 </constraints>
@@ -716,18 +716,27 @@
                                     <action selector="uploadImage:" destination="ltn-KW-M9C" eventType="touchUpInside" id="TJp-fA-vjn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RE0-ln-eb4">
+                                <rect key="frame" x="180" y="802" width="54" height="30"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signupUser:" destination="ltn-KW-M9C" eventType="touchUpInside" id="Ptw-dE-zfx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="RE0-ln-eb4" firstAttribute="top" secondItem="1fH-la-SLz" secondAttribute="bottom" constant="20" id="0JA-Fe-tBc"/>
                             <constraint firstItem="J6O-MY-yhu" firstAttribute="trailing" secondItem="eDQ-nB-5Vc" secondAttribute="trailing" constant="12" id="2XJ-5k-UJD"/>
+                            <constraint firstItem="RE0-ln-eb4" firstAttribute="centerX" secondItem="sLh-f8-VBW" secondAttribute="centerX" id="6PP-fm-HIe"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="centerX" secondItem="1fH-la-SLz" secondAttribute="centerX" id="CR4-mn-Bne"/>
+                            <constraint firstItem="J6O-MY-yhu" firstAttribute="bottom" secondItem="RE0-ln-eb4" secondAttribute="bottom" constant="30" id="D7h-H1-3rJ"/>
                             <constraint firstItem="Yvr-Me-C6B" firstAttribute="bottom" secondItem="TbV-fc-FLa" secondAttribute="bottom" constant="20" id="EMG-AW-Aof"/>
-                            <constraint firstItem="1fH-la-SLz" firstAttribute="top" secondItem="eDQ-nB-5Vc" secondAttribute="bottom" constant="45" id="Joy-ZM-bZS"/>
-                            <constraint firstItem="eDQ-nB-5Vc" firstAttribute="top" secondItem="TbV-fc-FLa" secondAttribute="bottom" constant="60" id="NoF-4D-pv4"/>
+                            <constraint firstItem="1fH-la-SLz" firstAttribute="top" secondItem="eDQ-nB-5Vc" secondAttribute="bottom" constant="30" id="Joy-ZM-bZS"/>
+                            <constraint firstItem="eDQ-nB-5Vc" firstAttribute="top" secondItem="TbV-fc-FLa" secondAttribute="bottom" constant="40" id="NoF-4D-pv4"/>
                             <constraint firstItem="eDQ-nB-5Vc" firstAttribute="leading" secondItem="J6O-MY-yhu" secondAttribute="leading" constant="12" id="hdI-72-SKn"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="top" secondItem="J6O-MY-yhu" secondAttribute="top" constant="60" id="itz-ln-X5E"/>
                             <constraint firstItem="Yvr-Me-C6B" firstAttribute="trailing" secondItem="TbV-fc-FLa" secondAttribute="trailing" constant="20" id="lFt-BR-KiI"/>
-                            <constraint firstItem="J6O-MY-yhu" firstAttribute="bottom" secondItem="1fH-la-SLz" secondAttribute="bottom" constant="66" id="ruS-mJ-WjZ"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="centerX" secondItem="sLh-f8-VBW" secondAttribute="centerX" id="tYN-p7-c1w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J6O-MY-yhu"/>
@@ -735,6 +744,7 @@
                     <connections>
                         <outlet property="detailsPage" destination="1fH-la-SLz" id="00P-AQ-0bh"/>
                         <outlet property="placeholderImageView" destination="TbV-fc-FLa" id="yo7-J2-2jr"/>
+                        <outlet property="signupButton" destination="RE0-ln-eb4" id="xFb-7A-S7w"/>
                         <outlet property="uploadButton" destination="Yvr-Me-C6B" id="7NR-6e-fwQ"/>
                         <outlet property="viewScroll" destination="eDQ-nB-5Vc" id="ylb-lP-gTT"/>
                     </connections>
@@ -924,6 +934,7 @@
                     </view>
                     <size key="freeformSize" width="414" height="1020"/>
                     <connections>
+                        <outlet property="buttonStack" destination="lhQ-bJ-19u" id="SSv-fi-w6Z"/>
                         <outlet property="carImage" destination="CAQ-yW-qBp" id="3SP-qY-Z8y"/>
                         <outlet property="carPlate" destination="CbI-e2-09s" id="j6q-Bs-IRn"/>
                         <outlet property="clientAddress" destination="1A2-3f-Val" id="WXL-wc-few"/>

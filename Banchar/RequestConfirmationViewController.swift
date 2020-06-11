@@ -18,6 +18,7 @@ class RequestConfirmationViewController: UIViewController {
     @IBOutlet weak var problemDescription: UITextView!
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var locationImage: UIImageView!
+    @IBOutlet weak var buttonStack: UIStackView!
     
     @IBAction func acceptRequest(_ sender: UIButton) {
     }
@@ -25,7 +26,8 @@ class RequestConfirmationViewController: UIViewController {
     @IBAction func declineRequest(_ sender: UIButton) {
     }
     
-    var requestVM: RequestViewModel!
+    var requestVM: RequestViewModel?
+    var isActiveRequest = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +36,16 @@ class RequestConfirmationViewController: UIViewController {
     }
     
     func configureUI() {
-        requestId.text = "Ticket Id: \(requestVM.orderId ?? "")"
-        clientAddress.text = requestVM.addressStr ?? ""
-        clientCarModel.text = "Car: \(requestVM.getCarModel())"
-        carPlate.text = "License Plate: \(requestVM.getCarPlate())"
-        clientProblem.text = "Problem: \(requestVM.problem ?? "")"
-        problemDescription.text = requestVM.description
-        locationImage.image = requestVM.locationImage
+        
+        guard let requestModel = requestVM else { return }
+        
+        buttonStack.isHidden = !isActiveRequest
+        requestId.text = "Ticket Id: \(requestModel.orderId ?? "")"
+        clientAddress.text = requestModel.addressStr ?? ""
+        clientCarModel.text = "Car: \(requestModel.getCarModel())"
+        carPlate.text = "License Plate: \(requestModel.getCarPlate())"
+        clientProblem.text = "Problem: \(requestModel.problem ?? "")"
+        problemDescription.text = requestModel.description
+        locationImage.image = requestModel.locationImage
     }
 }
