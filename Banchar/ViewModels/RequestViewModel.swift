@@ -25,7 +25,8 @@ class RequestViewModel {
     var description: String?
     var statusImage: UIImage?
     var statusString: String?
-    var status: RequestStatus?
+    var dispStatus: DisplayStatus = .processing
+    var reqStatus: RequestStatus = .processing
     var locationImage: UIImage?
     var carDetails: CarDetails?
     var requestType: String?
@@ -43,9 +44,10 @@ class RequestViewModel {
         addressStr = "Address: " + data.address
         problem = data.problem
         cost = data.cost
-        price = "Cost: \(data.cost) KD"
+        price = (cost ?? 0) > 0 ? "Cost: \(data.cost) KD" : "Not charged yet"
         description = data.description
-        status = data.status
+        reqStatus = data.status
+        dispStatus = data.displayStatus
         statusString = "Status: " + data.displayStatus.rawValue
         requestType = data.type.rawValue
         
@@ -68,12 +70,9 @@ class RequestViewModel {
     func newRequest(completion: @escaping ((Any?) -> Void)) {
         
         let geoLocation = GeoPoint(latitude: location?.0 ?? 0, longitude: location?.1 ?? 0)
-        let orderDetail: [String: Any] = ["address": address ?? "", "cost": cost ?? 0, "description": description ?? "", "problem": problem ?? "", "location": geoLocation, "status": "confirmed"]
+        let orderDetail: [String: Any] = ["address": address ?? "", "cost": cost ?? 0, "description": description ?? "", "problem": problem ?? "", "location": geoLocation, "status": reqStatus.rawValue, "clientUserId": clientUserId ?? "", "serviceUserId": serviceUserId ?? "", "displayStatus": dispStatus.rawValue, "type": requestType ?? ""]
         
-        WebService.shared.newWinchRequest(userId: "hRv1xrq940vADTH7tfr4", orderData: orderDetail, completionHandler: {[weak self] error in
-            
-            guard self != nil else { return }
-            
+        WebService.shared.newWinchRequest(orderData: orderDetail, completionHandler: {error in
             if let err = error as? Error {
                 completion(err.localizedDescription)
             } else {
@@ -90,10 +89,21 @@ class RequestViewModel {
         })
     }
     
+    func getAllRequests(userIdField: String, completion: @escaping (([RequestViewModel]?) -> Void)) {
+        let userId = userIdField == "clientUserId" ? clientUserId : serviceUserId
+        WebService.shared.getOrderRequests(userIdField: userIdField, userId: userId ?? "", completion: {response in
+            if let result = response {
+                completion(result)
+            } else {
+                completion(nil)
+            }
+        })
+    }
+    
     func showRequest(vc: UIViewController?) {
         if let showRequestVC = vc?.storyboard?.instantiateViewController(identifier: "RequestConfirmationViewController") as? RequestConfirmationViewController {
             showRequestVC.requestVM = self
-            showRequestVC.isActiveRequest = status == .active
+            showRequestVC.isActiveRequest = reqStatus == .active
             vc?.navigationController?.pushViewController(showRequestVC, animated: true)
         }
     }
@@ -103,8 +113,10 @@ class RequestViewModel {
         let mapSnapshotOptions = MKMapSnapshotter.Options()
 
         // Set the region of the map that is rendered.
-        let location = CLLocationCoordinate2DMake(37.332077, -122.02962) // Apple HQ
-        let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let snapLocation = CLLocationCoordinate2DMake(lat, long)
+        let region = MKCoordinateRegion(center: snapLocation,
+                                        latitudinalMeters: 1000,
+                                        longitudinalMeters: 1000)
         mapSnapshotOptions.region = region
 
         // Set the scale of the image. We'll just use the scale of the current device, which is 2x scale on Retina screens.
@@ -112,6 +124,7 @@ class RequestViewModel {
 
         // Set the size of the image output.
         mapSnapshotOptions.size = CGSize(width: 300, height: 300)
+        let rect = CGRect(origin: CGPoint.zero, size: CGSize(width: 300, height: 300))
 
         // Show buildings and Points of Interest on the snapshot
         mapSnapshotOptions.showsBuildings = true
@@ -119,7 +132,23 @@ class RequestViewModel {
 
         let snapShotter = MKMapSnapshotter(options: mapSnapshotOptions)
         snapShotter.start(completionHandler: {[weak self] (snapshot, error) in
-            self?.locationImage = snapshot?.image ?? UIImage()
+            
+            let snapshotImage = UIGraphicsImageRenderer(size: mapSnapshotOptions.size).image { _ in
+                snapshot?.image.draw(at: .zero)
+
+                let pinView = MKPinAnnotationView(annotation: nil, reuseIdentifier: nil)
+                let pinImage = pinView.image
+
+                if var point = snapshot?.point(for: snapLocation), rect.contains(point) {
+                    point.x -= pinView.bounds.width / 2
+                    point.y -= pinView.bounds.height / 2
+                    point.x += pinView.centerOffset.x
+                    point.y += pinView.centerOffset.y
+                    pinImage?.draw(at: point)
+                }
+            }
+            
+            self?.locationImage = snapshotImage
             self?.interfaceDelegate?.setLocationImage(image: self?.locationImage)
         })
     }
@@ -129,11 +158,11 @@ class RequestViewModel {
     }
     
     func validateAddress() -> Bool {
-        return address?.isEmpty ?? false
+        return !(address?.isEmpty ?? true)
     }
     
     func validateProblem() -> Bool {
-        return problem?.isEmpty ?? false
+        return !(problem?.isEmpty ?? true)
     }
     
     func getCarModel() -> String {

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol RequestHistoryCommunicationProtocol: class {
+    func reloadRequestTable()
+}
+
 class RequestHistoryViewController: UIViewController {
     
     @IBOutlet weak var requestTable: UITableView!
@@ -15,10 +19,13 @@ class RequestHistoryViewController: UIViewController {
     
     var requests: [RequestViewModel] = []
     var isClient = true
+    var userId = ""
     
     @IBAction func newRequest(_ sender: UIBarButtonItem) {
         if isClient {
             if let newRequestVC = self.storyboard?.instantiateViewController(identifier: "NewRequestViewController") as? NewRequestViewController {
+                newRequestVC.requestVM.clientUserId = userId
+                newRequestVC.historyDelegate = self
                 self.navigationController?.pushViewController(newRequestVC, animated: true)
             }
         } else {
@@ -42,7 +49,22 @@ class RequestHistoryViewController: UIViewController {
     
     func updateTable() {
         requestTable.reloadData()
-        barButton.isEnabled = requests.filter{ $0.status == .active }.count > 0 || isClient
+        barButton.isEnabled = requests.filter{ $0.reqStatus == .active }.count > 0 || isClient
+    }
+    
+    func updateRequests() {
+        let field = isClient ? "clientUserId" : "serviceUserId"
+        requests.first?.getAllRequests(userIdField: field, completion: {[weak self] response in
+            
+            guard self != nil else { return }
+            
+            if let result = response {
+                self?.requests = result
+                DispatchQueue.main.async {
+                    self?.updateTable()
+                }
+            }
+        })
     }
 }
 
@@ -51,6 +73,7 @@ extension RequestHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let orderCell = tableView.dequeueReusableCell(withIdentifier: "requestCell") as? RequestHistoryTableViewCell {
             orderCell.configure(data: requests[indexPath.row])
+            orderCell.selectionStyle = .none
             return orderCell
         }
         return UITableViewCell()
@@ -64,5 +87,11 @@ extension RequestHistoryViewController: UITableViewDataSource {
 extension RequestHistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         requests[indexPath.row].showRequest(vc: self)
+    }
+}
+
+extension RequestHistoryViewController: RequestHistoryCommunicationProtocol {
+    func reloadRequestTable() {
+        updateRequests()
     }
 }

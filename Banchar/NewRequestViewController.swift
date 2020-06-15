@@ -22,6 +22,8 @@ class NewRequestViewController: UIViewController {
     let locationManager = CLLocationManager()
     var blinkingTimer: Timer?
     
+    weak var historyDelegate: RequestHistoryCommunicationProtocol?
+    
     @IBAction func selectReason(_ sender: UIButton) {
         sender.isSelected.toggle()
         if sender.isSelected {
@@ -47,6 +49,8 @@ class NewRequestViewController: UIViewController {
                 DispatchQueue.main.async {
                     if let _ = response as? [String: Any] {
                         print("success")
+                        self?.historyDelegate?.reloadRequestTable()
+                        self?.navigationController?.popViewController(animated: true)
                     } else if let errorMsg = response as? String {
                         self?.showAlert(title: "Login Error!", message: errorMsg, completion: nil)
                     }

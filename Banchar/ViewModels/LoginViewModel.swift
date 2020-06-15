@@ -55,6 +55,7 @@ class LoginViewModel {
     func userLoggedInSuccess(vc: UIViewController?) {
         if let newRequestVC = vc?.storyboard?.instantiateViewController(identifier: "RequestHistoryViewController") as? RequestHistoryViewController {
             newRequestVC.isClient = userType == .client
+            newRequestVC.userId = self.userId ?? ""
             let field = userType == .client ? "clientUserId" : "serviceUserId"
             getAllRequests(userIdField: field, completion: {response in
                 if let result = response {
@@ -71,26 +72,11 @@ class LoginViewModel {
     }
     
     func getAllRequests(userIdField: String, completion: @escaping (([RequestViewModel]?) -> Void)) {
-        let orderQuery = db.collection("orders").whereField(userIdField, isEqualTo: userId ?? "")
-        orderQuery.getDocuments(completion: {(querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-                completion(nil)
+        WebService.shared.getOrderRequests(userIdField: userIdField, userId: userId ?? "", completion: {response in
+            if let result = response {
+                completion(result)
             } else {
-                if let snapshot = querySnapshot {
-                    var allOrders: [RequestViewModel] = []
-                    for document in snapshot.documents {
-                        print("\(document.documentID) => \(document.data())")
-                        var data = document.data()
-                        data["orderId"] = document.documentID
-                        let orderData = RequestOrder(details: data)
-                        let orderModel = RequestViewModel(data: orderData)
-                        allOrders.append(orderModel)
-                    }
-                    completion(allOrders)
-                } else {
-                    completion(nil)
-                }
+                completion(nil)
             }
         })
     }
