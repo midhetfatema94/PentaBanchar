@@ -30,6 +30,7 @@ class RequestViewModel {
     var locationImage: UIImage?
     var carDetails: CarDetails?
     var requestType: String?
+    var userType: UserType?
     
     weak var interfaceDelegate: RequestVMInteractionProtocol?
     
@@ -70,12 +71,17 @@ class RequestViewModel {
     func newRequest(completion: @escaping ((Any?) -> Void)) {
         
         let geoLocation = GeoPoint(latitude: location?.0 ?? 0, longitude: location?.1 ?? 0)
-        let orderDetail: [String: Any] = ["address": address ?? "", "cost": cost ?? 0, "description": description ?? "", "problem": problem ?? "", "location": geoLocation, "status": reqStatus.rawValue, "clientUserId": clientUserId ?? "", "serviceUserId": serviceUserId ?? "", "displayStatus": dispStatus.rawValue, "type": requestType ?? ""]
+        var orderDetail: [String: Any] = ["address": address ?? "", "cost": cost ?? 0, "description": description ?? "", "problem": problem ?? "", "location": geoLocation, "status": reqStatus.rawValue, "clientUserId": clientUserId ?? "", "serviceUserId": serviceUserId ?? "", "displayStatus": dispStatus.rawValue, "type": requestType ?? ""]
         
-        WebService.shared.newWinchRequest(orderData: orderDetail, completionHandler: {error in
+        WebService.shared.newWinchRequest(orderData: orderDetail, completionHandler: {[weak self] error in
+            
+            guard let strongSelf = self else { return }
+            
             if let err = error as? Error {
                 completion(err.localizedDescription)
             } else {
+                self?.reqStatus = .active
+                orderDetail["status"] = strongSelf.reqStatus.rawValue
                 completion(orderDetail)
             }
         })
@@ -87,25 +93,6 @@ class RequestViewModel {
                 self.carDetails = CarDetails(data: result)
             }
         })
-    }
-    
-    func getAllRequests(userIdField: String, completion: @escaping (([RequestViewModel]?) -> Void)) {
-        let userId = userIdField == "clientUserId" ? clientUserId : serviceUserId
-        WebService.shared.getOrderRequests(userIdField: userIdField, userId: userId ?? "", completion: {response in
-            if let result = response {
-                completion(result)
-            } else {
-                completion(nil)
-            }
-        })
-    }
-    
-    func showRequest(vc: UIViewController?) {
-        if let showRequestVC = vc?.storyboard?.instantiateViewController(identifier: "RequestConfirmationViewController") as? RequestConfirmationViewController {
-            showRequestVC.requestVM = self
-            showRequestVC.isActiveRequest = reqStatus == .active
-            vc?.navigationController?.pushViewController(showRequestVC, animated: true)
-        }
     }
     
     func setLocationImage(lat: Double, long: Double) {

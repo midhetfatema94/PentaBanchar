@@ -934,12 +934,14 @@
                     </view>
                     <size key="freeformSize" width="414" height="1020"/>
                     <connections>
+                        <outlet property="acceptBtn" destination="gS8-9b-nwM" id="Psd-xm-dtv"/>
                         <outlet property="buttonStack" destination="lhQ-bJ-19u" id="SSv-fi-w6Z"/>
                         <outlet property="carImage" destination="CAQ-yW-qBp" id="3SP-qY-Z8y"/>
                         <outlet property="carPlate" destination="CbI-e2-09s" id="j6q-Bs-IRn"/>
                         <outlet property="clientAddress" destination="1A2-3f-Val" id="WXL-wc-few"/>
                         <outlet property="clientCarModel" destination="dBS-36-rWH" id="6JF-ys-0Gw"/>
                         <outlet property="clientProblem" destination="QHY-IJ-H7O" id="8Ez-kn-AGl"/>
+                        <outlet property="declineBtn" destination="yTd-fh-ygR" id="0Yw-tC-3Gq"/>
                         <outlet property="locationImage" destination="SdS-og-laP" id="QW2-cf-uMi"/>
                         <outlet property="problemDescription" destination="uPk-bC-6wM" id="8DD-XA-mZa"/>
                         <outlet property="requestId" destination="PDp-LQ-9fx" id="om9-5T-tai"/>

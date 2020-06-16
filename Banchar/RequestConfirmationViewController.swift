@@ -18,6 +18,8 @@ class RequestConfirmationViewController: UIViewController {
     @IBOutlet weak var problemDescription: UITextView!
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var locationImage: UIImageView!
+    @IBOutlet weak var acceptBtn: UIButton!
+    @IBOutlet weak var declineBtn: UIButton!
     @IBOutlet weak var buttonStack: UIStackView!
     
     @IBAction func acceptRequest(_ sender: UIButton) {
@@ -27,7 +29,6 @@ class RequestConfirmationViewController: UIViewController {
     }
     
     var requestVM: RequestViewModel?
-    var isActiveRequest = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,19 @@ class RequestConfirmationViewController: UIViewController {
         
         guard let requestModel = requestVM else { return }
         
-        buttonStack.isHidden = !isActiveRequest
+        if requestModel.userType == .client {
+            if requestModel.dispStatus != .accepted {
+                declineBtn.isHidden = false
+                declineBtn.setTitle("Cancel Request", for: .normal)
+                acceptBtn.isHidden = true
+                buttonStack.isHidden = false
+            } else {
+                buttonStack.isHidden = true
+            }
+        } else {
+            buttonStack.isHidden = requestModel.reqStatus == .completed
+        }
+        
         requestId.text = "Ticket Id: \(requestModel.orderId ?? "")"
         clientAddress.text = requestModel.addressStr ?? ""
         clientCarModel.text = "Car: \(requestModel.getCarModel())"

@@ -54,10 +54,8 @@ class LoginViewModel {
     
     func userLoggedInSuccess(vc: UIViewController?) {
         if let newRequestVC = vc?.storyboard?.instantiateViewController(identifier: "RequestHistoryViewController") as? RequestHistoryViewController {
-            newRequestVC.isClient = userType == .client
-            newRequestVC.userId = self.userId ?? ""
-            let field = userType == .client ? "clientUserId" : "serviceUserId"
-            getAllRequests(userIdField: field, completion: {response in
+            newRequestVC.userVM = self
+            getAllRequests(completion: {response in
                 if let result = response {
                     newRequestVC.requests = result
                     newRequestVC.updateTable()
@@ -71,8 +69,9 @@ class LoginViewModel {
         
     }
     
-    func getAllRequests(userIdField: String, completion: @escaping (([RequestViewModel]?) -> Void)) {
-        WebService.shared.getOrderRequests(userIdField: userIdField, userId: userId ?? "", completion: {response in
+    func getAllRequests(completion: @escaping (([RequestViewModel]?) -> Void)) {
+        let field = userType == .client ? "clientUserId" : "serviceUserId"
+        WebService.shared.getOrderRequests(userIdField: field, userId: userId ?? "", completion: {response in
             if let result = response {
                 completion(result)
             } else {

@@ -18,18 +18,17 @@ class RequestHistoryViewController: UIViewController {
     @IBOutlet weak var barButton: UIBarButtonItem!
     
     var requests: [RequestViewModel] = []
-    var isClient = true
-    var userId = ""
+    var userVM: LoginViewModel?
     
     @IBAction func newRequest(_ sender: UIBarButtonItem) {
-        if isClient {
+        if userVM?.userType == .client {
             if let newRequestVC = self.storyboard?.instantiateViewController(identifier: "NewRequestViewController") as? NewRequestViewController {
-                newRequestVC.requestVM.clientUserId = userId
+                newRequestVC.requestVM.clientUserId = userVM?.userId ?? ""
                 newRequestVC.historyDelegate = self
                 self.navigationController?.pushViewController(newRequestVC, animated: true)
             }
         } else {
-            requests.first?.showRequest(vc: self)
+            showRequest(viewModel: nil)
         }
     }
     
@@ -40,7 +39,7 @@ class RequestHistoryViewController: UIViewController {
     }
     
     func configureUI() {
-        if isClient {
+        if userVM?.userType == .client {
             barButton.image = UIImage(systemName: "plus")
         } else {
             barButton.title = "Show Requests"
@@ -49,12 +48,11 @@ class RequestHistoryViewController: UIViewController {
     
     func updateTable() {
         requestTable.reloadData()
-        barButton.isEnabled = requests.filter{ $0.reqStatus == .active }.count > 0 || isClient
+        barButton.isEnabled = requests.filter{ $0.reqStatus == .active }.count > 0 || userVM?.userType == .client
     }
     
     func updateRequests() {
-        let field = isClient ? "clientUserId" : "serviceUserId"
-        requests.first?.getAllRequests(userIdField: field, completion: {[weak self] response in
+        userVM?.getAllRequests(completion: {[weak self] response in
             
             guard self != nil else { return }
             
@@ -66,12 +64,20 @@ class RequestHistoryViewController: UIViewController {
             }
         })
     }
+    
+    func showRequest(viewModel: RequestViewModel?) {
+        if let showRequestVC = self.storyboard?.instantiateViewController(identifier: "RequestConfirmationViewController") as? RequestConfirmationViewController {
+            showRequestVC.requestVM = viewModel
+            self.navigationController?.pushViewController(showRequestVC, animated: true)
+        }
+    }
 }
 
 extension RequestHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let orderCell = tableView.dequeueReusableCell(withIdentifier: "requestCell") as? RequestHistoryTableViewCell {
+            requests[indexPath.row].userType = userVM?.userType
             orderCell.configure(data: requests[indexPath.row])
             orderCell.selectionStyle = .none
             return orderCell
@@ -86,7 +92,7 @@ extension RequestHistoryViewController: UITableViewDataSource {
 
 extension RequestHistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        requests[indexPath.row].showRequest(vc: self)
+        showRequest(viewModel: requests[indexPath.row])
     }
 }
 
