@@ -53,8 +53,8 @@ struct RequestOrder {
         problem = details["problem"] as? String ?? ""
         cost = details["cost"] as? Float ?? 0
         status = RequestStatus(rawValue: (details["status"] as? String ?? "").lowercased()) ?? .processing
-        displayStatus = DisplayStatus(rawValue: (details["displayStatus"] as? String ?? "").capitalized) ?? .processing
-        type = RequestType(rawValue: (details["status"] as? String ?? "").lowercased()) ?? .service
+        displayStatus = DisplayStatus(rawValue: (details["displayStatus"] as? String ?? "").lowercased()) ?? .processing
+        type = RequestType(rawValue: (details["type"] as? String ?? "").lowercased()) ?? .service
     }
 }
 
@@ -66,10 +66,10 @@ enum RequestStatus: String {
 }
 
 enum DisplayStatus: String {
-    case accepted = "Accepted"
-    case success = "Success"
-    case cancelled = "Cancelled"
-    case processing = "Processing"
+    case accepted = "accepted"
+    case success = "success"
+    case cancelled = "cancelled"
+    case processing = "processing"
     case unknown = ""
 }
 

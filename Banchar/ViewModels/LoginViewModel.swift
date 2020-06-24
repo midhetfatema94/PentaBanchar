@@ -71,7 +71,7 @@ class LoginViewModel {
     
     func getAllRequests(completion: @escaping (([RequestViewModel]?) -> Void)) {
         let field = userType == .client ? "clientUserId" : "serviceUserId"
-        WebService.shared.getOrderRequests(userIdField: field, userId: userId ?? "", completion: {response in
+        WebService.shared.getOrderRequests(isWinch: userType == .service, userIdField: field, userId: userId ?? "", completion: {response in
             if let result = response {
                 completion(result)
             } else {

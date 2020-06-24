@@ -49,7 +49,7 @@ class RequestViewModel {
         description = data.description
         reqStatus = data.status
         dispStatus = data.displayStatus
-        statusString = "Status: " + data.displayStatus.rawValue
+        statusString = "Status: " + data.displayStatus.rawValue.capitalized
         requestType = data.type.rawValue
         
         switch data.displayStatus {
@@ -83,6 +83,45 @@ class RequestViewModel {
                 self?.reqStatus = .active
                 orderDetail["status"] = strongSelf.reqStatus.rawValue
                 completion(orderDetail)
+            }
+        })
+    }
+    
+    func cancelRequest(completion: @escaping ((Any?) -> Void)) {
+        WebService.shared.cancelServiceRequest(orderId: self.orderId ?? "", completionHandler: {[weak self] error in
+            
+            guard self != nil else { return }
+            
+            if let err = error as? Error {
+                completion(err.localizedDescription)
+            } else {
+                completion(nil)
+            }
+        })
+    }
+    
+    func acceptRequest(completion: @escaping ((Any?) -> Void)) {
+        WebService.shared.acceptServiceRequest(orderId: self.orderId ?? "", serverId: self.serviceUserId ?? "", completionHandler: {[weak self] error in
+            
+            guard self != nil else { return }
+            
+            if let err = error as? Error {
+                completion(err.localizedDescription)
+            } else {
+                completion(nil)
+            }
+        })
+    }
+    
+    func requestCompleted(completion: @escaping ((Any?) -> Void)) {
+        WebService.shared.winchRequestCompleted(orderId: self.orderId ?? "", completionHandler: {[weak self] error in
+            
+            guard self != nil else { return }
+            
+            if let err = error as? Error {
+                completion(err.localizedDescription)
+            } else {
+                completion(nil)
             }
         })
     }

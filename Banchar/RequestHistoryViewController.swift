@@ -10,6 +10,8 @@ import UIKit
 
 protocol RequestHistoryCommunicationProtocol: class {
     func reloadRequestTable()
+    func getUserId() -> String?
+    func declineRequest(requestId: String)
 }
 
 class RequestHistoryViewController: UIViewController {
@@ -68,6 +70,7 @@ class RequestHistoryViewController: UIViewController {
     func showRequest(viewModel: RequestViewModel?) {
         if let showRequestVC = self.storyboard?.instantiateViewController(identifier: "RequestConfirmationViewController") as? RequestConfirmationViewController {
             showRequestVC.requestVM = viewModel
+            showRequestVC.historyDelegate = self
             self.navigationController?.pushViewController(showRequestVC, animated: true)
         }
     }
@@ -97,6 +100,16 @@ extension RequestHistoryViewController: UITableViewDelegate {
 }
 
 extension RequestHistoryViewController: RequestHistoryCommunicationProtocol {
+    
+    func declineRequest(requestId: String) {
+        requests = requests.filter { $0.orderId != requestId }
+        updateTable()
+    }
+    
+    func getUserId() -> String? {
+        return userVM?.userId
+    }
+    
     func reloadRequestTable() {
         updateRequests()
     }

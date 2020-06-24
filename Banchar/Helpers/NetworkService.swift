@@ -126,8 +126,50 @@ class WebService {
         })
     }
     
-    func getOrderRequests(userIdField: String, userId: String, completion: @escaping (([RequestViewModel]?) -> Void)) {
-        let orderQuery = db.collection("orders").whereField(userIdField, isEqualTo: userId)
+    func cancelServiceRequest(orderId: String, completionHandler: @escaping ((Any?) -> Void)) {
+        let orderDocRef = db.collection("orders").document(orderId)
+        orderDocRef.delete(completion: {(err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(err)
+            } else {
+                completionHandler(nil)
+            }
+        })
+    }
+    
+    func acceptServiceRequest(orderId: String, serverId: String, completionHandler: @escaping ((Any?) -> Void)) {
+        let orderDocRef = db.collection("orders").document(orderId)
+        orderDocRef.updateData(["serviceUserId": serverId, "displayStatus": "accepted", "status": "active"], completion: {(err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(err)
+            } else {
+                completionHandler(nil)
+            }
+        })
+    }
+    
+    func winchRequestCompleted(orderId: String, completionHandler: @escaping ((Any?) -> Void)) {
+        let orderDocRef = db.collection("orders").document(orderId)
+        let updatedParams = ["displayStatus": "success", "status": "completed"]
+        orderDocRef.updateData(updatedParams, completion: {(err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(err)
+            } else {
+                completionHandler(nil)
+            }
+        })
+    }
+    
+    func getOrderRequests(isWinch: Bool, userIdField: String, userId: String, completion: @escaping (([RequestViewModel]?) -> Void)) {
+        var orderQuery: Query!
+        if isWinch {
+            orderQuery = db.collection("orders")
+        } else {
+            orderQuery = db.collection("orders").whereField(userIdField, isEqualTo: userId)
+        }
         orderQuery.getDocuments(completion: {(querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -139,9 +181,15 @@ class WebService {
                         print("\(document.documentID) => \(document.data())")
                         var data = document.data()
                         data["orderId"] = document.documentID
-                        let orderData = RequestOrder(details: data)
-                        let orderModel = RequestViewModel(data: orderData)
-                        allOrders.append(orderModel)
+                        if isWinch {
+                            if let winchId = data[userIdField] as? String {
+                                if winchId == userId || winchId.isEmpty {
+                                    allOrders.append(self.appendOrders(details: data))
+                                }
+                            }
+                        } else {
+                            allOrders.append(self.appendOrders(details: data))
+                        }
                     }
                     completion(allOrders)
                 } else {
@@ -149,5 +197,11 @@ class WebService {
                 }
             }
         })
+    }
+    
+    func appendOrders(details: [String: Any]) -> RequestViewModel {
+        let orderData = RequestOrder(details: details)
+        let orderModel = RequestViewModel(data: orderData)
+        return orderModel
     }
 }
