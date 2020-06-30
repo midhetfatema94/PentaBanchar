@@ -31,6 +31,7 @@ class RequestViewModel {
     var carDetails: CarDetails?
     var requestType: String?
     var userType: UserType?
+    var declinedIds: [String] = []
     
     weak var interfaceDelegate: RequestVMInteractionProtocol?
     
@@ -51,6 +52,7 @@ class RequestViewModel {
         dispStatus = data.displayStatus
         statusString = "Status: " + data.displayStatus.rawValue.capitalized
         requestType = data.type.rawValue
+        declinedIds = data.declinedIds
         
         switch data.displayStatus {
         case .success:
@@ -102,6 +104,20 @@ class RequestViewModel {
     
     func acceptRequest(completion: @escaping ((Any?) -> Void)) {
         WebService.shared.acceptServiceRequest(orderId: self.orderId ?? "", serverId: self.serviceUserId ?? "", completionHandler: {[weak self] error in
+            
+            guard self != nil else { return }
+            
+            if let err = error as? Error {
+                completion(err.localizedDescription)
+            } else {
+                completion(nil)
+            }
+        })
+    }
+    
+    func declineRequest(winchId: String, completion: @escaping ((Any?) -> Void)) {
+        self.declinedIds.append(winchId)
+        WebService.shared.declineServiceRequest(orderId: self.orderId ?? "", declinedIds: self.declinedIds, completionHandler: {[weak self] error in
             
             guard self != nil else { return }
             

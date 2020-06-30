@@ -39,7 +39,7 @@ class RequestConfirmationViewController: UIViewController {
                     self?.requestVM?.dispStatus = .success
                     self?.requestVM?.reqStatus = .completed
                     self?.historyDelegate?.reloadRequestTable()
-                    self?.navigationController?.popViewController(animated: true)
+                    self?.gotoPayment()
                 }
             })
         } else {
@@ -75,8 +75,17 @@ class RequestConfirmationViewController: UIViewController {
                 }
             })
         } else {
-            self.historyDelegate?.declineRequest(requestId: self.requestVM?.orderId ?? "")
-            self.navigationController?.popViewController(animated: true)
+            requestVM?.declineRequest(winchId: historyDelegate?.getUserId() ?? "", completion: {[weak self] errorStr in
+                
+                guard self != nil else { return }
+                
+                if let error = errorStr as? String {
+                    self?.showAlert(title: "Request Failure!", message: error, completion: nil)
+                } else if let requestModel = self?.requestVM {
+                    self?.historyDelegate?.declineRequest(request: requestModel)
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            })
         }
     }
     
@@ -141,6 +150,12 @@ class RequestConfirmationViewController: UIViewController {
             requestTitle.text = "Processing Request"
         default:
             requestTitle.text = "Completed Request"
+        }
+    }
+    
+    func gotoPayment() {
+        if let paymentVC = self.storyboard?.instantiateViewController(identifier: "PaymentViewController") as? PaymentViewController {
+            self.navigationController?.pushViewController(paymentVC, animated: true)
         }
     }
 }

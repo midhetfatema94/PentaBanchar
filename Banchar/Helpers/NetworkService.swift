@@ -150,6 +150,18 @@ class WebService {
         })
     }
     
+    func declineServiceRequest(orderId: String, declinedIds: [String], completionHandler: @escaping ((Any?) -> Void)) {
+        let orderDocRef = db.collection("orders").document(orderId)
+        orderDocRef.updateData(["declinedBy": declinedIds], completion: {(err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(err)
+            } else {
+                completionHandler(nil)
+            }
+        })
+    }
+    
     func winchRequestCompleted(orderId: String, completionHandler: @escaping ((Any?) -> Void)) {
         let orderDocRef = db.collection("orders").document(orderId)
         let updatedParams = ["displayStatus": "success", "status": "completed"]
@@ -181,9 +193,11 @@ class WebService {
                         print("\(document.documentID) => \(document.data())")
                         var data = document.data()
                         data["orderId"] = document.documentID
+                        let declineIds = data["declinedBy"] as? [String] ?? []
                         if isWinch {
                             if let winchId = data[userIdField] as? String {
-                                if winchId == userId || winchId.isEmpty {
+                                if (winchId == userId || winchId.isEmpty) &&
+                                    !declineIds.contains(userId) {
                                     allOrders.append(self.appendOrders(details: data))
                                 }
                             }

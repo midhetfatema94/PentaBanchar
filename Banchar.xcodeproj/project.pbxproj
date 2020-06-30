@@ -39,6 +39,8 @@
 		639009CC244DEE7100AAAEC8 /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009CB244DEE7100AAAEC8 /* RequestViewModel.swift */; };
 		639009CE244E074900AAAEC8 /* RequestHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009CD244E074900AAAEC8 /* RequestHistoryTableViewCell.swift */; };
 		639009D724584CCF00AAAEC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 639009D624584CCF00AAAEC8 /* GoogleService-Info.plist */; };
+		63C51C8024ABA53D00C2F6AC /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C51C7F24ABA53D00C2F6AC /* PaymentViewController.swift */; };
+		63C51C8224ABABDD00C2F6AC /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C51C8124ABABDD00C2F6AC /* RatingViewController.swift */; };
 		9F7D8B1779299047E3DCAC67 /* Pods_Banchar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C35F8B4FE2E8509258F1F98 /* Pods_Banchar.framework */; };
 		AE4894E03B1CF0A358098C9B /* Pods_BancharTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F447EB15CF3221B9988312CC /* Pods_BancharTests.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +102,8 @@
 		639009CB244DEE7100AAAEC8 /* RequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewModel.swift; sourceTree = "<group>"; };
 		639009CD244E074900AAAEC8 /* RequestHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		639009D624584CCF00AAAEC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		63C51C7F24ABA53D00C2F6AC /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		63C51C8124ABABDD00C2F6AC /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		6496DEA672C32F9E0028717D /* Pods-BancharTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BancharTests.release.xcconfig"; path = "Target Support Files/Pods-BancharTests/Pods-BancharTests.release.xcconfig"; sourceTree = "<group>"; };
 		67459C3426756EF4C939754B /* Pods-Banchar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Banchar.debug.xcconfig"; path = "Target Support Files/Pods-Banchar/Pods-Banchar.debug.xcconfig"; sourceTree = "<group>"; };
 		6C35F8B4FE2E8509258F1F98 /* Pods_Banchar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Banchar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 				639009CF24583DBE00AAAEC8 /* ViewModels */,
 				639009C2243635A900AAAEC8 /* DataModels */,
 				635177FE2483D3A2007241D4 /* .gitignore */,
+				63C51C8124ABABDD00C2F6AC /* RatingViewController.swift */,
+				63C51C7F24ABA53D00C2F6AC /* PaymentViewController.swift */,
 				63900971242D1AFD00AAAEC8 /* AppDelegate.swift */,
 				63900975242D1AFD00AAAEC8 /* LoginViewController.swift */,
 				639009A72434CDAA00AAAEC8 /* NewRequestViewController.swift */,
@@ -562,6 +568,7 @@
 				639009CE244E074900AAAEC8 /* RequestHistoryTableViewCell.swift in Sources */,
 				639009C62436415C00AAAEC8 /* NetworkService.swift in Sources */,
 				63900976242D1AFD00AAAEC8 /* LoginViewController.swift in Sources */,
+				63C51C8224ABABDD00C2F6AC /* RatingViewController.swift in Sources */,
 				639009CC244DEE7100AAAEC8 /* RequestViewModel.swift in Sources */,
 				639009A22434AA1200AAAEC8 /* UserProfileViewController.swift in Sources */,
 				639009BF2436052E00AAAEC8 /* User.swift in Sources */,
@@ -570,6 +577,7 @@
 				639009A62434B21300AAAEC8 /* RequestHistoryViewController.swift in Sources */,
 				63900972242D1AFD00AAAEC8 /* AppDelegate.swift in Sources */,
 				639009AE2434EFA900AAAEC8 /* RegisterPageOne.swift in Sources */,
+				63C51C8024ABA53D00C2F6AC /* PaymentViewController.swift in Sources */,
 				63900974242D1AFD00AAAEC8 /* SceneDelegate.swift in Sources */,
 				639009A82434CDAA00AAAEC8 /* NewRequestViewController.swift in Sources */,
 				639009B52434F2C900AAAEC8 /* RegisterPageTwo.swift in Sources */,

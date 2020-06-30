@@ -11,7 +11,7 @@ import UIKit
 protocol RequestHistoryCommunicationProtocol: class {
     func reloadRequestTable()
     func getUserId() -> String?
-    func declineRequest(requestId: String)
+    func declineRequest(request: RequestViewModel)
 }
 
 class RequestHistoryViewController: UIViewController {
@@ -101,8 +101,8 @@ extension RequestHistoryViewController: UITableViewDelegate {
 
 extension RequestHistoryViewController: RequestHistoryCommunicationProtocol {
     
-    func declineRequest(requestId: String) {
-        requests = requests.filter { $0.orderId != requestId }
+    func declineRequest(request: RequestViewModel) {
+        requests = requests.filter { $0.orderId != request.orderId }
         updateTable()
     }
     
