@@ -28,21 +28,8 @@ class RequestConfirmationViewController: UIViewController {
     var requestVM: RequestViewModel?
     
     @IBAction func acceptRequest(_ sender: UIButton) {
-        if sender.tag == 1 {
-            requestVM?.requestCompleted(completion: {[weak self] errorStr in
-                
-                guard self != nil else { return }
-                
-                if let error = errorStr as? String {
-                    self?.showAlert(title: "Update Failure!", message: error, completion: nil)
-                } else {
-                    self?.requestVM?.dispStatus = .success
-                    self?.requestVM?.reqStatus = .completed
-                    self?.historyDelegate?.reloadRequestTable()
-                    self?.gotoPayment()
-                }
-            })
-        } else {
+        switch sender.tag {
+        case 0:
             requestVM?.serviceUserId = historyDelegate?.getUserId()
             requestVM?.acceptRequest(completion: {[weak self] errorStr in
                 
@@ -56,6 +43,28 @@ class RequestConfirmationViewController: UIViewController {
                     self?.navigationController?.popViewController(animated: true)
                 }
             })
+        case 1:
+            requestVM?.requestCompleted(completion: {[weak self] errorStr in
+                
+                guard self != nil else { return }
+                
+                if let error = errorStr as? String {
+                    self?.showAlert(title: "Update Failure!", message: error, completion: nil)
+                } else {
+                    self?.requestVM?.dispStatus = .success
+                    self?.requestVM?.reqStatus = .completed
+                    self?.historyDelegate?.reloadRequestTable()
+                    self?.gotoPayment()
+                }
+            })
+        case 2:
+            if let ratingVC = self.storyboard?.instantiateViewController(identifier: "RatingViewController") as? RatingViewController {
+                ratingVC.requestVM = self.requestVM
+                ratingVC.historyDelegate = self.historyDelegate
+                self.navigationController?.pushViewController(ratingVC, animated: true)
+            }
+        default:
+            break
         }
     }
     
@@ -101,7 +110,15 @@ class RequestConfirmationViewController: UIViewController {
         
         if requestModel.userType == .client {
             if requestModel.reqStatus == .completed {
-                buttonStack.isHidden = true
+                if requestModel.rating != nil {
+                    buttonStack.isHidden = true
+                } else {
+                    acceptBtn.isHidden = false
+                    acceptBtn.setTitle("Give Rating", for: .normal)
+                    acceptBtn.tag = 2
+                    declineBtn.isHidden = true
+                    buttonStack.isHidden = false
+                }
             } else {
                  if requestModel.reqStatus == .active {
                     acceptBtn.isHidden = false

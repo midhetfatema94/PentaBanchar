@@ -12,6 +12,7 @@ protocol RequestHistoryCommunicationProtocol: class {
     func reloadRequestTable()
     func getUserId() -> String?
     func declineRequest(request: RequestViewModel)
+    func updateRequest(requestId: String, updatedRequest: RequestViewModel)
 }
 
 class RequestHistoryViewController: UIViewController {
@@ -30,7 +31,11 @@ class RequestHistoryViewController: UIViewController {
                 self.navigationController?.pushViewController(newRequestVC, animated: true)
             }
         } else {
-            showRequest(viewModel: nil)
+            if let reviewsVC = self.storyboard?.instantiateViewController(identifier: "AverageRatingViewController") as? AverageRatingViewController {
+                reviewsVC.rateScore = self.getAverageRating()
+                reviewsVC.reviews = self.getAllReviews()
+                self.navigationController?.pushViewController(reviewsVC, animated: true)
+            }
         }
     }
     
@@ -44,13 +49,12 @@ class RequestHistoryViewController: UIViewController {
         if userVM?.userType == .client {
             barButton.image = UIImage(systemName: "plus")
         } else {
-            barButton.title = "Show Requests"
+            barButton.title = "Show Reviews"
         }
     }
     
     func updateTable() {
         requestTable.reloadData()
-        barButton.isEnabled = requests.filter{ $0.reqStatus == .active }.count > 0 || userVM?.userType == .client
     }
     
     func updateRequests() {
@@ -73,6 +77,26 @@ class RequestHistoryViewController: UIViewController {
             showRequestVC.historyDelegate = self
             self.navigationController?.pushViewController(showRequestVC, animated: true)
         }
+    }
+    
+    func getAverageRating() -> Float {
+        var score: Float = 0
+        var ratingCount: Float = 0
+        self.requests.forEach {
+            if let ratingNotNil = $0.rating {
+                score += ratingNotNil
+                ratingCount += 1
+            }
+        }
+        return score/ratingCount
+    }
+    
+    func getAllReviews() -> [String] {
+        var reviews: [String] = []
+        self.requests.forEach {
+            reviews.append($0.review ?? "")
+        }
+        return reviews
     }
 }
 
@@ -100,6 +124,15 @@ extension RequestHistoryViewController: UITableViewDelegate {
 }
 
 extension RequestHistoryViewController: RequestHistoryCommunicationProtocol {
+    func updateRequest(requestId: String, updatedRequest: RequestViewModel) {
+        requests = requests.map {
+            if $0.orderId == requestId {
+                return updatedRequest
+            }
+            return $0
+        }
+        updateTable()
+    }
     
     func declineRequest(request: RequestViewModel) {
         requests = requests.filter { $0.orderId != request.orderId }

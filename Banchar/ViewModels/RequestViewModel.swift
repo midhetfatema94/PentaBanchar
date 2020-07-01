@@ -32,6 +32,8 @@ class RequestViewModel {
     var requestType: String?
     var userType: UserType?
     var declinedIds: [String] = []
+    var rating: Float?
+    var review: String?
     
     weak var interfaceDelegate: RequestVMInteractionProtocol?
     
@@ -53,6 +55,11 @@ class RequestViewModel {
         statusString = "Status: " + data.displayStatus.rawValue.capitalized
         requestType = data.type.rawValue
         declinedIds = data.declinedIds
+        review = data.review
+        
+        if data.rating > 0 {
+            rating = data.rating
+        }
         
         switch data.displayStatus {
         case .success:
@@ -131,6 +138,19 @@ class RequestViewModel {
     
     func requestCompleted(completion: @escaping ((Any?) -> Void)) {
         WebService.shared.winchRequestCompleted(orderId: self.orderId ?? "", completionHandler: {[weak self] error in
+            
+            guard self != nil else { return }
+            
+            if let err = error as? Error {
+                completion(err.localizedDescription)
+            } else {
+                completion(nil)
+            }
+        })
+    }
+    
+    func submitRating(completion: @escaping ((Any?) -> Void)) {
+        WebService.shared.updateRatingReview(orderId: self.orderId ?? "", rating: self.rating ?? 0, review: self.review ?? "", completionHandler: {[weak self] error in
             
             guard self != nil else { return }
             

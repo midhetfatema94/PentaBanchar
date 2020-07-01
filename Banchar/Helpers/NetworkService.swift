@@ -175,6 +175,19 @@ class WebService {
         })
     }
     
+    func updateRatingReview(orderId: String, rating: Float, review: String, completionHandler: @escaping ((Any?) -> Void)) {
+        let orderDocRef = db.collection("orders").document(orderId)
+        let updatedParams: [String : Any] = ["rating": rating, "review": review]
+        orderDocRef.updateData(updatedParams, completion: {(err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(err)
+            } else {
+                completionHandler(nil)
+            }
+        })
+    }
+    
     func getOrderRequests(isWinch: Bool, userIdField: String, userId: String, completion: @escaping (([RequestViewModel]?) -> Void)) {
         var orderQuery: Query!
         if isWinch {

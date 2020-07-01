@@ -10,6 +10,7 @@
 		08178BB9EC7BBAC471C9BDC5 /* Pods_Banchar_BancharUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7011D39300FCF3A0CFCAC8 /* Pods_Banchar_BancharUITests.framework */; };
 		635177FD2483CFC7007241D4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635177FC2483CFC7007241D4 /* Extensions.swift */; };
 		635177FF2483D3A2007241D4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 635177FE2483D3A2007241D4 /* .gitignore */; };
+		638E622F24AD0D2B002C8FD6 /* AverageRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E622E24AD0D2B002C8FD6 /* AverageRatingViewController.swift */; };
 		63900972242D1AFD00AAAEC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900971242D1AFD00AAAEC8 /* AppDelegate.swift */; };
 		63900974242D1AFD00AAAEC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900973242D1AFD00AAAEC8 /* SceneDelegate.swift */; };
 		63900976242D1AFD00AAAEC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63900975242D1AFD00AAAEC8 /* LoginViewController.swift */; };
@@ -67,6 +68,7 @@
 		4F7011D39300FCF3A0CFCAC8 /* Pods_Banchar_BancharUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Banchar_BancharUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		635177FC2483CFC7007241D4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Banchar/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		635177FE2483D3A2007241D4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		638E622E24AD0D2B002C8FD6 /* AverageRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageRatingViewController.swift; sourceTree = "<group>"; };
 		6390096E242D1AFD00AAAEC8 /* Banchar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Banchar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63900971242D1AFD00AAAEC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63900973242D1AFD00AAAEC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				639009CF24583DBE00AAAEC8 /* ViewModels */,
 				639009C2243635A900AAAEC8 /* DataModels */,
 				635177FE2483D3A2007241D4 /* .gitignore */,
+				638E622E24AD0D2B002C8FD6 /* AverageRatingViewController.swift */,
 				63C51C8124ABABDD00C2F6AC /* RatingViewController.swift */,
 				63C51C7F24ABA53D00C2F6AC /* PaymentViewController.swift */,
 				63900971242D1AFD00AAAEC8 /* AppDelegate.swift */,
@@ -576,6 +579,7 @@
 				635177FD2483CFC7007241D4 /* Extensions.swift in Sources */,
 				639009A62434B21300AAAEC8 /* RequestHistoryViewController.swift in Sources */,
 				63900972242D1AFD00AAAEC8 /* AppDelegate.swift in Sources */,
+				638E622F24AD0D2B002C8FD6 /* AverageRatingViewController.swift in Sources */,
 				639009AE2434EFA900AAAEC8 /* RegisterPageOne.swift in Sources */,
 				63C51C8024ABA53D00C2F6AC /* PaymentViewController.swift in Sources */,
 				63900974242D1AFD00AAAEC8 /* SceneDelegate.swift in Sources */,

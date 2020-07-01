@@ -41,6 +41,8 @@ struct RequestOrder {
     var displayStatus: DisplayStatus = .unknown
     var type: RequestType = .service
     var declinedIds: [String] = []
+    var rating: Float = 0.0
+    var review = ""
     
     init(details: [String: Any]) {
         clientUserId = details["clientUserId"] as? String ?? ""
@@ -57,6 +59,8 @@ struct RequestOrder {
         displayStatus = DisplayStatus(rawValue: (details["displayStatus"] as? String ?? "").lowercased()) ?? .processing
         type = RequestType(rawValue: (details["type"] as? String ?? "").lowercased()) ?? .service
         declinedIds = details["declinedBy"] as? [String] ?? []
+        rating = details["rating"] as? Float ?? 0
+        review = details["review"] as? String ?? ""
     }
 }
 

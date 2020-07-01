@@ -10,21 +10,57 @@ import UIKit
 
 class RatingViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    @IBOutlet weak var starStackView: UIStackView!
+    @IBOutlet var starButtons: [UIButton]!
+    @IBOutlet weak var reviewTF: UITextView!
+    
+    var requestVM: RequestViewModel?
+    
+    weak var historyDelegate: RequestHistoryCommunicationProtocol?
+    
+    @IBAction func rateButtonClicked(_ sender: UIButton) {
+        starButtons.forEach { $0.isSelected = false }
+        for i in 0 ..< sender.tag {
+            starButtons[i].isSelected = true
+            requestVM?.rating = Float(starButtons[i].tag)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func submitRating(_ sender: UIButton) {
+        requestVM?.review = reviewTF.text
+        requestVM?.submitRating(completion: {[weak self] errorStr in
+            
+            guard self != nil else { return }
+            
+            if let error = errorStr as? String {
+                self?.showAlert(title: "Submission Failure", message: error, completion: nil)
+            } else {
+                if let requestModel = self?.requestVM {
+                    self?.historyDelegate?.updateRequest(requestId: requestModel.orderId ?? "", updatedRequest: requestModel)
+                }
+                if let controllerStack = self?.navigationController?.viewControllers {
+                    for vc in controllerStack {
+                        if let requestHistoryVC = vc as? RequestHistoryViewController {
+                            self?.navigationController?.popToViewController(requestHistoryVC, animated: true)
+                        }
+                    }
+                } else {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
+        })
     }
-    */
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let starEmptyImage = UIImage(named: "star")
+        let starFilledImage = UIImage(named: "star_fill")
+        
+        for (i, starBtn) in starButtons.enumerated() {
+            starBtn.tag = i + 1
+            starBtn.setImage(starEmptyImage, for: .normal)
+            starBtn.setImage(starFilledImage, for: .selected)
+        }
+    }
 }
