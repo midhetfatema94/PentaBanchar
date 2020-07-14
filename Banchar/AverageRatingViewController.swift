@@ -21,9 +21,10 @@ class AverageRatingViewController: UIViewController {
         
         let starEmptyImage = UIImage(named: "star")
         let starFilledImage = UIImage(named: "star_fill")
+        let starHalfFillImage = UIImage(named: "star_half")
         
-        for (i, starImage) in starImageViews.enumerated() {
-            if Float(i+1) <= (rateScore ?? 0) {
+        for starImage in starImageViews {
+            if Float(starImage.tag) <= (rateScore ?? 0) {
                 starImage.image = starFilledImage
             } else {
                 starImage.image = starEmptyImage

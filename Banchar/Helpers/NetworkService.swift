@@ -37,10 +37,10 @@ class WebService {
     }
     
     func signUp(userDetails: [String: Any], carDetails: [String: Any], completionHandler: @escaping ((String?, Bool) -> Void)) {
-        getUserDetails(fieldName: "email", fieldValue: userDetails["email"] as? String ?? "", shouldSendCompletionOnFailure: true, completionHandler: {(result) in
-            if (result as? RequestViewModel) == nil {
-                self.getUserDetails(fieldName: "username", fieldValue: userDetails["username"] as? String ?? "", shouldSendCompletionOnFailure: true, completionHandler: {(result) in
-                    if (result as? RequestViewModel) == nil {
+        checkUser(fieldName: "email", fieldValue: userDetails["email"] as? String ?? "", completionHandler: {(userExists) in
+            if !(userExists ?? true) {
+                self.checkUser(fieldName: "username", fieldValue: userDetails["username"] as? String ?? "", completionHandler: {(exists) in
+                    if !(exists ?? true) {
                         var ref: DocumentReference? = nil
                         ref = self.db.collection("users").addDocument(data: userDetails) {(error) in
                             if let err = error {
@@ -74,23 +74,19 @@ class WebService {
         })
     }
     
-    func getUserDetails(fieldName: String, fieldValue: String, shouldSendCompletionOnFailure: Bool, completionHandler: @escaping ((Any?) -> Void)) {
+    func checkUser(fieldName: String, fieldValue: String, completionHandler: @escaping ((Bool?) -> Void)) {
+        print("get user details", fieldName, fieldValue)
         let userDocRef = db.collection("users").whereField(fieldName, isEqualTo: fieldValue)
         userDocRef.getDocuments(completion: {(querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
-                completionHandler(err.localizedDescription)
+                completionHandler(nil)
             } else {
-                if let snapshot = querySnapshot, let document = snapshot.documents.first {
-                    print("\(document.documentID) => \(document.data())")
-                    var data = document.data()
-                    data["orderId"] = document.documentID
-                    let orderData = RequestOrder(details: data)
-                    let orderModel = RequestViewModel(data: orderData)
-                    completionHandler(orderModel)
+                if let snapshot = querySnapshot, snapshot.documents.count > 0 {
+                    completionHandler(true)
                 } else {
                     print("Document does not exist in cache")
-                    if shouldSendCompletionOnFailure { completionHandler(nil) }
+                    completionHandler(false)
                 }
             }
         })

@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import GeoSpark
 
 class LoginViewModel {
     
@@ -23,6 +24,7 @@ class LoginViewModel {
     var primaryCarPlate: String?
     var primaryCarModel: String?
     var agreeTnc: Bool?
+    var locationToken: String?
     
     func login(credentials: [String: String], completion: @escaping ((Any?) -> Void)) {
         WebService.shared.loginUser(details: credentials) {[weak self] (response) in
@@ -41,7 +43,14 @@ class LoginViewModel {
                 self?.getUserDetails(userId: documentId, completionHandler: {(response) in
                     if let userDetails = response as? [String: Any] {
                         self?.setupViewModel(details: userDetails)
-                        completion(userDetails)
+                        self?.createUserTokenLocation(userId: self?.userId ?? "", completion: {(locationToken, success) in
+                            if let token = locationToken, success {
+                                self?.locationToken = token
+                                completion(userDetails)
+                            } else {
+                                completion(locationToken ?? "Failed to get complete user details")
+                            }
+                        })
                     } else {
                         completion(response as? String ?? "Failed to get user details")
                     }
@@ -55,14 +64,28 @@ class LoginViewModel {
     func userLoggedInSuccess(vc: UIViewController?) {
         if let newRequestVC = vc?.storyboard?.instantiateViewController(identifier: "RequestHistoryViewController") as? RequestHistoryViewController {
             newRequestVC.userVM = self
-            getAllRequests(completion: {response in
-                if let result = response {
-                    newRequestVC.requests = result
-                    newRequestVC.updateTable()
-                }
+            getAllRequests(completion: {[weak self] response in
+                self?.createUserTokenLocation(userId: self?.userId ?? "", completion: {(locationToken, success) in
+                    if let token = locationToken, let result = response, success {
+                        self?.locationToken = token
+                        DispatchQueue.main.async {
+                            newRequestVC.requests = result
+                            newRequestVC.updateTable()
+                        }
+                    }
+                })
             })
             vc?.navigationController?.pushViewController(newRequestVC, animated: true)
         }
+    }
+        
+    func createUserTokenLocation(userId: String, completion: @escaping ((String?, Bool) -> Void)) {
+        GeoSpark.createUser(userId,{(user) in
+            print("Location token create: ", user.userId)
+            completion(user.userId, true)
+          }, onFailure: {(error) in
+            completion(error.errorMessage, false)
+        })
     }
     
     func forgotPassword() {
