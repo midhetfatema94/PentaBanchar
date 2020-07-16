@@ -16,7 +16,8 @@ class RequestViewModel {
     var orderId: String?
     var clientUserId: String?
     var serviceUserId: String?
-    var location: (Double, Double)?
+    var clientLocation: (lat: Double, long: Double)?
+    var serverLocation: (lat: Double, long: Double)?
     var address: String?
     var addressStr: String?
     var problem: String?
@@ -43,7 +44,8 @@ class RequestViewModel {
         clientUserId = data.clientUserId
         serviceUserId = data.serviceUserId
         orderId = data.id
-        location = (data.lat, data.long)
+        clientLocation = (data.lat, data.long)
+        serverLocation = (data.serviceLat, data.serviceLong)
         address = data.address
         addressStr = "Address: " + data.address
         problem = data.problem
@@ -78,9 +80,12 @@ class RequestViewModel {
     }
     
     func newRequest(completion: @escaping ((Any?) -> Void)) {
+        var orderDetail: [String: Any] = ["address": address ?? "", "cost": cost ?? 0, "description": description ?? "", "problem": problem ?? "", "status": reqStatus.rawValue, "clientUserId": clientUserId ?? "", "serviceUserId": serviceUserId ?? "", "displayStatus": dispStatus.rawValue, "type": requestType ?? ""]
         
-        let geoLocation = GeoPoint(latitude: location?.0 ?? 0, longitude: location?.1 ?? 0)
-        var orderDetail: [String: Any] = ["address": address ?? "", "cost": cost ?? 0, "description": description ?? "", "problem": problem ?? "", "location": geoLocation, "status": reqStatus.rawValue, "clientUserId": clientUserId ?? "", "serviceUserId": serviceUserId ?? "", "displayStatus": dispStatus.rawValue, "type": requestType ?? ""]
+        if let clientLoc = clientLocation {
+            let geoLocation = GeoPoint(latitude: clientLoc.lat, longitude: clientLoc.long)
+            orderDetail["location"] = geoLocation
+        }
         
         WebService.shared.newWinchRequest(orderData: orderDetail, completionHandler: {[weak self] error in
             
@@ -166,6 +171,27 @@ class RequestViewModel {
         WebService.shared.getCarDetails(userId: clientUserId ?? "", completionHandler: {(response) in
             if let result = response as? [String: Any] {
                 self.carDetails = CarDetails(data: result)
+            }
+        })
+    }
+    
+    func updateServerLocation(lat: Double, long: Double) {
+        let geoLocation = GeoPoint(latitude: lat, longitude: long)
+        serverLocation = (lat: lat, long: long)
+        WebService.shared.updateServerLocation(orderId: orderId ?? "", location: geoLocation, completionHandler: nil)
+    }
+    
+    func getUpdatedServerLocation(completion: @escaping ((Bool) -> Void)) {
+        WebService.shared.getUpdatedServerLocation(orderId: orderId ?? "", completionHandler: {updatedLocation in
+            if let newLocation = updatedLocation as? GeoPoint, let serverLoc = self.serverLocation {
+                if newLocation.latitude != serverLoc.lat || newLocation.longitude != serverLoc.long {
+                    self.serverLocation = (newLocation.latitude, newLocation.longitude)
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            } else {
+                completion(false)
             }
         })
     }

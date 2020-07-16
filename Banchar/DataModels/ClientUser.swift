@@ -33,6 +33,8 @@ struct RequestOrder {
     var id: String = ""
     var lat: Double = 0.0
     var long: Double = 0.0
+    var serviceLat: Double = 0.0
+    var serviceLong: Double = 0.0
     var address: String = ""
     var problem: String = ""
     var description: String = ""
@@ -48,9 +50,15 @@ struct RequestOrder {
         clientUserId = details["clientUserId"] as? String ?? ""
         serviceUserId = details["serviceUserId"] as? String
         id = details["orderId"] as? String ?? ""
+        
         let geoLocation = details["location"] as? GeoPoint
         lat = geoLocation?.latitude ?? 0.0
         long = geoLocation?.longitude ?? 0.0
+        
+        let serviceGeoLocation = details["serverLocation"] as? GeoPoint
+        serviceLat = serviceGeoLocation?.latitude ?? 0.0
+        serviceLong = serviceGeoLocation?.longitude ?? 0.0
+        
         address = details["address"] as? String ?? ""
         description = details["description"] as? String ?? ""
         problem = details["problem"] as? String ?? ""

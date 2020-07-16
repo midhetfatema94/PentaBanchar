@@ -72,10 +72,18 @@ class RequestHistoryViewController: UIViewController {
     }
     
     func showRequest(viewModel: RequestViewModel?) {
-        if let showRequestVC = self.storyboard?.instantiateViewController(identifier: "RequestConfirmationViewController") as? RequestConfirmationViewController {
-            showRequestVC.requestVM = viewModel
-            showRequestVC.historyDelegate = self
-            self.navigationController?.pushViewController(showRequestVC, animated: true)
+        if viewModel?.reqStatus == .active && userVM?.userType == .client {
+            if let serviceTrackingVC = self.storyboard?.instantiateViewController(identifier: "ServiceVehicleTrackerViewController") as? ServiceVehicleTrackerViewController {
+                serviceTrackingVC.requestVM = viewModel
+                serviceTrackingVC.historyDelegate = self
+                self.navigationController?.pushViewController(serviceTrackingVC, animated: true)
+            }
+        } else {
+            if let showRequestVC = self.storyboard?.instantiateViewController(identifier: "RequestConfirmationViewController") as? RequestConfirmationViewController {
+                showRequestVC.requestVM = viewModel
+                showRequestVC.historyDelegate = self
+                self.navigationController?.pushViewController(showRequestVC, animated: true)
+            }
         }
     }
     

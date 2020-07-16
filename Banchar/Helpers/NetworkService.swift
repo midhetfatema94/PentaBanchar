@@ -74,6 +74,22 @@ class WebService {
         })
     }
     
+    func updateLocationToken(token: String, userId: String, completionHandler: ((Any?) -> Void)?) {
+        let orderDocRef = db.collection("users").document(userId)
+        orderDocRef.updateData(["locationToken": token], completion: {(err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                if let handler = completionHandler {
+                    handler(err)
+                }
+            } else {
+                if let handler = completionHandler {
+                    handler(nil)
+                }
+            }
+        })
+    }
+    
     func checkUser(fieldName: String, fieldValue: String, completionHandler: @escaping ((Bool?) -> Void)) {
         print("get user details", fieldName, fieldValue)
         let userDocRef = db.collection("users").whereField(fieldName, isEqualTo: fieldValue)
@@ -142,6 +158,39 @@ class WebService {
                 completionHandler(err)
             } else {
                 completionHandler(nil)
+            }
+        })
+    }
+    
+    func updateServerLocation(orderId: String, location: GeoPoint, completionHandler: ((Any?) -> Void)?) {
+        let orderDocRef = db.collection("orders").document(orderId)
+        orderDocRef.updateData(["serverLocation": location], completion: {(err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                if let handler = completionHandler {
+                    handler(err)
+                }
+            } else {
+                if let handler = completionHandler {
+                    handler(nil)
+                }
+            }
+        })
+    }
+    
+    func getUpdatedServerLocation(orderId: String, completionHandler: @escaping ((Any?) -> Void)) {
+        let orderDocRef = db.collection("orders").document(orderId)
+        orderDocRef.getDocument(completion: {(querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completionHandler(nil)
+            } else {
+                if let document = querySnapshot {
+                    let data = document.data()
+                    completionHandler(data?["serverLocation"] as? GeoPoint)
+                } else {
+                    completionHandler(nil)
+                }
             }
         })
     }

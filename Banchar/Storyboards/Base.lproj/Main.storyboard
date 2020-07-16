@@ -371,7 +371,7 @@
                                                             <action selector="selectReason:" destination="DpH-4P-JgM" eventType="touchUpInside" id="4wY-dT-mtq"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFZ-e1-JWg">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car broke down" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFZ-e1-JWg">
                                                         <rect key="frame" x="46" y="0.0" width="308" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                         <nil key="textColor"/>
@@ -393,7 +393,7 @@
                                                             <action selector="selectReason:" destination="DpH-4P-JgM" eventType="touchUpInside" id="UT8-Ka-XaR"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of4-Ye-P24">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fuel is over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of4-Ye-P24">
                                                         <rect key="frame" x="46" y="0.0" width="308" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                         <nil key="textColor"/>
@@ -468,7 +468,7 @@
                                             <action selector="requestWinch:" destination="DpH-4P-JgM" eventType="touchUpInside" id="I05-qQ-Qti"/>
                                         </connections>
                                     </button>
-                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fCK-6P-Avt">
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State your problem" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fCK-6P-Avt">
                                         <rect key="frame" x="40" y="515" width="354" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -510,16 +510,16 @@
                         <outlet property="extraDetails" destination="16l-0r-VCR" id="aTJ-az-kMx"/>
                         <outlet property="locationButton" destination="kPm-iY-0dI" id="4rM-lR-5hg"/>
                         <outlet property="othersDescription" destination="fCK-6P-Avt" id="UPS-2w-p5g"/>
-                        <outletCollection property="issueCheckboxes" destination="N62-jO-AKi" collectionClass="NSMutableArray" id="A51-3H-1iP"/>
-                        <outletCollection property="issueCheckboxes" destination="dQo-Ja-jDT" collectionClass="NSMutableArray" id="Z9l-d1-E2b"/>
                         <outletCollection property="issueReasons" destination="rmk-fZ-kNA" collectionClass="NSMutableArray" id="oSh-9b-wvS"/>
                         <outletCollection property="issueReasons" destination="of4-Ye-P24" collectionClass="NSMutableArray" id="8Vn-Rh-0nz"/>
-                        <outletCollection property="issueReasons" destination="c4A-2B-V07" collectionClass="NSMutableArray" id="0yJ-VV-KJh"/>
                         <outletCollection property="issueReasons" destination="aeV-mb-OyG" collectionClass="NSMutableArray" id="bMk-CY-v4O"/>
-                        <outletCollection property="issueCheckboxes" destination="irf-3n-Oll" collectionClass="NSMutableArray" id="nLG-HT-Ftc"/>
-                        <outletCollection property="issueCheckboxes" destination="feD-JG-kj2" collectionClass="NSMutableArray" id="G0L-pt-mA0"/>
-                        <outletCollection property="issueCheckboxes" destination="59a-tZ-sfT" collectionClass="NSMutableArray" id="aHb-Vh-9bL"/>
                         <outletCollection property="issueReasons" destination="oFZ-e1-JWg" collectionClass="NSMutableArray" id="dkq-Gq-1ov"/>
+                        <outletCollection property="issueCheckboxes" destination="59a-tZ-sfT" collectionClass="NSMutableArray" id="hoP-IF-dgq"/>
+                        <outletCollection property="issueCheckboxes" destination="irf-3n-Oll" collectionClass="NSMutableArray" id="06S-KV-Ilp"/>
+                        <outletCollection property="issueCheckboxes" destination="feD-JG-kj2" collectionClass="NSMutableArray" id="kAX-pe-PJD"/>
+                        <outletCollection property="issueCheckboxes" destination="dQo-Ja-jDT" collectionClass="NSMutableArray" id="CLC-DP-m6u"/>
+                        <outletCollection property="issueCheckboxes" destination="N62-jO-AKi" collectionClass="NSMutableArray" id="5Me-pY-H76"/>
+                        <outletCollection property="issueReasons" destination="c4A-2B-V07" collectionClass="NSMutableArray" id="J2w-2V-MKQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ff-2b-PQd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -529,13 +529,39 @@
         <!--Service Vehicle Tracker View Controller-->
         <scene sceneID="x1T-h5-TPp">
             <objects>
-                <viewController id="6LT-5h-8Y3" customClass="ServiceVehicleTrackerViewController" customModule="Banchar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ServiceVehicleTrackerViewController" id="6LT-5h-8Y3" customClass="ServiceVehicleTrackerViewController" customModule="Banchar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HGe-N3-rpp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SZ1-zm-vFB">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mj-cr-At1">
+                                <rect key="frame" x="140" y="787" width="134" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Service Completed">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="serviceCompleted:" destination="6LT-5h-8Y3" eventType="touchUpInside" id="l8h-VO-zV1"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lhX-dd-Jxt" firstAttribute="bottom" secondItem="0mj-cr-At1" secondAttribute="bottom" constant="45" id="36T-qK-czV"/>
+                            <constraint firstItem="lhX-dd-Jxt" firstAttribute="bottom" secondItem="SZ1-zm-vFB" secondAttribute="bottom" id="8kE-yi-wGU"/>
+                            <constraint firstItem="SZ1-zm-vFB" firstAttribute="top" secondItem="lhX-dd-Jxt" secondAttribute="top" id="DeP-Ue-1PG"/>
+                            <constraint firstItem="0mj-cr-At1" firstAttribute="centerX" secondItem="HGe-N3-rpp" secondAttribute="centerX" id="Scr-AA-CmB"/>
+                            <constraint firstItem="lhX-dd-Jxt" firstAttribute="trailing" secondItem="SZ1-zm-vFB" secondAttribute="trailing" id="bYg-i1-OwQ"/>
+                            <constraint firstItem="SZ1-zm-vFB" firstAttribute="leading" secondItem="lhX-dd-Jxt" secondAttribute="leading" id="g9u-U6-EbE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lhX-dd-Jxt"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="SZ1-zm-vFB" id="I1m-VY-5GQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdB-3W-Inj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -26,8 +26,12 @@ class RequestConfirmationViewController: UIViewController {
     
     weak var historyDelegate: RequestHistoryCommunicationProtocol?
     var requestVM: RequestViewModel?
+    let locationManager = CLLocationManager()
     
     @IBAction func acceptRequest(_ sender: UIButton) {
+        //Tag is 0: Server-side has accepted service request
+        //Tag is 1: Client-side has completed service
+        //Tag is 2: Client-side has completed service, but not given rating yet
         switch sender.tag {
         case 0:
             requestVM?.serviceUserId = historyDelegate?.getUserId()
@@ -146,7 +150,7 @@ class RequestConfirmationViewController: UIViewController {
         problemDescription.text = requestModel.description
         locationMap.delegate = self
         
-        if let modelCoordinates = requestModel.location {
+        if let modelCoordinates = requestModel.clientLocation {
             let locationCoordinate = MKPointAnnotation()
             locationCoordinate.coordinate = CLLocationCoordinate2D(latitude: modelCoordinates.0, longitude: modelCoordinates.1)
             locationMap.addAnnotation(locationCoordinate)
@@ -175,6 +179,11 @@ class RequestConfirmationViewController: UIViewController {
             self.navigationController?.pushViewController(paymentVC, animated: true)
         }
     }
+    
+    func startLocationTracking() {
+        self.locationManager.delegate = self
+        self.locationManager.startUpdatingLocation()
+    }
 }
 
 extension RequestConfirmationViewController: MKMapViewDelegate {
@@ -194,5 +203,33 @@ extension RequestConfirmationViewController: MKMapViewDelegate {
         }
 
         return annotationView
+    }
+}
+
+extension RequestConfirmationViewController: CLLocationManagerDelegate {
+
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            break
+        case .authorizedAlways, .authorizedWhenInUse:
+            break
+        default:
+            break
+        }
+    }
+
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let newLocation = locations.last else {
+            return
+        }
+        updateServiceVehicleLocation(lat: newLocation.coordinate.latitude, long: newLocation.coordinate.longitude)
+    }
+    
+    func updateServiceVehicleLocation(lat: Double, long: Double) {
+        print("location coordinates: ", lat, long)
+        requestVM?.updateServerLocation(lat: lat, long: long)
     }
 }

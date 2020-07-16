@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class NewRequestViewController: UIViewController {
     
@@ -65,6 +66,8 @@ class NewRequestViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        
+        self.locationManager.delegate = self
     }
     
     func configureUI() {
@@ -82,7 +85,6 @@ class NewRequestViewController: UIViewController {
     }
     
     func startUpdatingLocation() {
-        self.locationManager.delegate = self
         self.locationManager.startUpdatingLocation()
         blinkingTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.animateLocationButton), userInfo: nil, repeats: true)
         blinkingTimer?.fire()
@@ -93,7 +95,7 @@ class NewRequestViewController: UIViewController {
         case "address":
             requestVM.address = value as? String
         case "location":
-            requestVM.location = value as? (Double, Double)
+            requestVM.clientLocation = value as? (Double, Double)
         case "problem":
             requestVM.problem = value as? String
         case "price":
@@ -157,9 +159,34 @@ extension NewRequestViewController: CLLocationManagerDelegate {
             return
         }
         blinkingTimer?.invalidate()
-        self.locationManager.stopUpdatingLocation()
+//        self.locationManager.stopUpdatingLocation()
         let coordinates: (Double, Double) = (newLocation.coordinate.latitude, newLocation.coordinate.longitude)
         updateVM(for: "location", value: coordinates)
+        reverseGeocoding(lat: newLocation.coordinate.latitude, long: newLocation.coordinate.longitude)
+    }
+    
+    func reverseGeocoding(lat: Double, long: Double) {
+        
+        let location = CLLocation(latitude: lat, longitude: long)
+        print(location)
+        
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+            
+            print(location)
+            
+            if error != nil {
+                print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
+                return
+            }
+            
+            if let locationAddress = placemarks?.first {
+                let addressStr = "\(locationAddress.subLocality ?? ""), \(locationAddress.locality ?? ""), \(locationAddress.administrativeArea ?? ""), \(locationAddress.country ?? "")"
+                self.addressTF.text = addressStr
+                self.updateVM(for: "address", value: addressStr)
+            } else {
+                print("Problem with the data received from geocoder")
+            }
+        })
     }
 }
 

@@ -7,7 +7,6 @@ target 'Banchar' do
 
   # Pods for Banchar
   pod 'Firebase/Firestore'
-  pod 'GeoSpark'
 
   # Optionally, include the Swift extensions if you're using Swift.
   pod 'FirebaseFirestoreSwift'

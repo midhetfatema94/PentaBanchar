@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import GeoSpark
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-        GeoSpark.intialize("6e9939ba0a648de0242768d10917406996e95df9483cb04abd1987bf871b2d0b")
         
         return true
     }
@@ -34,10 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        GeoSpark.setDeviceToken(deviceToken)
     }
 }
 
