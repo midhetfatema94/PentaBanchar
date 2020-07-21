@@ -40,6 +40,8 @@
 		639009CC244DEE7100AAAEC8 /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009CB244DEE7100AAAEC8 /* RequestViewModel.swift */; };
 		639009CE244E074900AAAEC8 /* RequestHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009CD244E074900AAAEC8 /* RequestHistoryTableViewCell.swift */; };
 		639009D724584CCF00AAAEC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 639009D624584CCF00AAAEC8 /* GoogleService-Info.plist */; };
+		63BD30A124C5C68100E558A6 /* BancharServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD30A024C5C68100E558A6 /* BancharServiceTests.swift */; };
+		63BD30A324C5EAA600E558A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD30A224C5EAA600E558A6 /* OrderModel.swift */; };
 		63C51C8024ABA53D00C2F6AC /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C51C7F24ABA53D00C2F6AC /* PaymentViewController.swift */; };
 		63C51C8224ABABDD00C2F6AC /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C51C8124ABABDD00C2F6AC /* RatingViewController.swift */; };
 		9F7D8B1779299047E3DCAC67 /* Pods_Banchar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C35F8B4FE2E8509258F1F98 /* Pods_Banchar.framework */; };
@@ -104,6 +106,8 @@
 		639009CB244DEE7100AAAEC8 /* RequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewModel.swift; sourceTree = "<group>"; };
 		639009CD244E074900AAAEC8 /* RequestHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		639009D624584CCF00AAAEC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		63BD30A024C5C68100E558A6 /* BancharServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BancharServiceTests.swift; sourceTree = "<group>"; };
+		63BD30A224C5EAA600E558A6 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		63C51C7F24ABA53D00C2F6AC /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		63C51C8124ABABDD00C2F6AC /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		6496DEA672C32F9E0028717D /* Pods-BancharTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BancharTests.release.xcconfig"; path = "Target Support Files/Pods-BancharTests/Pods-BancharTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				63900988242D1B0200AAAEC8 /* BancharTests.swift */,
+				63BD30A024C5C68100E558A6 /* BancharServiceTests.swift */,
 				6390098A242D1B0200AAAEC8 /* Info.plist */,
 			);
 			path = BancharTests;
@@ -252,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				639009BC2436052300AAAEC8 /* ClientUser.swift */,
+				63BD30A224C5EAA600E558A6 /* OrderModel.swift */,
 				639009C02436346C00AAAEC8 /* ServiceUser.swift */,
 				639009BE2436052E00AAAEC8 /* User.swift */,
 			);
@@ -584,6 +590,7 @@
 				63C51C8024ABA53D00C2F6AC /* PaymentViewController.swift in Sources */,
 				63900974242D1AFD00AAAEC8 /* SceneDelegate.swift in Sources */,
 				639009A82434CDAA00AAAEC8 /* NewRequestViewController.swift in Sources */,
+				63BD30A324C5EAA600E558A6 /* OrderModel.swift in Sources */,
 				639009B52434F2C900AAAEC8 /* RegisterPageTwo.swift in Sources */,
 				639009AC2434D07F00AAAEC8 /* RequestConfirmationViewController.swift in Sources */,
 			);
@@ -594,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63900989242D1B0200AAAEC8 /* BancharTests.swift in Sources */,
+				63BD30A124C5C68100E558A6 /* BancharServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

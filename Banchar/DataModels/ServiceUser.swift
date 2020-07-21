@@ -9,9 +9,11 @@
 import Foundation
 
 class Service: User {
-    var rating: Double = 0.0
+    var rating: Float?
     
     override init(userDetails: [String: Any]) {
         super.init(userDetails: userDetails)
+        
+        rating = userDetails["overallRating"] as? Float
     }
 }

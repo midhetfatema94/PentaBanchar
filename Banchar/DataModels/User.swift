@@ -15,11 +15,14 @@ enum UserType: String {
 
 class User {
     var id: String = ""
-    var username: String = ""
-    var email: String = ""
+    var username: String?
+    var email: String?
     var userType: UserType?
     
     init(userDetails: [String: Any]) {
-        
+        id = userDetails["id"] as? String ?? ""
+        username = userDetails["username"] as? String
+        email = userDetails["email"] as? String
+        userType = UserType(rawValue: (userDetails["type"] as? String ?? "").lowercased())
     }
 }

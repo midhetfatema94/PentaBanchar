@@ -186,8 +186,9 @@ class WebService {
                 completionHandler(nil)
             } else {
                 if let document = querySnapshot {
-                    let data = document.data()
-                    completionHandler(data?["serverLocation"] as? GeoPoint)
+                    if let data = document.data() {
+                        completionHandler(data["serverLocation"] as? GeoPoint)
+                    }
                 } else {
                     completionHandler(nil)
                 }

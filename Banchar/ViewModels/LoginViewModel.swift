@@ -105,6 +105,7 @@ class LoginViewModel {
         email = details["email"] as? String
         password = details["password"] as? String
         repeatPassword = details["repeat"] as? String
+        username = details["username"] as? String
         userType = UserType(rawValue: details["type"] as? String ?? "")
         if let id = self.userId {
             WebService.shared.getCarDetails(userId: id, completionHandler: {(response) in
@@ -147,7 +148,7 @@ class LoginViewModel {
     }
     
     func validatePassword() -> Bool {
-        let passwordRegEx = "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"
+        let passwordRegEx = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"
         let passwordPred = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         if passwordPred.evaluate(with: password) {
             return password == repeatPassword
