@@ -29,7 +29,7 @@ class RequestViewModel {
     var dispStatus: DisplayStatus = .processing
     var reqStatus: RequestStatus = .processing
     var locationImage: UIImage?
-    var carDetails: CarDetails?
+    var carDetails: RequestCarDetails?
     var requestType: String?
     var userType: UserType?
     var declinedIds: [String] = []
@@ -170,7 +170,7 @@ class RequestViewModel {
     func setupCarDetails() {
         WebService.shared.getCarDetails(userId: clientUserId ?? "", completionHandler: {(response) in
             if let result = response as? [String: Any] {
-                self.carDetails = CarDetails(data: result)
+                self.carDetails = RequestCarDetails(data: result)
             }
         })
     }
@@ -264,16 +264,19 @@ class RequestViewModel {
     func getCarImageUrl() -> String {
         return carDetails?.imageUrlStr ?? ""
     }
+}
+
+struct RequestCarDetails {
+    var modelName = ""
+    var plate = ""
+    var imageUrlStr = ""
     
-    struct CarDetails {
-        var modelName = ""
-        var plate = ""
-        var imageUrlStr = ""
-        
-        init(data: [String: Any]) {
-            modelName = "\(data["manufacturer"] as? String ?? "") \(data["model"] as? String ?? "")"
-            plate = data["licensePlate"] as? String ?? ""
-        }
+    init() { }
+    
+    init(data: [String: Any]) {
+        modelName = "\(data["manufacturer"] as? String ?? "") \(data["model"] as? String ?? "")"
+        plate = data["licensePlate"] as? String ?? ""
+        imageUrlStr = data["imageUrl"] as? String ?? ""
     }
 }
 
