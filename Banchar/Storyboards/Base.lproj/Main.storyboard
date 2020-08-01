@@ -302,11 +302,13 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e8R-R1-bdW">
                                                         <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="addressField"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPm-iY-0dI">
                                                         <rect key="frame" x="334" y="0.0" width="40" height="40"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="locationButton"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="40" id="jfh-aE-3VQ"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="mRa-Oo-OaH"/>
@@ -462,6 +464,7 @@
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="711-zC-WVZ">
                                         <rect key="frame" x="136.5" y="762" width="141" height="40"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="submitRequest"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Udi-Ms-RhK"/>
                                         </constraints>
@@ -472,6 +475,7 @@
                                     </button>
                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State your problem" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fCK-6P-Avt">
                                         <rect key="frame" x="40" y="515" width="354" height="34"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="problemTF"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -512,6 +516,7 @@
                         <outlet property="extraDetails" destination="16l-0r-VCR" id="aTJ-az-kMx"/>
                         <outlet property="locationButton" destination="kPm-iY-0dI" id="4rM-lR-5hg"/>
                         <outlet property="othersDescription" destination="fCK-6P-Avt" id="UPS-2w-p5g"/>
+                        <outlet property="submitButton" destination="711-zC-WVZ" id="nME-0Z-etf"/>
                         <outletCollection property="issueReasons" destination="rmk-fZ-kNA" collectionClass="NSMutableArray" id="oSh-9b-wvS"/>
                         <outletCollection property="issueReasons" destination="of4-Ye-P24" collectionClass="NSMutableArray" id="8Vn-Rh-0nz"/>
                         <outletCollection property="issueReasons" destination="aeV-mb-OyG" collectionClass="NSMutableArray" id="bMk-CY-v4O"/>

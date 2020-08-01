@@ -18,6 +18,7 @@ class NewRequestViewController: UIViewController {
     @IBOutlet weak var othersDescription: UITextField!
     @IBOutlet weak var extraDetails: UITextView!
     @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
     
     let requestVM = RequestViewModel()
     let locationManager = CLLocationManager()
@@ -27,13 +28,13 @@ class NewRequestViewController: UIViewController {
     
     @IBAction func selectReason(_ sender: UIButton) {
         sender.isSelected.toggle()
-        if sender.isSelected {
-            if sender.tag == issueCheckboxes.count - 1 {
-                othersDescription.isHidden = false
-            } else {
-                othersDescription.isHidden = true
-                updateVM(for: "problem", value: issueReasons[sender.tag].text)
+        if sender.tag == issueCheckboxes.count - 1 {
+            othersDescription.isHidden = !sender.isSelected
+            if !sender.isSelected {
+                updateVM(for: "problem", value: "Others: \(othersDescription.text ?? "")", remove: true)
             }
+        } else {
+            updateVM(for: "problem", value: issueReasons[sender.tag].text, remove: !sender.isSelected)
         }
     }
     
@@ -42,6 +43,13 @@ class NewRequestViewController: UIViewController {
     }
     
     @IBAction func requestWinch(_ sender: UIButton) {
+        if !othersDescription.isHidden && !(requestVM.problem?.contains("Others") ?? false) {
+            if requestVM.problem != nil {
+                requestVM.problem?.append("Others: \(othersDescription.text ?? "")")
+            } else {
+                requestVM.problem = "Others: \(othersDescription.text ?? "")"
+            }
+        }
         if requestVM.validateAllFields() {
             requestVM.newRequest(completion: {[weak self] response in
                 
@@ -77,11 +85,15 @@ class NewRequestViewController: UIViewController {
             let checkboxFill = UIImage(named: "checkbox-fill")
             element.setImage(checkboxEmpty, for: .normal)
             element.setImage(checkboxFill, for: .selected)
+            element.isAccessibilityElement = true
+            element.accessibilityIdentifier = "\(index)"
         }
         othersDescription.tag = 1
         othersDescription.delegate = self
         addressTF.delegate = self
         extraDetails.delegate = self
+        submitButton.accessibilityIdentifier = "submitButton"
+        addressTF.accessibilityIdentifier = "addressField"
     }
     
     func startUpdatingLocation() {
@@ -90,14 +102,22 @@ class NewRequestViewController: UIViewController {
         blinkingTimer?.fire()
     }
     
-    func updateVM(for key: String, value: Any?) {
+    func updateVM(for key: String, value: Any?, remove: Bool?) {
         switch key.lowercased() {
         case "address":
             requestVM.address = value as? String
         case "location":
             requestVM.clientLocation = value as? (Double, Double)
         case "problem":
-            requestVM.problem = value as? String
+            if requestVM.problem == nil { requestVM.problem = "" }
+            
+            if let serviceProblem = value as? String {
+                if remove ?? false {
+                    requestVM.problem = requestVM.problem?.replacingOccurrences(of: ", \(serviceProblem)", with: "")
+                } else if !(requestVM.problem?.contains(serviceProblem) ?? true) {
+                    requestVM.problem?.append(", \(serviceProblem)")
+                }
+            }
         case "price":
             requestVM.price = value as? String
         case "description":
@@ -121,12 +141,26 @@ extension NewRequestViewController: UITextFieldDelegate {
         let completeText = "\(textField.text ?? "")\(string)"
         switch textField.tag {
         case 0:
-            updateVM(for: "address", value: completeText)
-        case 1:
-            updateVM(for: "problem", value: completeText)
+            updateVM(for: "address", value: completeText, remove: nil)
         default:
             break
         }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 1:
+            updateVM(for: "problem", value: "Others: \(textField.text ?? "")", remove: false)
+        default:
+            break
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addressTF.resignFirstResponder()
+        othersDescription.resignFirstResponder()
+        extraDetails.resignFirstResponder()
         return true
     }
 }
@@ -134,7 +168,7 @@ extension NewRequestViewController: UITextFieldDelegate {
 extension NewRequestViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let completeText = "\(textView.text ?? "")\(text)"
-        updateVM(for: "description", value: completeText)
+        updateVM(for: "description", value: completeText, remove: nil)
         return true
     }
 }
@@ -161,7 +195,7 @@ extension NewRequestViewController: CLLocationManagerDelegate {
         blinkingTimer?.invalidate()
 //        self.locationManager.stopUpdatingLocation()
         let coordinates: (Double, Double) = (newLocation.coordinate.latitude, newLocation.coordinate.longitude)
-        updateVM(for: "location", value: coordinates)
+        updateVM(for: "location", value: coordinates, remove: nil)
         reverseGeocoding(lat: newLocation.coordinate.latitude, long: newLocation.coordinate.longitude)
     }
     
@@ -182,7 +216,7 @@ extension NewRequestViewController: CLLocationManagerDelegate {
             if let locationAddress = placemarks?.first {
                 let addressStr = "\(locationAddress.subLocality ?? ""), \(locationAddress.locality ?? ""), \(locationAddress.administrativeArea ?? ""), \(locationAddress.country ?? "")"
                 self.addressTF.text = addressStr
-                self.updateVM(for: "address", value: addressStr)
+                self.updateVM(for: "address", value: addressStr, remove: nil)
             } else {
                 print("Problem with the data received from geocoder")
             }

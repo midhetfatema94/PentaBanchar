@@ -51,6 +51,8 @@ class RequestHistoryViewController: UIViewController {
         } else {
             barButton.title = "Show Reviews"
         }
+        barButton.isAccessibilityElement = true
+        barButton.accessibilityIdentifier = "requestButton"
     }
     
     func updateTable() {

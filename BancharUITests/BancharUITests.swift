@@ -42,7 +42,34 @@ class BancharUITests: XCTestCase {
     }
     
     func testLocationNewRequest() {
-        app.swipeLeft()
+        
+        let emailTextField = app.textFields["emailTF"]
+        let passwordTextField = app.secureTextFields["passwordTF"]
+        
+        emailTextField.tap()
+        emailTextField.clearAndEnterText(text: "midhetfatema94@gmail.com")
+        
+        passwordTextField.tap()
+        passwordTextField.clearAndEnterText(text: "Midhet123!")
+        
+        let loginButton = app.buttons["Login"]
+        loginButton.tap()
+        
+        let editButton = app.navigationBars.buttons["requestButton"]
+        editButton.tap()
+        
+        let locationTextField = app.textFields["addressField"]
+        locationTextField.tap()
+        locationTextField.clearAndEnterText(text: "Salmiya")
+        
+        let problemButton = app.buttons["0"]
+        problemButton.tap()
+        
+        let hide = app.keyboards.buttons["done"]
+        hide.tap()
+        
+        let submitButton = app.buttons["submitButton"]
+        submitButton.tap()
     }
 }
 
