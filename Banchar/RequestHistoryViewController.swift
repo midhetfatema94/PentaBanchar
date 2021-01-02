@@ -43,6 +43,8 @@ class RequestHistoryViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        
+        requestTable.tableFooterView = UIView()
     }
     
     func configureUI() {

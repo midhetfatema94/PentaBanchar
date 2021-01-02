@@ -13,6 +13,7 @@ class RatingViewController: UIViewController {
     @IBOutlet weak var starStackView: UIStackView!
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var reviewTF: UITextView!
+    @IBOutlet weak var submitBtn: RoundedRectangleButton!
     
     var requestVM: RequestViewModel?
     

@@ -20,25 +20,29 @@ class RegisterUserViewController: UIViewController {
     @IBOutlet weak var placeholderImageView: UIImageView!
     @IBOutlet weak var detailsPage: UIPageControl!
     @IBOutlet weak var uploadButton: UIButton!
-    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var signupButton: RoundedRectangleButton!
     
     let imagePicker = UIImagePickerController()
     
     var loginVM: LoginViewModel!
     
     @IBAction func signupUser(_ sender: UIButton) {
-        loginVM.signUp(completion: {[weak self] response in
-            
-            guard self != nil else { return }
-            
-            DispatchQueue.main.async {
-                if let _ = response as? [String: Any] {
-                    self?.loginVM.userLoggedInSuccess(vc: self)
-                } else if let errorMsg = response as? String {
-                    self?.showAlert(title: "Error Signing up!", message: errorMsg, completion: nil)
+        if validateCurrentPage(page: 0), validateCurrentPage(page: 1) && validateCurrentPage(page: 2) {
+            loginVM.signUp(completion: {[weak self] response in
+                
+                guard self != nil else { return }
+                
+                DispatchQueue.main.async {
+                    if let _ = response as? [String: Any] {
+                        self?.loginVM.userLoggedInSuccess(vc: self)
+                    } else if let errorMsg = response as? String {
+                        self?.showAlert(title: "Error Signing up!", message: errorMsg, completion: nil)
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            showAlert(title: "Validation Error", message: "Please fill all fields correctly", completion: nil)
+        }
     }
     
     @IBAction func pageClicked(_ sender: UIPageControl) {
@@ -50,7 +54,7 @@ class RegisterUserViewController: UIViewController {
             uploadButton.isHidden = detailsPage.currentPage != 2
         } else {
             sender.currentPage = previousPage
-            showAlert(title: "Validation Error", message: "Please fill all fields correctly", completion: nil)
+            showAlert(title: "Validation Error", message: "Please fill all fields on Page\(previousPage + 1) correctly", completion: nil)
         }
     }
     
@@ -104,7 +108,7 @@ extension RegisterUserViewController: UIScrollViewDelegate {
         } else {
             let originPoint = CGPoint(x: viewScroll.bounds.width * CGFloat(detailsPage.currentPage), y: 0)
             viewScroll.setContentOffset(originPoint, animated: true)
-            showAlert(title: "Validation Error", message: "Please fill all fields correctly", completion: nil)
+            showAlert(title: "Validation Error", message: "Please fill all fields on Page\(detailsPage.currentPage + 1) correctly", completion: nil)
        }
     }
     

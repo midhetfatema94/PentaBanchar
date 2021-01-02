@@ -12,6 +12,7 @@ import MapKit
 class ServiceVehicleTrackerViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var serviceCompletedBtn: RoundedRectangleButton!
     
     weak var historyDelegate: RequestHistoryCommunicationProtocol?
     var requestVM: RequestViewModel?

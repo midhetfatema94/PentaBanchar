@@ -18,7 +18,7 @@ class NewRequestViewController: UIViewController {
     @IBOutlet weak var othersDescription: UITextField!
     @IBOutlet weak var extraDetails: UITextView!
     @IBOutlet weak var locationButton: UIButton!
-    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var submitButton: RoundedRectangleButton!
     
     let requestVM = RequestViewModel()
     let locationManager = CLLocationManager()

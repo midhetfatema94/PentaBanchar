@@ -19,8 +19,8 @@ class RequestConfirmationViewController: UIViewController {
     @IBOutlet weak var clientProblem: UILabel!
     @IBOutlet weak var problemDescription: UITextView!
     @IBOutlet weak var carImage: UIImageView!
-    @IBOutlet weak var acceptBtn: UIButton!
-    @IBOutlet weak var declineBtn: UIButton!
+    @IBOutlet weak var acceptBtn: RoundedRectangleButton!
+    @IBOutlet weak var declineBtn: RoundedRectangleButton!
     @IBOutlet weak var buttonStack: UIStackView!
     @IBOutlet weak var locationMap: MKMapView!
     

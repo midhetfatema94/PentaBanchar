@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var bancharImage: UIImageView!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton: RoundedRectangleButton!
     
     let loginVM = LoginViewModel()
     
@@ -48,6 +48,30 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+}
+
+class RoundedRectangleButton: UIButton {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setStyle()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setStyle()
+    }
+    
+    func setStyle() {
+        self.layer.cornerRadius = 5.0
+        self.clipsToBounds = true
+        if let title = self.currentTitle, !title.isEmpty {
+            self.setTitle("    \(title)    ", for: .normal)
+        }
+    }
+    
+    override func setTitle(_ title: String?, for state: UIControl.State) {
+        super.setTitle("    \(title ?? "")    ", for: state)
     }
 }
 

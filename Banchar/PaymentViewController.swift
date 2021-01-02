@@ -10,6 +10,7 @@ import UIKit
 
 class PaymentViewController: UIViewController {
 
+    @IBOutlet weak var paymentCompletedBtn: RoundedRectangleButton!
     @IBAction func paymentCompleted(_ sender: UIButton) {
         if let ratingVC = self.storyboard?.instantiateViewController(identifier: "RatingViewController") as? RatingViewController {
             self.navigationController?.pushViewController(ratingVC, animated: true)
