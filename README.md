@@ -14,11 +14,11 @@ The application can be used by the client requesting a service as well as the se
 
 ### Screenshots
 
-![Login & Registration Screenshots]()
+![Login & Registration Screenshots](https://github.com/midhetfatema94/PentaBanchar/blob/master/banchar_ss1.png)
 
-![Request Flow Screenshots]()
+![Request Flow Screenshots](https://github.com/midhetfatema94/PentaBanchar/blob/master/banchar_ss2.png)
 
-![Service Status & Rating Screenshots]()
+![Service Status & Rating Screenshots](https://github.com/midhetfatema94/PentaBanchar/blob/master/banchar_ss3.png)
 
 
 #### TODO
