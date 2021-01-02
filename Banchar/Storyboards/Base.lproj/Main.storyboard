@@ -760,19 +760,16 @@
                                     <outlet property="delegate" destination="ltn-KW-M9C" id="RBS-7h-HiC"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1fH-la-SLz">
-                                <rect key="frame" x="182" y="747.5" width="50" height="27.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="4X4-YD-nQL"/>
-                                </constraints>
-                                <color key="pageIndicatorTintColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1fH-la-SLz">
+                                <rect key="frame" x="146" y="747.5" width="122.5" height="27.5"/>
+                                <color key="pageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="systemYellowColor"/>
                                 <connections>
                                     <action selector="pageClicked:" destination="ltn-KW-M9C" eventType="valueChanged" id="edU-gv-8CY"/>
                                 </connections>
                             </pageControl>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yvr-Me-C6B">
-                                <rect key="frame" x="252" y="224" width="50" height="50"/>
+                                <rect key="frame" x="182" y="204" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="96L-e1-Twp"/>
                                     <constraint firstAttribute="height" constant="50" id="SzX-1H-M8M"/>
@@ -794,6 +791,16 @@
                                     <action selector="signupUser:" destination="ltn-KW-M9C" eventType="touchUpInside" id="Ptw-dE-zfx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSB-Ai-md2" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
+                                <rect key="frame" x="147" y="254" width="120" height="32"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                <state key="normal" title="Upload Photo">
+                                    <color key="titleColor" red="0.39999875429999998" green="0.39999201890000002" blue="0.40000039339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadImage:" destination="ltn-KW-M9C" eventType="touchUpInside" id="P8K-hW-JTu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="J6O-MY-yhu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -801,14 +808,17 @@
                             <constraint firstItem="RE0-ln-eb4" firstAttribute="top" secondItem="1fH-la-SLz" secondAttribute="bottom" constant="20" id="0JA-Fe-tBc"/>
                             <constraint firstItem="J6O-MY-yhu" firstAttribute="trailing" secondItem="eDQ-nB-5Vc" secondAttribute="trailing" constant="12" id="2XJ-5k-UJD"/>
                             <constraint firstItem="RE0-ln-eb4" firstAttribute="centerX" secondItem="sLh-f8-VBW" secondAttribute="centerX" id="6PP-fm-HIe"/>
+                            <constraint firstItem="xSB-Ai-md2" firstAttribute="top" secondItem="TbV-fc-FLa" secondAttribute="bottom" id="BJJ-Lw-tSp"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="centerX" secondItem="1fH-la-SLz" secondAttribute="centerX" id="CR4-mn-Bne"/>
                             <constraint firstItem="J6O-MY-yhu" firstAttribute="bottom" secondItem="RE0-ln-eb4" secondAttribute="bottom" constant="30" id="D7h-H1-3rJ"/>
-                            <constraint firstItem="Yvr-Me-C6B" firstAttribute="bottom" secondItem="TbV-fc-FLa" secondAttribute="bottom" constant="20" id="EMG-AW-Aof"/>
+                            <constraint firstItem="Yvr-Me-C6B" firstAttribute="bottom" secondItem="TbV-fc-FLa" secondAttribute="bottom" id="EMG-AW-Aof"/>
                             <constraint firstItem="1fH-la-SLz" firstAttribute="top" secondItem="eDQ-nB-5Vc" secondAttribute="bottom" constant="30" id="Joy-ZM-bZS"/>
+                            <constraint firstItem="xSB-Ai-md2" firstAttribute="centerX" secondItem="TbV-fc-FLa" secondAttribute="centerX" id="Mub-SP-OpX"/>
                             <constraint firstItem="eDQ-nB-5Vc" firstAttribute="top" secondItem="TbV-fc-FLa" secondAttribute="bottom" constant="40" id="NoF-4D-pv4"/>
+                            <constraint firstItem="eDQ-nB-5Vc" firstAttribute="top" secondItem="xSB-Ai-md2" secondAttribute="bottom" constant="8" symbolic="YES" id="eqc-MW-BHU"/>
                             <constraint firstItem="eDQ-nB-5Vc" firstAttribute="leading" secondItem="J6O-MY-yhu" secondAttribute="leading" constant="12" id="hdI-72-SKn"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="top" secondItem="J6O-MY-yhu" secondAttribute="top" constant="60" id="itz-ln-X5E"/>
-                            <constraint firstItem="Yvr-Me-C6B" firstAttribute="trailing" secondItem="TbV-fc-FLa" secondAttribute="trailing" constant="20" id="lFt-BR-KiI"/>
+                            <constraint firstItem="Yvr-Me-C6B" firstAttribute="centerX" secondItem="TbV-fc-FLa" secondAttribute="centerX" id="sUJ-qO-C5B"/>
                             <constraint firstItem="TbV-fc-FLa" firstAttribute="centerX" secondItem="sLh-f8-VBW" secondAttribute="centerX" id="tYN-p7-c1w"/>
                         </constraints>
                     </view>
@@ -1330,9 +1340,9 @@
         <image name="checkbox-empty" width="512" height="512"/>
         <image name="credit-card" width="512" height="512"/>
         <image name="location" width="256" height="256"/>
-        <image name="logo" width="258" height="195"/>
+        <image name="logo" width="588" height="588"/>
         <image name="photo-camera" width="512" height="512"/>
-        <image name="placeholder" width="224" height="224"/>
+        <image name="placeholder" width="246" height="244"/>
         <image name="star" width="512" height="512"/>
         <image name="wallet" width="512" height="512"/>
         <systemColor name="labelColor">

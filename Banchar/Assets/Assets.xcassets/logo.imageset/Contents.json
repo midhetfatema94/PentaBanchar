@@ -1,8 +1,8 @@
 {
   "images" : [
     {
+      "filename" : "bancharLogo.png",
       "idiom" : "universal",
-      "filename" : "images.jpeg",
       "scale" : "1x"
     },
     {
@@ -15,7 +15,7 @@
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
