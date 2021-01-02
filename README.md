@@ -12,7 +12,14 @@ The application can be used by the client requesting a service as well as the se
 * Request New Service Page
 * Rate and Review Service 
 
+### Screenshots
+
+![Login & Registration Screenshots]()
+
+![Request Flow Screenshots]()
+
+![Service Status & Rating Screenshots]()
+
+
 #### TODO
-* Fix & Customize the UI
-* Screenshots for ReadMe
 * Add Forgot Password Feature

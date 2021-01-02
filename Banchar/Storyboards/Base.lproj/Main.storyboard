@@ -1124,14 +1124,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjM-sw-d63">
                                 <rect key="frame" x="40" y="266.5" width="334" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate your service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxD-ak-S2I">
-                                        <rect key="frame" x="8" y="20" width="318" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="SFY-Qq-VdI">
-                                        <rect key="frame" x="32" y="68.5" width="270" height="30"/>
+                                        <rect key="frame" x="32" y="20" width="270" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axf-w3-g8j">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -1175,24 +1169,20 @@
                                         </subviews>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write a review..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y3o-xA-na6">
-                                        <rect key="frame" x="32" y="106.5" width="270" height="185.5"/>
+                                        <rect key="frame" x="32" y="58" width="270" height="222"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemFillColor"/>
                                 <constraints>
-                                    <constraint firstItem="SFY-Qq-VdI" firstAttribute="top" secondItem="yxD-ak-S2I" secondAttribute="bottom" constant="25" id="0Ek-vH-jfw"/>
-                                    <constraint firstAttribute="bottom" secondItem="y3o-xA-na6" secondAttribute="bottom" constant="8" id="0Rz-e5-HX8"/>
+                                    <constraint firstAttribute="bottom" secondItem="y3o-xA-na6" secondAttribute="bottom" constant="20" id="0Rz-e5-HX8"/>
                                     <constraint firstAttribute="height" constant="300" id="2Q4-EE-wb9"/>
                                     <constraint firstItem="y3o-xA-na6" firstAttribute="trailing" secondItem="SFY-Qq-VdI" secondAttribute="trailing" id="68s-sj-jDJ"/>
                                     <constraint firstItem="SFY-Qq-VdI" firstAttribute="centerX" secondItem="mjM-sw-d63" secondAttribute="centerX" id="DQR-az-jRA"/>
-                                    <constraint firstItem="yxD-ak-S2I" firstAttribute="leading" secondItem="mjM-sw-d63" secondAttribute="leading" constant="8" id="aSk-db-Hty"/>
-                                    <constraint firstAttribute="trailing" secondItem="yxD-ak-S2I" secondAttribute="trailing" constant="8" id="ctc-Ro-PT8"/>
+                                    <constraint firstItem="SFY-Qq-VdI" firstAttribute="top" secondItem="mjM-sw-d63" secondAttribute="top" constant="20" id="MMe-0q-tFF"/>
                                     <constraint firstItem="y3o-xA-na6" firstAttribute="top" secondItem="SFY-Qq-VdI" secondAttribute="bottom" constant="8" id="gA7-vQ-Ocx"/>
-                                    <constraint firstItem="yxD-ak-S2I" firstAttribute="top" secondItem="mjM-sw-d63" secondAttribute="top" constant="20" id="ggH-U5-UCD"/>
                                     <constraint firstItem="y3o-xA-na6" firstAttribute="leading" secondItem="SFY-Qq-VdI" secondAttribute="leading" id="rHf-ng-MXN"/>
                                 </constraints>
                             </view>
@@ -1350,9 +1340,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemFillColor">
-            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
