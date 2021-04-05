@@ -1,6 +1,6 @@
 # PentaBanchar
 
-An application for an on-demand towing service for cars on the road. ``Banchar`` is how you pronounce Puncture in Arabic 😅. So now when your car breaks down in the middle of the road, you know who to call 😅
+An application for an on-demand towing service for cars on the road. Now when your car breaks down in the middle of the road, you know who to call 😅
 
 The application can be used by the client requesting a service as well as the service provider available on call.
 
@@ -13,13 +13,10 @@ The application can be used by the client requesting a service as well as the se
 * Rate and Review Service 
 
 ### Screenshots
-
-![Login & Registration Screenshots](https://github.com/midhetfatema94/PentaBanchar/blob/master/banchar_ss1.png)
-
-![Request Flow Screenshots](https://github.com/midhetfatema94/PentaBanchar/blob/master/banchar_ss2.png)
-
-![Service Status & Rating Screenshots](https://github.com/midhetfatema94/PentaBanchar/blob/master/banchar_ss3.png)
+![Feature screenshots](https://user-images.githubusercontent.com/11782011/113620526-16009e00-9663-11eb-840f-9aef9df7c937.png)
 
 
 #### TODO
 * Add Forgot Password Feature
+* Add upload car photo feature
+* Modify ticket UI
