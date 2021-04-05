@@ -48,8 +48,8 @@ class RegisterPageOne: UIView {
         usernameTF.delegate = self
         usernameTF.tag = 1
         
-        let radioEmptyImage = UIImage(named: "radio-empty")
-        let radioFillImage = UIImage(named: "radio-fill")
+        let radioEmptyImage = UIImage(systemName: "circle")
+        let radioFillImage = UIImage(systemName: "largecircle.fill.circle")
         
         radioButtons.enumerated().forEach {(index, button) in
             button.setImage(radioEmptyImage, for: .normal)

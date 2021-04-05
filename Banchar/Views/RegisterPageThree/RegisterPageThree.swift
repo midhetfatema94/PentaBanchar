@@ -36,8 +36,8 @@ class RegisterPageThree: UIView {
     
     func configureUI() {
         
-        let checkboxEmpty = UIImage(named: "checkbox-empty")
-        let checkboxFill = UIImage(named: "checkbox-fill")
+        let checkboxEmpty = UIImage(systemName: "square")
+        let checkboxFill = UIImage(systemName: "checkmark.square.fill")
         
         checkboxButton.setImage(checkboxEmpty, for: .normal)
         checkboxButton.setImage(checkboxFill, for: .selected)

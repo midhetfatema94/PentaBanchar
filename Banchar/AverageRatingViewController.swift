@@ -19,13 +19,16 @@ class AverageRatingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let starEmptyImage = UIImage(named: "star")
-        let starFilledImage = UIImage(named: "star_fill")
-        let starHalfFillImage = UIImage(named: "star_half")
+        let starEmptyImage = UIImage(systemName: "star")
+        let starFilledImage = UIImage(systemName: "star.fill")
+        let starHalfFillImage = UIImage(systemName: "star.leadinghalf.fill")
         
         for starImage in starImageViews {
-            if Float(starImage.tag) <= (rateScore ?? 0) {
+            let floatStar = Float(starImage.tag)
+            if floatStar <= (rateScore ?? 0) {
                 starImage.image = starFilledImage
+            } else if floatStar - 1 < (rateScore ?? 0) {
+                starImage.image = starHalfFillImage
             } else {
                 starImage.image = starEmptyImage
             }

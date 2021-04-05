@@ -10,6 +10,7 @@ import UIKit
 
 class RatingViewController: UIViewController {
 
+    @IBOutlet weak var dialogueview: UIView!
     @IBOutlet weak var starStackView: UIStackView!
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var reviewTF: UITextView!
@@ -55,13 +56,21 @@ class RatingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let starEmptyImage = UIImage(named: "star")
-        let starFilledImage = UIImage(named: "star_fill")
+        let starEmptyImage = UIImage(systemName: "star")
+        let starFilledImage = UIImage(systemName: "star.fill")
         
         for (i, starBtn) in starButtons.enumerated() {
             starBtn.tag = i + 1
             starBtn.setImage(starEmptyImage, for: .normal)
             starBtn.setImage(starFilledImage, for: .selected)
         }
+        
+        reviewTF.layer.cornerRadius = 5.0
+        reviewTF.layer.borderColor = UIColor.black.cgColor
+        reviewTF.layer.borderWidth = 1.0
+        reviewTF.clipsToBounds = true
+        
+        dialogueview.layer.cornerRadius = 5.0
+        dialogueview.clipsToBounds = true
     }
 }

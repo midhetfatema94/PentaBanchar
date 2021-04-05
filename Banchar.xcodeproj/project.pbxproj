@@ -39,6 +39,11 @@
 		639009CC244DEE7100AAAEC8 /* RequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009CB244DEE7100AAAEC8 /* RequestViewModel.swift */; };
 		639009CE244E074900AAAEC8 /* RequestHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639009CD244E074900AAAEC8 /* RequestHistoryTableViewCell.swift */; };
 		639009D724584CCF00AAAEC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 639009D624584CCF00AAAEC8 /* GoogleService-Info.plist */; };
+		63B337AC261B6D1000FBAD51 /* SF-UI-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63B337A7261B6D1000FBAD51 /* SF-UI-Display-Bold.otf */; };
+		63B337AD261B6D1000FBAD51 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63B337A8261B6D1000FBAD51 /* SF-UI-Display-Regular.otf */; };
+		63B337AE261B6D1000FBAD51 /* SF-UI-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63B337A9261B6D1000FBAD51 /* SF-UI-Display-Light.otf */; };
+		63B337AF261B6D1000FBAD51 /* SF-UI-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63B337AA261B6D1000FBAD51 /* SF-UI-Display-Ultralight.otf */; };
+		63B337B0261B6D1000FBAD51 /* SF-UI-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63B337AB261B6D1000FBAD51 /* SF-UI-Display-Black.otf */; };
 		63BD30A124C5C68100E558A6 /* BancharServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD30A024C5C68100E558A6 /* BancharServiceTests.swift */; };
 		63BD30A324C5EAA600E558A6 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD30A224C5EAA600E558A6 /* OrderModel.swift */; };
 		63BD30A524C86BE900E558A6 /* BancharRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD30A424C86BE900E558A6 /* BancharRequestTests.swift */; };
@@ -105,6 +110,11 @@
 		639009CB244DEE7100AAAEC8 /* RequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewModel.swift; sourceTree = "<group>"; };
 		639009CD244E074900AAAEC8 /* RequestHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		639009D624584CCF00AAAEC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		63B337A7261B6D1000FBAD51 /* SF-UI-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.otf"; sourceTree = "<group>"; };
+		63B337A8261B6D1000FBAD51 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
+		63B337A9261B6D1000FBAD51 /* SF-UI-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Light.otf"; sourceTree = "<group>"; };
+		63B337AA261B6D1000FBAD51 /* SF-UI-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Ultralight.otf"; sourceTree = "<group>"; };
+		63B337AB261B6D1000FBAD51 /* SF-UI-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Black.otf"; sourceTree = "<group>"; };
 		63BD30A024C5C68100E558A6 /* BancharServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BancharServiceTests.swift; sourceTree = "<group>"; };
 		63BD30A224C5EAA600E558A6 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		63BD30A424C86BE900E558A6 /* BancharRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BancharRequestTests.swift; sourceTree = "<group>"; };
@@ -182,6 +192,7 @@
 		63900970242D1AFD00AAAEC8 /* Banchar */ = {
 			isa = PBXGroup;
 			children = (
+				63B337B4261B6D1B00FBAD51 /* Fonts */,
 				639009D324583E4F00AAAEC8 /* Views */,
 				639009D224583E3500AAAEC8 /* Storyboards */,
 				639009D124583E1E00AAAEC8 /* Assets */,
@@ -311,6 +322,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		63B337B4261B6D1B00FBAD51 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				63B337AB261B6D1000FBAD51 /* SF-UI-Display-Black.otf */,
+				63B337A7261B6D1000FBAD51 /* SF-UI-Display-Bold.otf */,
+				63B337A9261B6D1000FBAD51 /* SF-UI-Display-Light.otf */,
+				63B337A8261B6D1000FBAD51 /* SF-UI-Display-Regular.otf */,
+				63B337AA261B6D1000FBAD51 /* SF-UI-Display-Ultralight.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		BBC49DF0F1697313A97A11CE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,13 +456,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B337AE261B6D1000FBAD51 /* SF-UI-Display-Light.otf in Resources */,
 				639009B02434EFB500AAAEC8 /* RegisterPageOne.xib in Resources */,
 				6390097E242D1B0200AAAEC8 /* LaunchScreen.storyboard in Resources */,
+				63B337B0261B6D1000FBAD51 /* SF-UI-Display-Black.otf in Resources */,
+				63B337AD261B6D1000FBAD51 /* SF-UI-Display-Regular.otf in Resources */,
+				63B337AC261B6D1000FBAD51 /* SF-UI-Display-Bold.otf in Resources */,
 				639009B82434F37F00AAAEC8 /* RegisterPageThree.xib in Resources */,
 				6390097B242D1B0200AAAEC8 /* Assets.xcassets in Resources */,
 				639009B32434F2B700AAAEC8 /* RegisterPageTwo.xib in Resources */,
 				63900979242D1AFD00AAAEC8 /* Main.storyboard in Resources */,
 				639009D724584CCF00AAAEC8 /* GoogleService-Info.plist in Resources */,
+				63B337AF261B6D1000FBAD51 /* SF-UI-Display-Ultralight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

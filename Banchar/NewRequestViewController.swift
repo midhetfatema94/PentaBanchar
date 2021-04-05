@@ -81,8 +81,8 @@ class NewRequestViewController: UIViewController {
     func configureUI() {
         issueCheckboxes.enumerated().forEach{(index, element) in
             element.tag = index
-            let checkboxEmpty = UIImage(named: "checkbox-empty")
-            let checkboxFill = UIImage(named: "checkbox-fill")
+            let checkboxEmpty = UIImage(systemName: "square")
+            let checkboxFill = UIImage(systemName: "checkmark.square")
             element.setImage(checkboxEmpty, for: .normal)
             element.setImage(checkboxFill, for: .selected)
             element.isAccessibilityElement = true

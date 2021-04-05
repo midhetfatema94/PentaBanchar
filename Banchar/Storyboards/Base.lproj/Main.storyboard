@@ -8,6 +8,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Display-Bold.otf">
+            <string>SFUIDisplay-Bold</string>
+        </array>
+        <array key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="XVJ-gb-Aa5">
@@ -18,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Amc-Vg-bHb"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fgG-th-ti8"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RR4-i6-EL1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -41,21 +49,21 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="b3m-Xj-i24">
-                                <rect key="frame" x="40" y="357" width="334" height="306"/>
+                                <rect key="frame" x="40" y="355" width="334" height="306"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cvc-ez-pHT">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="78"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etC-7p-VIn">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="example@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAo-du-t73">
                                                 <rect key="frame" x="0.0" y="44" width="334" height="34"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="emailTF"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -65,14 +73,14 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWJ-cI-84m">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="******" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltb-jg-fn3">
                                                 <rect key="frame" x="0.0" y="44" width="334" height="34"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="passwordTF"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
@@ -83,7 +91,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Jzv-lF-ZE5"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="20"/>
                                         <state key="normal" title="Login">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -94,17 +102,17 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qKl-Jq-roY">
-                                <rect key="frame" x="40" y="683" width="220" height="36"/>
+                                <rect key="frame" x="40" y="681" width="205" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New to Banchar?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kX6-Hw-lPt">
-                                        <rect key="frame" x="0.0" y="0.0" width="143" height="36"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="133" height="34"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKt-fy-Iuj">
-                                        <rect key="frame" x="148" y="0.0" width="72" height="36"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                        <rect key="frame" x="138" y="0.0" width="67" height="34"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                         <state key="normal" title="Sign Up!">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" systemColor="systemYellowColor"/>
@@ -116,8 +124,8 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bme-ex-2Fh">
-                                <rect key="frame" x="40" y="719" width="104" height="29"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                <rect key="frame" x="40" y="715" width="101" height="28"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleColor" systemColor="systemGrayColor"/>
                                     <color key="titleShadowColor" red="0.9941048026" green="0.80614191290000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -127,8 +135,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to BANCHAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcY-TW-015">
-                                <rect key="frame" x="86" y="306" width="242.5" height="26"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
+                                <rect key="frame" x="101.5" y="306" width="211" height="24"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -170,14 +178,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Previous Requests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPl-4N-llu">
-                                <rect key="frame" x="50" y="148" width="314" height="32.5"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="220" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KMn-L0-5vU">
-                                <rect key="frame" x="20" y="225.5" width="374" height="636.5"/>
+                                <rect key="frame" x="20" y="88" width="374" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
@@ -199,23 +201,23 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ozk-8h-2FZ">
-                                                            <rect key="frame" x="8" y="78" width="228" height="86.5"/>
+                                                            <rect key="frame" x="8" y="78" width="228" height="80.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mho-jY-4w1">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="68.5" height="23.5"/>
-                                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="67" height="21.5"/>
+                                                                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x86-Xo-Exe">
-                                                                    <rect key="frame" x="0.0" y="31.5" width="40" height="23.5"/>
-                                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                    <rect key="frame" x="0.0" y="29.5" width="39" height="21.5"/>
+                                                                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-Jx-Xoe">
-                                                                    <rect key="frame" x="0.0" y="63" width="49" height="23.5"/>
-                                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                    <rect key="frame" x="0.0" y="59" width="50" height="21.5"/>
+                                                                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -267,11 +269,9 @@
                         <viewLayoutGuide key="safeArea" id="rh1-Bx-OiL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZPl-4N-llu" firstAttribute="top" secondItem="rh1-Bx-OiL" secondAttribute="top" constant="60" id="1r7-kJ-pWc"/>
-                            <constraint firstItem="KMn-L0-5vU" firstAttribute="top" secondItem="ZPl-4N-llu" secondAttribute="bottom" constant="45" id="QKM-DG-fTA"/>
                             <constraint firstItem="rh1-Bx-OiL" firstAttribute="trailing" secondItem="KMn-L0-5vU" secondAttribute="trailing" constant="20" id="U2n-JK-0H7"/>
-                            <constraint firstItem="ZPl-4N-llu" firstAttribute="centerX" secondItem="vqI-v7-z4w" secondAttribute="centerX" id="Wnh-5B-GN0"/>
                             <constraint firstItem="KMn-L0-5vU" firstAttribute="bottom" secondItem="rh1-Bx-OiL" secondAttribute="bottom" id="ak9-EO-BrC"/>
+                            <constraint firstItem="KMn-L0-5vU" firstAttribute="top" secondItem="rh1-Bx-OiL" secondAttribute="top" id="dbe-EA-HOa"/>
                             <constraint firstItem="KMn-L0-5vU" firstAttribute="leading" secondItem="rh1-Bx-OiL" secondAttribute="leading" constant="20" id="zT0-QO-Cgf"/>
                         </constraints>
                     </view>
@@ -305,27 +305,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Request" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnB-FU-Rad">
-                                        <rect key="frame" x="117" y="58" width="180" height="32.5"/>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="25"/>
+                                        <rect key="frame" x="130" y="58" width="154.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ndl-09-JVe">
-                                        <rect key="frame" x="20" y="135.5" width="374" height="79.5"/>
+                                        <rect key="frame" x="20" y="133" width="374" height="77.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BE9-uh-rPQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="23.5"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZc-Vk-l3f">
-                                                <rect key="frame" x="0.0" y="39.5" width="374" height="40"/>
+                                                <rect key="frame" x="0.0" y="37.5" width="374" height="40"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="London Swift" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e8R-R1-bdW">
                                                         <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="addressField"/>
-                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPm-iY-0dI">
@@ -336,8 +336,8 @@
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="mRa-Oo-OaH"/>
                                                             <constraint firstAttribute="height" constant="40" id="z5O-pa-eOv"/>
                                                         </constraints>
-                                                        <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                        <state key="normal" image="location"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="location.fill" catalog="system"/>
                                                         <connections>
                                                             <action selector="refreshLocation:" destination="DpH-4P-JgM" eventType="touchUpInside" id="ObS-UR-yoM"/>
                                                         </connections>
@@ -347,19 +347,19 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issues:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ry9-G3-0Kj">
-                                        <rect key="frame" x="20" y="255" width="55.5" height="25"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                        <rect key="frame" x="20" y="250.5" width="57" height="23"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbQ-0G-36n">
-                                        <rect key="frame" x="20" y="592" width="102.5" height="25"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                        <rect key="frame" x="20" y="585.5" width="98.5" height="23"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="afg-we-KDl">
-                                        <rect key="frame" x="40" y="300" width="354" height="210"/>
+                                        <rect key="frame" x="40" y="293.5" width="354" height="210"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mDI-sF-fu8">
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
@@ -370,15 +370,15 @@
                                                             <constraint firstAttribute="width" constant="30" id="kZg-9n-uhi"/>
                                                             <constraint firstAttribute="height" constant="30" id="kp9-pB-u37"/>
                                                         </constraints>
-                                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                                        <state key="normal" image="checkbox-empty"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="square" catalog="system"/>
                                                         <connections>
                                                             <action selector="selectReason:" destination="DpH-4P-JgM" eventType="touchUpInside" id="2gF-5w-VhB"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Battery not working" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmk-fZ-kNA">
                                                         <rect key="frame" x="46" y="0.0" width="308" height="30"/>
-                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="19"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -393,15 +393,15 @@
                                                             <constraint firstAttribute="width" constant="30" id="Dbl-d3-7ZF"/>
                                                             <constraint firstAttribute="height" constant="30" id="mi7-Fr-KZO"/>
                                                         </constraints>
-                                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                                        <state key="normal" image="checkbox-empty"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="square" catalog="system"/>
                                                         <connections>
                                                             <action selector="selectReason:" destination="DpH-4P-JgM" eventType="touchUpInside" id="4wY-dT-mtq"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car broke down" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFZ-e1-JWg">
                                                         <rect key="frame" x="46" y="0.0" width="308" height="30"/>
-                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="19"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -416,15 +416,15 @@
                                                             <constraint firstAttribute="height" constant="30" id="04y-zJ-AsI"/>
                                                             <constraint firstAttribute="width" constant="30" id="CJq-5R-EWp"/>
                                                         </constraints>
-                                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                                        <state key="normal" image="checkbox-empty"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="square" catalog="system"/>
                                                         <connections>
                                                             <action selector="selectReason:" destination="DpH-4P-JgM" eventType="touchUpInside" id="UT8-Ka-XaR"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fuel is over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of4-Ye-P24">
                                                         <rect key="frame" x="46" y="0.0" width="308" height="30"/>
-                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="19"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -439,15 +439,15 @@
                                                             <constraint firstAttribute="width" constant="30" id="Ct8-6A-OAs"/>
                                                             <constraint firstAttribute="height" constant="30" id="bHv-2v-00b"/>
                                                         </constraints>
-                                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                                        <state key="normal" image="checkbox-empty"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="square" catalog="system"/>
                                                         <connections>
                                                             <action selector="selectReason:" destination="DpH-4P-JgM" eventType="touchUpInside" id="xhJ-4n-uRe"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-mb-OyG">
                                                         <rect key="frame" x="46" y="0.0" width="308" height="30"/>
-                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="19"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -462,15 +462,15 @@
                                                             <constraint firstAttribute="width" constant="30" id="0h6-pC-9He"/>
                                                             <constraint firstAttribute="height" constant="30" id="ucd-DF-Y9g"/>
                                                         </constraints>
-                                                        <inset key="imageEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
-                                                        <state key="normal" image="checkbox-empty"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="square" catalog="system"/>
                                                         <connections>
                                                             <action selector="selectReason:" destination="DpH-4P-JgM" eventType="touchUpInside" id="fBX-Ot-rDm"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Others" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4A-2B-V07">
                                                         <rect key="frame" x="46" y="0.0" width="308" height="30"/>
-                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -479,24 +479,24 @@
                                         </subviews>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="16l-0r-VCR">
-                                        <rect key="frame" x="40" y="627" width="354" height="120"/>
+                                        <rect key="frame" x="40" y="618.5" width="354" height="120"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="UzS-6p-CkZ"/>
                                         </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="711-zC-WVZ" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
-                                        <rect key="frame" x="109" y="767" width="196" height="40"/>
+                                        <rect key="frame" x="120" y="758.5" width="174" height="40"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <accessibility key="accessibilityConfiguration" identifier="submitRequest"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Udi-Ms-RhK"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="18"/>
                                         <state key="normal" title="Request Bancharchy">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -505,9 +505,9 @@
                                         </connections>
                                     </button>
                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State your problem" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fCK-6P-Avt">
-                                        <rect key="frame" x="40" y="518" width="354" height="34"/>
+                                        <rect key="frame" x="40" y="511.5" width="354" height="34"/>
                                         <accessibility key="accessibilityConfiguration" identifier="problemTF"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
@@ -576,9 +576,9 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </mapView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mj-cr-At1" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
-                                <rect key="frame" x="117" y="781" width="180" height="36"/>
+                                <rect key="frame" x="131.5" y="784" width="151" height="33"/>
                                 <color key="backgroundColor" red="0.9941048026" green="0.80614191290000003" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="17"/>
                                 <state key="normal" title="Service Completed">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -598,6 +598,7 @@
                             <constraint firstItem="SZ1-zm-vFB" firstAttribute="leading" secondItem="lhX-dd-Jxt" secondAttribute="leading" id="g9u-U6-EbE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="pSS-wq-9Eg"/>
                     <connections>
                         <outlet property="mapView" destination="SZ1-zm-vFB" id="I1m-VY-5GQ"/>
                         <outlet property="serviceCompletedBtn" destination="0mj-cr-At1" id="Win-JQ-Du3"/>
@@ -623,16 +624,16 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="adu-uW-yxa">
-                                <rect key="frame" x="40" y="314" width="334" height="236"/>
+                                <rect key="frame" x="40" y="314" width="334" height="234"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wq-dR-lyt">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="26"/>
-                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="24"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="k7p-Xo-YMp">
-                                        <rect key="frame" x="0.0" y="38" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="36" width="334" height="30"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sFX-Nz-uVH">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -643,14 +644,14 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Civil Id Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imu-KF-Yoh">
                                                 <rect key="frame" x="50" y="0.0" width="284" height="30"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rRs-S9-iWk">
-                                        <rect key="frame" x="0.0" y="80" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="78" width="334" height="30"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wkW-A5-0rl">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -661,14 +662,14 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="License Plate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8u-G9-LaS">
                                                 <rect key="frame" x="50" y="0.0" width="284" height="30"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0TS-41-835">
-                                        <rect key="frame" x="0.0" y="122" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="120" width="334" height="30"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QIU-QN-jlL">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -679,14 +680,14 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNi-aJ-7cA">
                                                 <rect key="frame" x="50" y="0.0" width="284" height="30"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Glv-wQ-MK2">
-                                        <rect key="frame" x="0.0" y="164" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="162" width="334" height="30"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HUe-Ml-p0F">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -697,14 +698,14 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNs-Ye-6vj">
                                                 <rect key="frame" x="50" y="0.0" width="284" height="30"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2da-ue-NgY">
-                                        <rect key="frame" x="0.0" y="206" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="204" width="334" height="30"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JJY-xd-PH3">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -715,7 +716,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opd-1i-Vfc">
                                                 <rect key="frame" x="50" y="0.0" width="284" height="30"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -755,13 +756,13 @@
                                 </constraints>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDQ-nB-5Vc">
-                                <rect key="frame" x="12" y="294" width="390" height="423.5"/>
+                                <rect key="frame" x="12" y="294" width="390" height="425.5"/>
                                 <connections>
                                     <outlet property="delegate" destination="ltn-KW-M9C" id="RBS-7h-HiC"/>
                                 </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1fH-la-SLz">
-                                <rect key="frame" x="146" y="747.5" width="122.5" height="27.5"/>
+                                <rect key="frame" x="146" y="749.5" width="122.5" height="27.5"/>
                                 <color key="pageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="systemYellowColor"/>
                                 <connections>
@@ -774,16 +775,17 @@
                                     <constraint firstAttribute="width" constant="50" id="96L-e1-Twp"/>
                                     <constraint firstAttribute="height" constant="50" id="SzX-1H-M8M"/>
                                 </constraints>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="5" minY="6" maxX="5" maxY="6"/>
-                                <state key="normal" image="photo-camera"/>
+                                <state key="normal" image="camera.fill" catalog="system"/>
                                 <connections>
                                     <action selector="uploadImage:" destination="ltn-KW-M9C" eventType="touchUpInside" id="TJp-fA-vjn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RE0-ln-eb4" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
-                                <rect key="frame" x="172" y="795" width="70" height="37"/>
+                                <rect key="frame" x="174.5" y="797" width="65" height="35"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="19"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.9941048026" green="0.80614191290000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -792,8 +794,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSB-Ai-md2" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
-                                <rect key="frame" x="147" y="254" width="120" height="32"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                <rect key="frame" x="150.5" y="254" width="113" height="32"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="19"/>
                                 <state key="normal" title="Upload Photo">
                                     <color key="titleColor" red="0.39999875429999998" green="0.39999201890000002" blue="0.40000039339999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -846,30 +848,30 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="1022"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htz-cj-fqq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="988"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="971.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wm5-KN-KMQ">
-                                                <rect key="frame" x="40" y="51.5" width="334" height="896.5"/>
+                                                <rect key="frame" x="40" y="49" width="334" height="882.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9Lf-O1-Ykf">
-                                                        <rect key="frame" x="20" y="20" width="167.5" height="55"/>
+                                                        <rect key="frame" x="20" y="20" width="159" height="51"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From: Banchar Chee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDp-LQ-9fx">
-                                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="23.5"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="159" height="21.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: Salmiya" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1A2-3f-Val">
-                                                                <rect key="frame" x="0.0" y="31.5" width="144.5" height="23.5"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                <rect key="frame" x="0.0" y="29.5" width="136.5" height="21.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8P-5p-Xdt">
-                                                        <rect key="frame" x="10" y="95" width="314" height="150"/>
+                                                        <rect key="frame" x="10" y="91" width="314" height="150"/>
                                                         <subviews>
                                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kEy-C0-5Es">
                                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="150"/>
@@ -885,65 +887,65 @@
                                                         </constraints>
                                                     </view>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPk-bC-6wM">
-                                                        <rect key="frame" x="20" y="383" width="294" height="130"/>
+                                                        <rect key="frame" x="20" y="371" width="294" height="130"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="130" id="hza-Zr-nVu"/>
                                                         </constraints>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                                         <color key="textColor" systemColor="labelColor"/>
-                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nCO-0x-fLa">
-                                                        <rect key="frame" x="20" y="265" width="211" height="118"/>
+                                                        <rect key="frame" x="20" y="261" width="196.5" height="110"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car: Chevrolet Camro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBS-36-rWH">
-                                                                <rect key="frame" x="0.0" y="0.0" width="180.5" height="23.5"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="21.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="License Plate: 6TWC119" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbI-e2-09s">
-                                                                <rect key="frame" x="0.0" y="31.5" width="196" height="23.5"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                <rect key="frame" x="0.0" y="29.5" width="189" height="21.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problem: Car broke down" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHY-IJ-H7O">
-                                                                <rect key="frame" x="0.0" y="63" width="211" height="23.5"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                <rect key="frame" x="0.0" y="59" width="196.5" height="21.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFM-V9-MoL">
-                                                                <rect key="frame" x="0.0" y="94.5" width="97" height="23.5"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                <rect key="frame" x="0.0" y="88.5" width="93.5" height="21.5"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car Image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXQ-NW-5et">
-                                                        <rect key="frame" x="20" y="533" width="92.5" height="23.5"/>
-                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                        <rect key="frame" x="20" y="521" width="84.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="CAQ-yW-qBp">
-                                                        <rect key="frame" x="67" y="576.5" width="200" height="200"/>
+                                                        <rect key="frame" x="67" y="562.5" width="200" height="200"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="2R9-X9-CB2"/>
                                                             <constraint firstAttribute="height" constant="200" id="e9b-AC-2tS"/>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="lhQ-bJ-19u">
-                                                        <rect key="frame" x="93.5" y="816.5" width="147" height="40"/>
+                                                        <rect key="frame" x="95.5" y="802.5" width="143" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gS8-9b-nwM" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="61" height="40"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="59" height="40"/>
                                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                 <state key="normal" title="Accept">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
@@ -952,12 +954,12 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTd-fh-ygR" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
-                                                                <rect key="frame" x="86" y="0.0" width="61" height="40"/>
+                                                                <rect key="frame" x="84" y="0.0" width="59" height="40"/>
                                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="mxj-Ja-4AV"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                                 <state key="normal" title="Decline">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
@@ -991,8 +993,8 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4O7-td-896">
-                                                <rect key="frame" x="172.5" y="10" width="69.5" height="31.5"/>
-                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="24"/>
+                                                <rect key="frame" x="176.5" y="10" width="61" height="29"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1055,29 +1057,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Gateway" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ug-fL-VnI">
-                                <rect key="frame" x="81" y="144" width="252" height="32.5"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="25"/>
+                                <rect key="frame" x="101.5" y="144" width="211" height="30"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallet" translatesAutoresizingMaskIntoConstraints="NO" id="RqJ-I6-y5H">
-                                <rect key="frame" x="50" y="226.5" width="150" height="150"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gateway" translatesAutoresizingMaskIntoConstraints="NO" id="RqJ-I6-y5H">
+                                <rect key="frame" x="50" y="343.5" width="314" height="209"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="2hR-RL-rJy"/>
-                                    <constraint firstAttribute="width" constant="150" id="zrI-9k-tnq"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="credit-card" translatesAutoresizingMaskIntoConstraints="NO" id="zRQ-UH-AyI">
-                                <rect key="frame" x="214" y="386.5" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="MYW-OU-f4b"/>
-                                    <constraint firstAttribute="width" constant="150" id="mS4-gB-LIq"/>
+                                    <constraint firstAttribute="width" secondItem="RqJ-I6-y5H" secondAttribute="height" multiplier="563:375" id="gxB-sq-Llu"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sw7-RZ-fkl" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
-                                <rect key="frame" x="128" y="616.5" width="158" height="38"/>
+                                <rect key="frame" x="139" y="602.5" width="136" height="36"/>
                                 <color key="backgroundColor" red="0.9941048026" green="0.80614191290000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="20"/>
                                 <state key="normal" title="Payment Done">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1089,16 +1083,16 @@
                         <viewLayoutGuide key="safeArea" id="Mve-mU-c7y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="RqJ-I6-y5H" firstAttribute="top" secondItem="6ug-fL-VnI" secondAttribute="bottom" constant="50" id="BwU-Vi-p8j"/>
-                            <constraint firstItem="zRQ-UH-AyI" firstAttribute="top" secondItem="RqJ-I6-y5H" secondAttribute="bottom" constant="10" id="G7E-bL-GQX"/>
                             <constraint firstItem="6ug-fL-VnI" firstAttribute="centerX" secondItem="Rew-Nb-cM6" secondAttribute="centerX" id="Izc-2t-VRz"/>
-                            <constraint firstItem="Mve-mU-c7y" firstAttribute="trailing" secondItem="zRQ-UH-AyI" secondAttribute="trailing" constant="50" id="Kfh-gz-UBX"/>
+                            <constraint firstItem="RqJ-I6-y5H" firstAttribute="centerY" secondItem="Rew-Nb-cM6" secondAttribute="centerY" id="O1D-Qi-LP6"/>
                             <constraint firstItem="RqJ-I6-y5H" firstAttribute="leading" secondItem="Mve-mU-c7y" secondAttribute="leading" constant="50" id="WPT-qM-zmW"/>
-                            <constraint firstItem="Sw7-RZ-fkl" firstAttribute="top" secondItem="zRQ-UH-AyI" secondAttribute="bottom" constant="80" id="aIR-HN-cyz"/>
+                            <constraint firstAttribute="trailing" secondItem="RqJ-I6-y5H" secondAttribute="trailing" constant="50" id="Yv4-ff-aa9"/>
                             <constraint firstItem="6ug-fL-VnI" firstAttribute="top" secondItem="Mve-mU-c7y" secondAttribute="top" constant="100" id="bOe-oS-d7T"/>
+                            <constraint firstItem="Sw7-RZ-fkl" firstAttribute="top" secondItem="RqJ-I6-y5H" secondAttribute="bottom" constant="50" id="eTx-dF-czf"/>
                             <constraint firstItem="Sw7-RZ-fkl" firstAttribute="centerX" secondItem="Rew-Nb-cM6" secondAttribute="centerX" id="jP5-61-jJX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Ab4-iD-C6Q"/>
                     <connections>
                         <outlet property="paymentCompletedBtn" destination="Sw7-RZ-fkl" id="uZN-tv-kGv"/>
                     </connections>
@@ -1116,13 +1110,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate the Winch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QJ-US-WnN">
-                                <rect key="frame" x="105.5" y="144" width="203.5" height="32.5"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="25"/>
+                                <rect key="frame" x="119" y="144" width="176" height="30"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjM-sw-d63">
-                                <rect key="frame" x="40" y="266.5" width="334" height="300"/>
+                                <rect key="frame" x="40" y="264" width="334" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="SFY-Qq-VdI">
                                         <rect key="frame" x="32" y="20" width="270" height="30"/>
@@ -1133,35 +1127,40 @@
                                                     <constraint firstAttribute="height" constant="30" id="M52-6u-nqY"/>
                                                     <constraint firstAttribute="width" constant="30" id="jzd-dC-SmL"/>
                                                 </constraints>
-                                                <state key="normal" image="star"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="star" catalog="system"/>
                                                 <connections>
                                                     <action selector="rateButtonClicked:" destination="28N-w3-eUc" eventType="touchUpInside" id="dD3-hY-NbC"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbZ-Po-Peu">
                                                 <rect key="frame" x="60" y="0.0" width="30" height="30"/>
-                                                <state key="normal" image="star"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="star" catalog="system"/>
                                                 <connections>
                                                     <action selector="rateButtonClicked:" destination="28N-w3-eUc" eventType="touchUpInside" id="ZdX-gS-m8Y"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nus-gk-a2J">
                                                 <rect key="frame" x="120" y="0.0" width="30" height="30"/>
-                                                <state key="normal" image="star"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="star" catalog="system"/>
                                                 <connections>
                                                     <action selector="rateButtonClicked:" destination="28N-w3-eUc" eventType="touchUpInside" id="AIA-hg-A45"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmr-2c-cAF">
                                                 <rect key="frame" x="180" y="0.0" width="30" height="30"/>
-                                                <state key="normal" image="star"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="star" catalog="system"/>
                                                 <connections>
                                                     <action selector="rateButtonClicked:" destination="28N-w3-eUc" eventType="touchUpInside" id="Wgk-oT-XJr"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZR-hh-JuH">
                                                 <rect key="frame" x="240" y="0.0" width="30" height="30"/>
-                                                <state key="normal" image="star"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="star" catalog="system"/>
                                                 <connections>
                                                     <action selector="rateButtonClicked:" destination="28N-w3-eUc" eventType="touchUpInside" id="vq3-lH-Mcq"/>
                                                 </connections>
@@ -1172,10 +1171,11 @@
                                         <rect key="frame" x="32" y="58" width="270" height="222"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="y3o-xA-na6" secondAttribute="bottom" constant="20" id="0Rz-e5-HX8"/>
                                     <constraint firstAttribute="height" constant="300" id="2Q4-EE-wb9"/>
@@ -1187,9 +1187,9 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ch1-uP-87H" customClass="RoundedRectangleButton" customModule="Banchar" customModuleProvider="target">
-                                <rect key="frame" x="139.5" y="676.5" width="135" height="36"/>
+                                <rect key="frame" x="148" y="674" width="118" height="34"/>
                                 <color key="backgroundColor" red="0.9941048026" green="0.80614191290000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="18"/>
                                 <state key="normal" title="Submit Rating">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1211,6 +1211,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dialogueview" destination="mjM-sw-d63" id="R4Z-X5-Xp5"/>
                         <outlet property="reviewTF" destination="y3o-xA-na6" id="QJq-68-SFR"/>
                         <outlet property="starStackView" destination="SFY-Qq-VdI" id="JKQ-c8-04w"/>
                         <outlet property="submitBtn" destination="ch1-uP-87H" id="1q8-ry-XKf"/>
@@ -1234,13 +1235,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your overall rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yux-Q1-cfR">
-                                <rect key="frame" x="80.5" y="84" width="253" height="32.5"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="25"/>
+                                <rect key="frame" x="102.5" y="84" width="209" height="30"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Bold" family="SF UI Display" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Zhy-RS-oew">
-                                <rect key="frame" x="72" y="166.5" width="270" height="30"/>
+                                <rect key="frame" x="72" y="164" width="270" height="30"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lnL-fu-fOc">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -1264,19 +1265,19 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tuU-5p-DlE">
-                                <rect key="frame" x="0.0" y="241.5" width="414" height="620.5"/>
+                                <rect key="frame" x="0.0" y="239" width="414" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="eUz-o6-uQJ" customClass="WinchReviewTableViewCell" customModule="Banchar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="46"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eUz-o6-uQJ" id="eBH-Ft-vta">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oep-fx-WKm">
-                                                    <rect key="frame" x="20" y="11" width="374" height="24"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1327,14 +1328,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkbox-empty" width="512" height="512"/>
-        <image name="credit-card" width="512" height="512"/>
-        <image name="location" width="256" height="256"/>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
+        <image name="gateway" width="563" height="375"/>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="logo" width="588" height="588"/>
-        <image name="photo-camera" width="512" height="512"/>
         <image name="placeholder" width="246" height="244"/>
-        <image name="star" width="512" height="512"/>
-        <image name="wallet" width="512" height="512"/>
+        <image name="square" catalog="system" width="128" height="114"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
