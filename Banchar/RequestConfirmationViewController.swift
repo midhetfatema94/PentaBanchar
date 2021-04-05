@@ -11,6 +11,7 @@ import MapKit
 
 class RequestConfirmationViewController: UIViewController {
     
+    @IBOutlet weak var descriptionHeight: NSLayoutConstraint!
     @IBOutlet weak var requestTitle: UILabel!
     @IBOutlet weak var requestId: UILabel!
     @IBOutlet weak var clientAddress: UILabel!
@@ -148,6 +149,7 @@ class RequestConfirmationViewController: UIViewController {
         carPlate.text = "License Plate: \(requestModel.getCarPlate())"
         clientProblem.text = "Problem: \(requestModel.problem ?? "")"
         problemDescription.text = requestModel.description
+        descriptionHeight.constant = problemDescription.contentSize.height
         locationMap.delegate = self
         
         if let modelCoordinates = requestModel.clientLocation {

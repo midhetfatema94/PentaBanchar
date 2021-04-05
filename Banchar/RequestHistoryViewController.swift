@@ -106,7 +106,9 @@ class RequestHistoryViewController: UIViewController {
     func getAllReviews() -> [String] {
         var reviews: [String] = []
         self.requests.forEach {
-            reviews.append($0.review ?? "")
+            if let review = $0.review, !review.isEmpty {
+                reviews.append(review)
+            }
         }
         return reviews
     }
