@@ -33,7 +33,6 @@ class AverageRatingViewController: UIViewController {
         
         for starImage in starImageViews {
             let floatStar = Float(starImage.tag)
-            print(floatStar, rateScore)
             if floatStar <= (rateScore ?? 0) {
                 starImage.image = starFilledImage
             } else if floatStar - 1 < (rateScore ?? 0) {
